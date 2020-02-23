@@ -162,70 +162,53 @@ rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999) {
 }
 
 
-plot.dateModel <- function(model1, model2 = NULL, title = NULL,
-						   origin = NULL, bin = NULL) {
+#' Plot the results of the RMA bootstrap on archaeological dates versus
+#' distances from a hypothetical origin, with fitted lines.
+#'
+#' @param dateModel a dateModel object created with rmaDates().
+#' @return a ggplot.
+#' @export
+plot.dateModel <- function(dateModel) {
 
-    sts <- data.frame("dists" = model1$binSites$dists,
-                      "dates" = model1$binSites$med)
-    asts <- data.frame("dists" = model1$allSites$dists,
-                       "dates" = model1$allSites$med)
-    mdl1 <- as.data.frame(model1$model)
-    plt <- ggplot() + xlim(0, max(sts$dists)) + ylim(min(model1$allSites$med),
-                                                     max(mdl1$int)) +
-                      xlab("Distance from origin (km)") + ylab("Cal yr BP")
-    
-    if (!missing(model2)) {
-        mdl <- as.data.frame(model2$model)
-        sts2 <- data.frame("dists" = model2$sites$dists,
-                           "dates" = model2$sites$med)
+    binSites <- data.frame("dists" = dateModel$binSites$dists,
+                           "dates" = dateModel$binSites$med)
+    allSites <- data.frame("dists" = dateModel$allSites$dists,
+                           "dates" = dateModel$allSites$med)
 
-        mItc <- mean(mdl$int)
-        mSlo <- mean(mdl$slo)        
+    model <- as.data.frame(dateModel$model)
 
-        plt <- plt + geom_abline(data = mdl,
-                                 aes(intercept = int, slope = slo),
-                                 alpha = 0.05, lwd=0.5,
-                                 colour = "#E64B35B2") +
-                     geom_abline(aes(intercept = mItc, slope = mSlo))
+    # Mean intercept and slope of bootstrap for display
+    int.m <- mean(model$int)
+    slo.m <- mean(model$slo)
+
+    # Display significant p value as either < 0.01 or < 0.05. If not
+    # significant, display actual value up to two decimals.
+    if (mean(model$p) < 0.01) {
+        pval <- "p < 0.01"
+    } else if (mean(model$p) < 0.05) {
+        pval <- "p < 0.05"
+    } else {
+        pval <- paste("p = ", format(mean(model$p), digits = 2,
+                                     scientific = FALSE))
     }
 
-    mdl <- as.data.frame(model1$model)
-    mItc <- mean(mdl$int)
-    mSlo <- mean(mdl$slo)     
+    rval <- paste("r = -", format(sqrt(mean(mean(model$r))), dig = 2), sep="")
 
-    plt <- plt +                  geom_abline(data = mdl,
-                             aes(intercept = int, slope = slo),
-                             alpha = 0.05, lwd=0.5,
-                             colour = "#E64B35B2") +
-                 geom_abline(aes(intercept = mItc, slope = mSlo)) +
-                geom_point(data = asts, aes(x = dists, y = dates),
-                            shape = 21, size = 3, fill = "white") +
-                 geom_point(data = sts, aes(x = dists, y = dates),
-                            shape = 21, size = 3, fill = "black")
-  
-    if (!missing(model2)) {
-
-        rval <- paste("r = -", format(sqrt(mean(mean(mdl$r))),
-                                               dig = 2), sep="")
-
-        # Display significant p value as either < 0.01 or < 0.05. If not
-        # significant, display actual value up to two decimals.
-        if (mean(mdl$p) < 0.01) {
-            pval <- "p < 0.01"
-        } else if (mean(mdl$p) < 0.05) {
-            pval <- "p < 0.05"
-        } else {
-            pval <- paste("p = ", format(mean(mdl$p), digits = 2,
-                                        scientific = FALSE))
-        }
-        
-        plt <- plt + geom_point(data = sts2, aes(x = dists, y = dates),
-                                shape = 21, size = 3, fill = "black") +
-                     annotate("text", x = max(sts2$dists) / 1.1, y = max(sts2$dates),
-                              label = paste(rval, pval))
-	}
-    plt + labs(title = title, subtitle = paste("Origin: ", origin,
-											   ", Bins: ", bin, " km",  sep=""))
+    plt <- ggplot() + xlim(0, max(allSites$dists)) +
+                      ylim(min(allSites$dates), max(model$int)) +
+                      xlab("Distance from origin (km)") + ylab("Cal yr BP") +
+                      geom_abline(data = model,
+                                  aes(intercept = int, slope = slo),
+                                  alpha = 0.05, lwd=0.5, colour = "red") +
+                      geom_abline(aes(intercept = int.m, slope = slo.m)) +
+                      geom_point(data = allSites, aes(x = dists, y = dates),
+                                 shape = 21, size = 1, fill = "white") +
+                      geom_point(data = binSites, aes(x = dists, y = dates),
+                                 shape = 21, size = 2, fill = "black") +
+                      annotate("text", x = min(allSites$dists),
+                                       y = min(allSites$dates),
+                                       label = paste(rval, pval), hjust = 0)
+    return(plt)
 }
 
 
