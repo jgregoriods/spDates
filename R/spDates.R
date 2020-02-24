@@ -1,4 +1,5 @@
 library(base)
+library(data.table)
 library(dplyr)
 library(gdistance)
 library(ggplot2)
@@ -6,36 +7,6 @@ library(parallel)
 library(raster)
 library(rcarbon)
 library(smatr)
-
-
-#' Filter archaeological site coordinates and dates, retaining only the
-#' earliest radiocarbon date per site.
-#'
-#' @param sites A SpatialPointsDataFrame object with archaeological sites and
-#' associated radiocarbon ages.
-#' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
-#' format.
-#' @return A SpatialPointsDataFrame object with the earliest C14 date for every
-#' site.
-#' @export
-filterDates <- function(sites, c14bp) {
-    x <- c(colnames(coordinates(sites)))[1]
-    y <- c(colnames(coordinates(sites)))[2]
-
-    clusters <- zerodist(sites, zero = 0, unique.ID = TRUE)
-
-    sites$clusterID <- clusters
-    sites.df <- as.data.frame(sites)
-    sites.max <- as.data.frame(sites.df %>% group_by(clusterID) %>%
-                               top_n(1, get(c14bp)))
-
-    xy <- cbind(sites.max[[x]], sites.max[[y]])
-
-    sites.max.spdf <- SpatialPointsDataFrame(xy, sites.max)
-    proj4string(sites.max.spdf) <- proj4string(sites)
-
-    return(sites.max.spdf)
-}
 
 
 #' Calibrate all radiocarbon dates in a dataset, differentiating between
@@ -71,111 +42,117 @@ calAll <- function(sites, c14bp, sd, material, curve = "intcal13") {
 }
 
 
-#' Extract a single year estimate for ranges of calibrated dates with a
-#' probability given by the calibrated probability distribution.
+#' Filter archaeological site coordinates and dates, retaining only the
+#' earliest radiocarbon date per site.
 #'
-#' @param calDates A CalDates object or a vector of CalDates.
-#' @return A vector of cal BP single year estimates.
+#' @param sites A SpatialPointsDataFrame object with archaeological sites and
+#' associated radiocarbon ages.
+#' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
+#' format.
+#' @return A SpatialPointsDataFrame object with the earliest C14 date for every
+#' site.
 #' @export
-sampleDates <- function(calDates) {
+filterDates <- function(sites, c14bp) {
+    x <- c(colnames(coordinates(sites)))[1]
+    y <- c(colnames(coordinates(sites)))[2]
 
-    years <- numeric(length(calDates))
-    
-	for (i in 1:length(calDates)) {
-        years[i] <- sample(calDates[i]$grids[[1]]$calBP, size = 1,
-                           prob = calDates[i]$grids[[1]]$PrDens)
-    }
+    clusters <- zerodist(sites, zero = 0, unique.ID = TRUE)
 
-    return(years)
+    sites$clusterID <- clusters
+    sites.df <- as.data.frame(sites)
+    sites.max <- as.data.frame(sites.df %>% group_by(clusterID) %>%
+                               top_n(1, get(c14bp)))
+
+    xy <- cbind(sites.max[[x]], sites.max[[y]])
+
+    sites.max.spdf <- SpatialPointsDataFrame(xy, sites.max)
+    proj4string(sites.max.spdf) <- proj4string(sites)
+
+    return(sites.max.spdf)
 }
 
 
-#' Perform reduced major axis regression of archaeological dates versus
-#' great circle distances from a hypothetical origin. Dates can be filtered
-#' to retain only the earliest dates per distance bins (Hamilton and
-#' Buchanan 2007). Bootstrap is executed to account for uncertainty in
-#' calibrated dates. If a cost surface is provided, distances are calculated
-#' using least cost paths instead of great circle distances.
-#' 
+#' Perform regression of dates versus distances from multiple potential origins
+#' in order to find the best model. It is also possible to specify multiple
+#' distances for the spatial binning of the dates.
+#'
 #' @param ftrSites A SpatialPointsDataFrame object with associated earliest
 #' C14 dates per site and respective calibrated distributions (CalDates
-#' objects)
-#' in a field named "cal". Result of applying filterDates() and calAll().
+#' objects) in a field named "cal". Result of applying filterDates() and
+#' calAll().
 #' @param c14bp A string. Name of the field with the radiocarbon ages in C14
 #' BP format.
-#' @param origin A SpatialPointsDataFrame object. The site considered as
-#' hypothetical origin of expansion.
-#' @param binWidth A number. Width of the spatial bins in km, calculated as
-#' distance intervals from the hypothetical origin. Default is 0 (no bins).
+#' @param siteNames A string. Name of the field with the site names or ids.
+#' @param origins A SpatialPointsDataFrame object. The sites to be tested for
+#' the most likely origin of expansion.
+#' @param binWidths A number or vector of numbers. Width(s) of the spatial bins
+#' in km.
 #' @param nsim A number. Number of simulations to be run during the
 #' bootstrapping procedure. Default is 999.
 #' @param cost A RasterLayer with friction values to calculate least cost
 #' path distances instead of great circle distances.
-#' @return a dateModel object.
+#' @return a list with two elements, the result of the iteration over all
+#' potential origins and the best model selected among those.
 #' @export
-rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
-                     cost = NULL) {
+iterateSites <- function(ftrSites, c14bp, siteNames, origins, binWidths,
+                         nsim = 999, cost = NULL) {
 
-    no_cores <- detectCores()
-    cl <- makeCluster(no_cores - 1)
-    clusterEvalQ(cl, library("rcarbon"))
-    clusterEvalQ(cl, library("smatr"))
-    clusterExport(cl, "sampleDates", envir = .GlobalEnv)
+    datalen <- length(binWidths) * length(origins)
 
-    models <- vector("list", length = nsim)
+    res <- data.table("r" = numeric(datalen), "p" = numeric(datalen),
+                      "bin" = numeric(datalen), "n" = numeric(datalen),
+		              "site" = character(datalen))
 
-    # If a cost surface is provided, calculate cost distances
-    if (!missing(cost)) {
-        tr <- transition(cost, function(x) 1/mean(x), 16)
-        tr <- geoCorrection(tr)
+    # Perform reduced major axis regression for each bin width and for each
+    # hypothetical origin, if more than one is specified
+    pb <- txtProgressBar(min = 0, max = datalen, style = 3)
+    counter <- 0
+    for (i in (1:length(binWidths))) {
+        for (j in (1:length(origins))) {
+            counter <- counter + 1
 
-        # Create cost paths and calculate their distances
-        paths <- shortestPath(tr, origin, ftrSites, output = "SpatialLines")
-        ftrSites$dists <- SpatialLinesLengths(paths)
-    } else {
-        # If no cost surface is provided, caculate great circle distances
-        ftrSites$dists <- spDistsN1(ftrSites, origin, longlat = TRUE)
+            dateModel <- rmaDates(ftrSites, c14bp = c14bp, origin = origins[j,], 
+                                  binWidth = binWidths[i], nsim = nsim,
+                                  cost = cost)
+
+            # Only proceed if the slope is negative, i.e. dates become more
+            # recent with increasing distance
+            if (mean(dateModel$model[,"slo"]) < 0) {
+                
+                # Extract the r and p of each model and store it in the result,
+                # together with the corresponding bin width 
+                meanr <- mean(dateModel$model[,"r"])
+                meanp <- mean(dateModel$model[,"p"])
+
+                # Save the best model
+                if (!exists("bestModel")) {
+                    bestModel <- dateModel
+                } else if (meanp < 0.05 & meanr > mean(bestModel$model[,"r"])) {
+                    bestModel <- dateModel
+                }
+
+                if (meanp < 0.01) {
+                    ast <- "**"
+                } else if (meanp < 0.05) {
+                    ast <- "* "
+                } else {
+                    ast <- "  "
+                }
+
+                res[counter, "r"] <- round(as.double(sqrt(meanr)), 4)
+                res[counter, "p"] <- round(as.double(meanp), 4)
+                res[counter, "bin"] <- binWidths[i]
+                res[counter, "n"] <- nrow(dateModel$binSites)
+                res[counter, "site"] <- paste(toString(origins[[siteNames]][j]),
+                                              ast, sep="")
+            }
+            setTxtProgressBar(pb, counter)
+        }
     }
+    close(pb)
 
-    # Perform spatial binning, retain only earliest date per bin
-    if (binWidth > 0)  {
-        ftrSites$bin <- floor(ftrSites$dists / binWidth)
-        ftrSites.df <- as.data.frame(ftrSites)
-        ftrSites.max <- ftrSites.df %>% group_by(bin) %>% top_n(1, get(c14bp))
-        binSites <- as.data.frame(ftrSites.max)
-    }
-
-    dists <- binSites$dists
-    calDates <- binSites$cal
-
-    clusterExport(cl, list("models", "dists", "calDates"),
-                  envir = environment())
-
-    models <- parLapply(cl, 1:nsim, function(k) {
-        dates <- sampleDates(calDates)
-        model <- sma(dates ~ dists, robust = TRUE)
-    })
-
-    stopCluster(cl)
-    gc()
-
-    res <- matrix(nrow = nsim, ncol = 4)
-
-    # Save the coefficient, probability, slope and intercept of the
-    # regressions
-    colnames(res) <- c("r", "p", "slo", "int")
-    lapply(1:nsim, function(k) {
-        res[k, "r"] <<- models[[k]]$r[[1]]
-        res[k, "p"] <<- models[[k]]$p[[1]]
-        res[k, "slo"] <<- models[[k]]$coef[[1]][2, 1]
-        res[k, "int"] <<- models[[k]]$coef[[1]][1, 1]
-    })
-
-    dateModel <- list("model" = res, "binSites" = binSites,
-                      "allSites" = ftrSites, "binWidth" = binWidth)
-    class(dateModel) <- "dateModel"
-
-    return(dateModel)
+    res <- res[order(-r)]
+    return(list("results" = res, "model" = bestModel))
 }
 
 
@@ -235,6 +212,114 @@ plot.dateModel <- function(dateModel) {
                       theme(legend.position = c(1, 1),
                             legend.justification = c(1, 1))
     return(plt)
+}
+
+
+#' Perform reduced major axis regression of archaeological dates versus
+#' great circle distances from a hypothetical origin. Dates can be filtered
+#' to retain only the earliest dates per distance bins (Hamilton and
+#' Buchanan 2007). Bootstrap is executed to account for uncertainty in
+#' calibrated dates. If a cost surface is provided, distances are calculated
+#' using least cost paths instead of great circle distances.
+#' 
+#' @param ftrSites A SpatialPointsDataFrame object with associated earliest
+#' C14 dates per site and respective calibrated distributions (CalDates
+#' objects) in a field named "cal". Result of applying filterDates() and
+#' calAll().
+#' @param c14bp A string. Name of the field with the radiocarbon ages in C14
+#' BP format.
+#' @param origin A SpatialPointsDataFrame object. The site considered as
+#' hypothetical origin of expansion.
+#' @param binWidth A number. Width of the spatial bins in km, calculated as
+#' distance intervals from the hypothetical origin. Default is 0 (no bins).
+#' @param nsim A number. Number of simulations to be run during the
+#' bootstrapping procedure. Default is 999.
+#' @param cost A RasterLayer with friction values to calculate least cost
+#' path distances instead of great circle distances.
+#' @return a dateModel object.
+#' @export
+rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
+                     cost = NULL) {
+
+    no_cores <- detectCores()
+    cl <- makeCluster(no_cores - 1)
+    clusterEvalQ(cl, library("rcarbon"))
+    clusterEvalQ(cl, library("smatr"))
+    clusterExport(cl, "sampleDates", envir = .GlobalEnv)
+
+    models <- vector("list", length = nsim)
+
+    # If a cost surface is provided, calculate cost distances
+    if (!missing(cost) & class(cost) == "RasterLayer") {
+        tr <- transition(cost, function(x) 1/mean(x), 16)
+        tr <- geoCorrection(tr)
+
+        # Create cost paths and calculate their distances
+        paths <- shortestPath(tr, origin, ftrSites, output = "SpatialLines")
+        ftrSites$dists <- SpatialLinesLengths(paths)
+    } else {
+        # If no cost surface is provided, caculate great circle distances
+        ftrSites$dists <- spDistsN1(ftrSites, origin, longlat = TRUE)
+    }
+
+    # Perform spatial binning, retain only earliest date per bin
+    if (binWidth > 0)  {
+        ftrSites$bin <- floor(ftrSites$dists / binWidth)
+        ftrSites.df <- as.data.frame(ftrSites)
+        ftrSites.max <- ftrSites.df %>% group_by(bin) %>% top_n(1, get(c14bp))
+        binSites <- as.data.frame(ftrSites.max)
+    }
+
+    dists <- binSites$dists
+    calDates <- binSites$cal
+
+    clusterExport(cl, list("models", "dists", "calDates"),
+                  envir = environment())
+
+    models <- parLapply(cl, 1:nsim, function(k) {
+        dates <- sampleDates(calDates)
+        model <- sma(dates ~ dists, robust = TRUE)
+    })
+
+    stopCluster(cl)
+    gc()
+
+    res <- matrix(nrow = nsim, ncol = 4)
+
+    # Save the coefficient, probability, slope and intercept of the
+    # regressions
+    colnames(res) <- c("r", "p", "slo", "int")
+    lapply(1:nsim, function(k) {
+        res[k, "r"] <<- models[[k]]$r[[1]]
+        res[k, "p"] <<- models[[k]]$p[[1]]
+        res[k, "slo"] <<- models[[k]]$coef[[1]][2, 1]
+        res[k, "int"] <<- models[[k]]$coef[[1]][1, 1]
+    })
+
+    dateModel <- list("model" = res, "binSites" = binSites,
+                      "allSites" = ftrSites, "binWidth" = binWidth)
+    class(dateModel) <- "dateModel"
+
+    return(dateModel)
+}
+
+
+#' Extract a single year estimate for ranges of calibrated dates with a
+#' probability given by the calibrated probability distribution.
+#'
+#' @param calDates A CalDates object or a vector of CalDates.
+#' @return A vector of cal BP single year estimates.
+#' @export
+sampleDates <- function(calDates) {
+
+    years <- numeric(length(calDates))
+    
+	for (i in 1:length(calDates)) {
+        years[i] <- sample(calDates[i]$grids[[1]]$calBP, size = 1,
+                           prob = calDates[i]$grids[[1]]$PrDens)
+    }
+
+    return(years)
 }
 
 
