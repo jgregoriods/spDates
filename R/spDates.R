@@ -1,5 +1,6 @@
 library(base)
 library(dplyr)
+library(gdistance)
 library(ggplot2)
 library(parallel)
 library(raster)
@@ -7,8 +8,8 @@ library(rcarbon)
 library(smatr)
 
 
-#' Filter archaeological site coordinates and dates, retaining only the earliest
-#' radiocarbon date per site.
+#' Filter archaeological site coordinates and dates, retaining only the
+#' earliest radiocarbon date per site.
 #'
 #' @param sites A SpatialPointsDataFrame object with archaeological sites and
 #' associated radiocarbon ages.
@@ -42,13 +43,13 @@ filterDates <- function(sites, c14bp) {
 #'
 #' @param sites A dataframe with, minimally, the C14 ages, standard errors and
 #' materials dated.
-#' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
-#' format.
+#' @param c14bp A string. Name of the field with the radiocarbon ages in C14
+#' BP format.
 #' @param sd A string. Name of the field with the standard errors of the C14
 #' dates.
 #' @param material A string. Name of the field with the materials dated.
-#' @param curve A string. Calibration curve as per the rcarbon package. Default
-#' is "intcal13".
+#' @param curve A string. Calibration curve as per the rcarbon package.
+#' Default is "intcal13".
 #' @return A dataframe with an added column "cal" with CalDates objects from
 #' the rcarbon package.
 #' @export
@@ -93,22 +94,27 @@ sampleDates <- function(calDates) {
 #' great circle distances from a hypothetical origin. Dates can be filtered
 #' to retain only the earliest dates per distance bins (Hamilton and
 #' Buchanan 2007). Bootstrap is executed to account for uncertainty in
-#' calibrated dates.
+#' calibrated dates. If a cost surface is provided, distances are calculated
+#' using least cost paths instead of great circle distances.
 #' 
 #' @param ftrSites A SpatialPointsDataFrame object with associated earliest
-#' C14 dates per site and respective calibrated distributions (CalDates objects)
+#' C14 dates per site and respective calibrated distributions (CalDates
+#' objects)
 #' in a field named "cal". Result of applying filterDates() and calAll().
-#' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
-#' format.
+#' @param c14bp A string. Name of the field with the radiocarbon ages in C14
+#' BP format.
 #' @param origin A SpatialPointsDataFrame object. The site considered as
 #' hypothetical origin of expansion.
 #' @param binWidth A number. Width of the spatial bins in km, calculated as
 #' distance intervals from the hypothetical origin. Default is 0 (no bins).
 #' @param nsim A number. Number of simulations to be run during the
 #' bootstrapping procedure. Default is 999.
+#' @param cost A RasterLayer with friction values to calculate least cost
+#' path distances instead of great circle distances.
 #' @return a dateModel object.
 #' @export
-rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999) {
+rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
+                     cost = NULL) {
 
     no_cores <- detectCores()
     cl <- makeCluster(no_cores - 1)
@@ -118,8 +124,18 @@ rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999) {
 
     models <- vector("list", length = nsim)
 
-    # Calculate distances from origin
-    ftrSites$dists <- spDistsN1(ftrSites, origin, longlat = TRUE)
+    # If a cost surface is provided, calculate cost distances
+    if (!missing(cost)) {
+        tr <- transition(cost, function(x) 1/mean(x), 16)
+        tr <- geoCorrection(tr)
+
+        # Create cost paths and calculate their distances
+        paths <- shortestPath(tr, origin, ftrSites, output = "SpatialLines")
+        ftrSites$dists <- SpatialLinesLengths(paths)
+    } else {
+        # If no cost surface is provided, caculate great circle distances
+        ftrSites$dists <- spDistsN1(ftrSites, origin, longlat = TRUE)
+    }
 
     # Perform spatial binning, retain only earliest date per bin
     if (binWidth > 0)  {
@@ -145,7 +161,8 @@ rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999) {
 
     res <- matrix(nrow = nsim, ncol = 4)
 
-    # Save the coefficient, probability, slope and intercept of the regressions
+    # Save the coefficient, probability, slope and intercept of the
+    # regressions
     colnames(res) <- c("r", "p", "slo", "int")
     lapply(1:nsim, function(k) {
         res[k, "r"] <<- models[[k]]$r[[1]]
@@ -155,7 +172,7 @@ rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999) {
     })
 
     dateModel <- list("model" = res, "binSites" = binSites,
-                      "allSites" = ftrSites)
+                      "allSites" = ftrSites, "binWidth" = binWidth)
     class(dateModel) <- "dateModel"
 
     return(dateModel)
@@ -199,7 +216,8 @@ plot.dateModel <- function(dateModel) {
                       xlab("Distance from origin (km)") + ylab("Cal yr BP") +
                       geom_abline(data = model,
                                   aes(intercept = int, slope = slo),
-                                  alpha = 0.05, lwd=0.5, colour = "red") +
+                                  alpha = 0.05, lwd=0.5,
+                                  colour = "lightcoral") +
                       geom_abline(aes(intercept = int.m, slope = slo.m)) +
                       geom_point(data = allSites, aes(x = dists, y = dates),
                                  shape = 21, size = 1, fill = "white") +
@@ -207,13 +225,22 @@ plot.dateModel <- function(dateModel) {
                                  shape = 21, size = 2, fill = "black") +
                       annotate("text", x = min(allSites$dists),
                                        y = min(allSites$dates),
-                                       label = paste(rval, pval), hjust = 0)
+                                       label = paste(rval, pval), hjust = 0) +
+                      annotate("text", x = max(allSites$dists),
+                                       y = max(model$int),
+                                       label = paste("bins: ",
+                                                     dateModel$binWidth,
+                                                     " km"), hjust = 1)
     return(plt)
 }
 
 
-neo <- read.csv("euroevol.csv")
+# Load sample Neolithic dates
+neo <- read.csv("./data/neolithic.csv")
 coordinates(neo) <- ~Longitude+Latitude
 projection(neo) <- CRS("+init=epsg:4326")
 
 neo.f <- filterDates(neo, "C14Age")
+
+# Load sample cost surface
+cost <- raster("./data/cost.tif")

@@ -1,0 +1,722 @@
+Latitude,Longitude,Site,Location,Country,Period,Lab Number,C14Age,C14SD,Material
+36.3333,43.5,M'lefaat,Near East,Iraq,Mlefatian,Gd-6150,10890,140,charcoal
+38.31,41.27,Hallan Cemi Tepsi,Anatolia,Turkey,PPNA,BETA-55052,10590,170,charcoal
+38.23,39.65,Cayönü,Anatolia,Turkey,PPNA,GrN-8103,10430,80,charcoal
+30.6256,35.4453,Wadi Faynan 16,Near East,Jordan,PPNA,Beta-120210,10220,60,charcoal
+36.05,38.2,Mureybet,Near East,Syria,PPNA,P-1217,10215,117,charcoal
+31.7833,35.15,Hatoula,Near East,Israel,PPNA,GifA-91139,10170,120,bone
+28.55,33.97,Abu Madi I,Near East,Egypt,PPNA,Pta-2669,10110,100,charcoal
+36.72,42.88,Nemrik 9,Near East,Iraq,PPNA,GD-6148,10070,120,charcoal
+31.25,35.567,Dhra,Near East,Jordan,PPNA,AA-38142,10059,73,charcoal
+35.4681,44.3922,Shimshara,Near East,Iraq,PPN,K-981,10030,160,
+32.62,35.5511,Gesher,Near East,Israel,PPNA,Pta-4553,10020,100,charcoal
+32,35.42,Netiv Hagdud,Near East,Israel,PPNA,RT-762C,9970,150,
+36.4,38.2,Jerf el Ahmar,Near East,Syria,PPNA,Ly-10651,9965,55,.
+31.09,35.64,Iraq ed-Dubb,Near East,Jordan,PPNA,OxA-2567,9950,100,charcoal
+32.42,47.25,Ali Kosh,Near East,Iran,PPN,I-1419,9950,190,
+32.1558,34.9528,Gilgal,Near East,Israel,PPNA,Pta-4588,9920,70,charcoal
+31.88,35.45,Jericho,Near East,Israel,PPNA,P-378,9775,110,charcoal
+34.3,47.15,Asiab,Near East,Iran,PPN,GrN-6434,9755,85,
+33.5882,36.3818,Aswad,Near East,Syria,PPNA,Gif-2633,9730,120,charcoal
+36.3958,41.7936,Qermez Dere,Near East,Iraq,PPN,OxA-3755,9710,85,charred seeds
+33.6667,49.6333,Chagha Sefid,Near East,Iran,PPN,UCLA-295,9690,100,
+35.8667,38.4,Abu Hureyra,Near East,Syria,PPNB,OxA-1228,9680,90,
+37.2167,38.9167,Göbekli,Anatolia,Turkey,PPNB,Hd-20036,9559,53,
+35.8136,53.8989,Hotu,Near East,Iran,PPN,L-182,9500,200,
+36.5,38.3,Dja'de,Near East,Syria,EPPNB,Ly-8842,9370,75,
+33.05,35.25,Horvat Galil,Near East,Israel,PPNB,RT-1397,9340,70,
+38.4833,37.4167,Mezraa Teleilat,Anatolia,Turkey,PPN,AA-49102,9324,59,
+34.825,32.42,Kissonerga-Mylouthkia,Europe,Cyprus,Cypro-EPPNB,OxA-7460,9315,60,
+34.7458,33.1583,Parekklisha-Shillourokambos,Europe,Cyprus,Cypro-EPPNB,Ly-290,9310,80,
+37.4833,33.0333,Pinarbasi Site A,Anatolia,Turkey,PPNB,OxA-5500,9290,80,
+37.5833,38.65,Nevali Cori,Anatolia,Turkey,PPNB,OxA-8303,9280,55,
+32.0833,36.1,Ain Ghazal,Near East,Jordan,MPPNB-1,GrN-12966,9200,110,
+31.6,34.7833,Iraq el-Barud,Near East,Israel,PPNB,Hv-3368,9120,85,
+31.4631,35.5683,Shu'eib,Near East,Jordan,LPPNB,Bta-35087,9100,140,
+30.37,35.43,Beidha,Near East,Jordan,PPNB,GrN-5062,9030,50,
+38.28,34.57,Kaletepe,Anatolia,Turkey,Aceramic,GifA-100396,9030,80,
+31.1333,35.75,Ghwair,Near East,Jordan,MPPNB,DRI-3253,9027,116,
+38.833,47.833,Ganj Dareh,Near East,Iran,PPN,SI-4741,8950,70,
+38.46,38.78,Cafer Höyük,Anatolia,Turkey,EPPNB,Ly-4437,8950,80,
+38.37,34.25,Asikli Höyük,Anatolia,Turkey,Aceramic,GrN-19116,8920,50,
+32.05,36.2333,Dhuweila,Near East,Jordan,MPPNB,,8910,60,
+30.8333,34.7833,Divshon,Near East,Israel,PPNB,SMU-3,8900,180,
+32.6937,35.3114,Yiftahel,Near East,Israel,PPNB,Pta-4242,8870,90,
+31.1417,35.3722,Hemar,Near East,Israel,PPNB,Pta-3625,8850,90,
+36.9167,38.0167,Akarcay Tepe,Anatolia,Turkey,PPN,Beta-138548,8750,40,
+31,34.8,Reu'el,Near East,Israel,PPNB,Pta-3137,8720,70,
+36.4167,38.1667,Halula,Near East,Syria,PPNB,Beta-58928,8700,60,
+37.58,30.08,Hacilar Aceramic,Anatolia,Turkey,Aceramic,BM-127,8700,180,
+36.2167,37.4,Sinn,Near East,Syria,LPPNB,GrN-9833,8650,50,
+29.85,52.75,Mushki,Near East,Iran,Pottery Neolithic,TK-34,8640,120,soil
+37.55,38.567,Gritille,Anatolia,Turkey,PPNB,Beta-13216,8610,90,
+34.9292,32.5625,Kritou-Marottou,Europe,Cyprus,Cypro-EPPNB,Beta-183650,8600,40,
+37.5,33.5,Canhasan III,Anatolia,Turkey,Aceramic,HU-11,8584,65,
+36.9333,40.5667,Sabi Abyad II,Near East,Syria,LPPNB,GrN-21319,8530,60,
+35.55,44.95,Jarmo,Near East,Iraq,PPN,H-551/-491,8525,175,
+29.55,35.4,Ayn Abu Nukhayla,Near East,Jordan,PPNB,,8509,64,
+31.05,35.37,Mezad Mazal,Near East,Israel,PPNB,B-2737,8480,70,
+29.9167,34.95,Issaron,Near East,Israel,PPNC?,Pta-2999,8460,80,
+36.95,39.033,Assouad,Near East,Syria,Pottery Neolithic,MC-864,8450,120,charcoal
+32.3833,35.7333,Sabha,Near East,Jordan,PPNB,TO-3987,8430,70,
+33.5,48.6667,Guran,Near East,Iran,PPN,K-1006,8410,200,
+31.5,36.4167,Jilat 7,Near East,Jordan,EPPNB,OxA-2413,8390,80,
+35.15,40.4333,Bouqras,Near East,Syria,PPNB,GrN-8262,8380,45,
+32.0833,36.3667,Khirbet Hammam,Near East,Jordan,LPPNB,GrN-26147,8370,40,
+35.5833,35.75,Ras Shamra,Near East,Syria,PPNB,P-460,8364,101,
+33.0708,35.1361,Betzet 1,Near East,Israel,PPN,RT-1394,8330,100,
+37.4,37.95,Hayaz Höyük,Anatolia,Turkey,PPNB,GrN-12510,8300,60,
+35.9167,36.4667,Aray 2,Near East,Syria,Pottery Neolithic,N-5976,8290,145,charcoal
+31.8333,36.8167,Azraq 31,Near East,Jordan,LPPNB,OxA-2412,8275,80,
+31.9667,35.7333,Bawwab al-Ghazal,Near East,Jordan,PPNB,KN-5454,8273,59,
+30.15,35.2167,Burqu 35,Near East,Jordan,Pottery Neolithic,OxA-2770,8270,80,charcoal
+37.34,31.95,Suberde,Anatolia,Turkey,PPNB,P-1391,8249,91,
+38.61,22.73,Elateia,Europe,Greece,Early Neolithic,GrN-3039,8240,110,charcoal
+28.21,34,Ujrat el-Mehed 1,Near East,Egypt,LPPNB,Pta-2703,8220,80,
+40.6,22.25,Nea Nikomedeia,Europe,Greece,Early Neolithic,Q-655,8180,150,charcoal
+30.2333,35.5333,Basta,Near East,Jordan,LPPNB,GrN-14538,8155,50,
+35.8333,37.25,Ghorafie,Near East,Syria,Pottery Neolithic,Gif-3372,8150,190,charcoal
+45.7867,13.0847,Piancada,Europe,Italy,Early Neolithic,OZB-653,8115,92,bone
+30.3167,35.4833,Ba?ja,Near East,Jordan,LPPNB,Bln-5123,8100,33,
+37.65,32.8167,Çatal Höyük,Anatolia,Turkey,Pottery Neolithic,OxA-9775,8090,55,Seeds
+39.63,22.47,Argissa PPN,Europe,Greece,Early Neolithic,BB,8060,99,
+35.51,25.16,Knossos,Europe,Greece,Early Neolithic,BM-124,8050,180,
+38.85,39.1667,El Kowm 2,Near East,Syria,LPPNB,Ly-4400,8030,80,
+34.75,33.3,Kalavasos-Tenta,Europe,Cyprus,Cypro-LPPNB,P-2974,8020,90,
+36.66,42.5,Magzalia,Anatolia,Turkey,Neolithic,IGAN-772,8010,50,Charcoal
+32.75,34.9,Atlit-Yam,Near East,Israel,PPNC?,Pta-3950,8000,90,
+31.6667,34.533,Ashkelon,Near East,Israel,PPNC,OxA-7882,8000,110,
+35.03,33.43,Dhali-Agridhi,Europe,Cyprus,Cypro-PPNB,P-2775,7990,80,
+34.1167,35.67,Labwé,Near East,Lebanon,PPNC?,K-1430,7990,140,
+37.43,23.13,Franchthi Cave,Europe,Greece,Early Neolithic,P-2095,7980,110,charcoal
+31.067,35.5,Tel Ali,Near East,Israel,PPNC,OxA-7886*,7975,70,
+34.5,47.25,Sarab,Near East,Iran,Pottery Neolithic,P-466,7956,98,charcoal
+52.15,10.6,Klein Denkte,Europe,Germany,LBK,UtC-1834,7930,60,Cermaic tuff
+37.483,38.483,Kumartepe,Anatolia,Turkey,Pottery Neolithic,GrN-12652,7930,80,charcoal
+34.8,33.35,Khirokitia/Shillourokambos,Europe,Cyprus,Cypro-PPN,Ly-4307,7930,130,
+36.783,34.567,Yumuktepe,Anatolia,Turkey,Pottery Neolithic,Rome-467,7920,90,charcoal
+36.867,39.05,Damishliyah,Near East,Syria,Pottery Neolithic,UtC-1094/,7920,110,organic ma
+38.0167,12.4833,Grotta dell'Uzzo,Europe,Italy,Aceramic Neolithic,P-2734,7910,70,charcoal
+33.45,36.083,Ramad,Near East,Syria,Pottery Neolithic,GrN-4823,7880,55,charcoal
+36.6361,40.6639,Kashkashok II,Near East,Syria,Cypro-PPN,TK-859,7880,110,
+32.5,35.5833,Tabaqat al-Buma,Near East,Jordan,Pottery Neolithic,TO-1407,7800,70,bone
+39.36,24.16,Kyklopas Cave,Europe,Greece,Early Neolithic,DEM-636,7780,32,Charcoal
+35.7,34.5833,Cape - Andreas-Kastros,Europe,Cyprus,Cypro-PPNB,MC-805,7775,125,
+14.2808,43.1028,Ash-Shumah,Arabia,Yemen,Neolithic,GX-13781,7770,95,
+39.38,22.81,Sesklo,Europe,Greece,Initial Neolithic,P-1681,7755,97,charcoal
+39.28,22.38,Achilleion,Europe,Greece,Early Neolithic,LJ-3180,7750,60,charcoal
+37.765,31.683,Erbaba,Anatolia,Turkey,Pottery Neolithic,I-5151,7730,120,charcoal
+48.8,10.62,Kleinsorheim,Europe,Germany,LBK,UtC-1840,7730,120,Cermaic tuff
+16.0833,49.6667,Khuzma as-Shumlya ,Arabia,Yemen,Early Neolithic,AA-38548,7723,87,
+41.27,21.47,Cuka,Europe,Bosnia?,Neolithic,,7680,160,
+39.78,19.73,Sidari,Europe,Greece,Early Neolithic,GXO-771,7670,120,
+40.7,26.1167,Hoca Cesme,Europe,Turkey,Pottery Neolithic,Bln-4609,7637,43,.
+41.7,22,Anza,Europe,Republic of Macedon,Star?evo,LJ-2519,7560,70,charcoal
+37.45,30.567,Höyücek,Anatolia,Turkey,Pottery Neolithic,HD-14219,7556,45,charcoal
+40.4236,17.2336,Praia di Mare,Europe,Italy,Early Neolithic,R-285,7555,85,charcoal
+40.267,29.5167,Mentese,Anatolia,Turkey,Pottery Neolithic,GrN-25819,7550,50,charcoal
+37.4,30.5,Bademagaci,Anatolia,Turkey,Pottery Neolithic,Hd-20910,7546,41,.
+30.65,34.4,Qadesh Barnea 3,Near East,Egypt,Pottery Neolithic,SMU-662,7530,100,charcoal
+24.8272,51.3947,Shagra A,Arabia,Qatar,Neolithic,Gif-5938,7520,90,
+36.45,42.63,Thalathat II,Near East,Iraq,Pottery Neolithic,TK-24,7520,120,charcoal
+41.3228,45.265,Shomu,Asia,Azerbijan,Pottery Neolithic,LE-629,7510,70,
+32.6833,35.6,Shaar Hagolan,Near East,Israel,Pottery Neolithic,OxA-7919*,7495,50,charcoal
+32.6167,35.9333,Rahub,Near East,Jordan,Pottery Neolithic,GrN-14539,7480,90,charcoal
+36.3605,43.1191,Sotto,Near East,Iraq,Pottery Neolithic,IGAN-769,7470,60,.
+34.167,43.833,Sawwan I,Near East,Iraq,Pottery Neolithic,P-855,7456,73,charcoal
+37.067,30.55,Karain B,Anatolia,Turkey,Pottery Neolithic,HD-10818,7420,70,charcoal
+36.75,53.75,Belt Cave,Near East,Iran,Pottery Neolithic,P-19a,7395,195,.
+34.1167,35.65,Byblos,Near East,Lebanon,Pottery Neolithic,GrN-1544,7360,70,charcoal
+43.15,26.76,Polyanista- Platoto 1,Europe,Bulgaria,Early Neolithic,,7333,167,
+32.62,35.5511,Munhata,Near East,Israel,Pottery Neolithic,Ly-4927,7330,70,charcoal
+38.12,57.95,Togolok,Asia,Turkmenistan,Pottery Neolithic,Bln-719,7320,100,charcoal
+37.6167,30.15,Kurucay Höyük,Anatolia,Turkey,Pottery Neolithic,HD-12915,7310,70,bone
+41.1,16.89,Scamuso,Europe,Italy,Cardial,Gif-6339,7290,110,charcoal
+38.1,58.22,Jeitun,Asia,Turkmenistan,Pottery Neolithic,OxA-2914,7270,100,seeds
+35.2943,44.726,Sang-i-Chakhmak Oues,Near East,Iran,Pottery Neolithic,,7270,125,.
+37,45.5,Hajji Firuz,Near East,Iran,Pottery Neolithic,P-455,7269,86,charcoal
+48.7,13.72,Steinfurth 2,Europe,Germany,LBK,UtC-1838,7260,70,Cermaic tuff
+23.6033,58.5017,Wadi Wutayya,Arabia,Oman,ABT,Hv-12963,7250,85,
+40.88,21.48,Porodin,Europe,Yugoslavia,Neolithic,KN-I.596,7240,55,carbonised cereal
+44.18,18.1,Obre,Europe,Bosnia-Herzegovina,Star?evo,UCLA-1605.I,7240,60,bone
+40.467,29.3,Ilipinar,Anatolia,Turkey,Pottery Neolithic,GrN-19351,7195,40,charcoal
+36.7229,56.8184,Yarim Tepe I,Near East,Iraq,Pottery Neolithic,LE-1086,7150,90,.
+41.4669,44.6944,Arukhlo 1,Asia,Georgia,Pottery Neolithic,TB-300,7135,70,
+45.66,18.98,Apatin,Europe,Yugoslavia,Star?evo,GrN-15973,7130,60,bone
+47.46,6.7,Bavans,Europe,France,Late LBK,Lv-1415,7130,70,bone
+41,16,Rendina,Europe,Italy,Early Neolithic,LJ-4548,7110,140,charcoal
+48.97,16.73,Vela Spilja cave,Europe,Croatia,Early Neolithic,,7100,283,
+45.78,3.08,Pontcharaud,Europe,France,Epicardial,Ly-7625,7095,50,bone
+50.81,6.43,Langweiler,Europe,Germany,LBK,KN-2695,7090,135,charcoal
+45.46,19.15,Donja Branjevina,Europe,Serbia,Early Neolithic,,7083,111,
+14.55,44.4017,"Sedd Adh-Dhra?a II, 1",Arabia,Yemen,Neolithic,Beta-90837,7080,140,
+23.1206,57.2831,Ras al-Hamra 7,Arabia,Oman,ABT?,Hv-10926,7065,105,
+32.7167,34.95,Megadim,Near East,Israel,Pottery Neolithic,Pta-3652,7060,70,soil
+32.1167,35.8833,Qanah,Near East,Israel,Pottery Neolithic,RT-1544,7050,78,charcoal
+36.1,43.2,Hassuna,Anatolia,Turkey,Pottery Neolithic,W-660,7040,200,charcoal
+24.3025,53.3336,Marawah Site 1,Arabia,U.A.E.,Early Neolithic,Hd-20756,7036,30,
+41,24.25,Dikili Tash,Europe,Greece,Early Neolithic,Gif-2628,7020,170,.
+42.4,23.25,Gulubnik,Europe,Bulgaria,Struma Period,,7020,190,
+45.8,18.97,Magareci Mlin-Apatin,Europe,Serbia,Proto-Star?evo,,7018,110,
+36.7797,44.4478,Gawra,Near East,Iraq,Pottery Neolithic,P-1494,7002,82,soil
+41.5,15.68,Scaramella,Europe,Italy,Masseria la Quercia,R-350,7000,100,charcoal
+37.4426,59.5134,Chagylly,Asia,Turkmenistan,Pottery Neolithic,LE-592,7000,110,charcoal
+41.8978,16.156,Defensola,Europe,Italy,Early Neolithic,Utc-1342,6990,80,charcoal
+44.11,3.16,Abri de la Poujade,Europe,France,Early Roucadourian,MC-1367,6990,120,charcoal
+40.7288,17.5774,Grotta S. Angelo di Os,Europe,Italy,Cardial,GIF-6724,6980,70,seeds
+44.5,8.5,Arene Candide,Europe,Italy,Cardial,UB-2423,6980,115,
+40.6667,16.6,Trasano 1,Europe,Italy,Cardial,TAN-88248,6980,130,.
+40.25,15.1833,Torre Sabea,Europe,Italy,Cardial,,6960,130,.
+38.25,39.97,Girikihacian,Anatolia,Turkey,Neolithic,Grn-6246,6950,45,Charcoal
+41.75,22.15,Vrsnik-Tarinci,Europe,Republic of Macedon,Early Neolithic,Bln-339,6950,100,cereal
+44.4078,8.9309,Grotta Pollera,Europe,Italy,Cardial,MC-756,6950,100,charcoal
+41.9,21.36,Tumba or Veluska,Europe,Republic of Macedon,Early Neolithic,TX-1785,6950,120,charcoal
+47.91,21.83,Endrod,Europe,Hungary,Körös,GrN-10319,6945,50,charcoal
+37.9,23.86,Vougliameni Limni,Europe,Greece,Neolithic,Ly-6946,6940,60,limestone
+38.82,16.25,Piana di Curingia,Europe,Italy,Cardial,P-2946,6930,60,charcoal
+54.17,-6.38,Ballymacdermot,Europe,Ireland,Neolithic,UB-702,6925,95,charcoal
+44.68,1.71,Le Singlier,Europe,France,Roucadourian,Ly-33,6915,70,bone
+40.9,20.35,Velu?ka IV,Europe,Greece,Neolithic,,6913,32,
+40.85,17.4667,Torre Canne,Europe,Italy,Early Neolithic,Gif-6725,6900,80,charcoal
+43.38,5.16,Chateauneuf Les Martig,Europe,France,Early Cardial,MC-2515,6900,100,charcoal
+38.46,23.23,Theopetra Cave,Europe,Greece,Neolithic,DEM-455,6890,43,Charcoal
+41.5,15.3333,Ripa Tetta,Europe,Italy,Early Neolithic,CAMS-2681,6890,60,.
+41.5,15.75,Coppa Nevigata,Europe,Italy,Cardial,OxA-1475,6880,90,cereal
+42.45,25.76,Azmak,Europe,Bulgaria,Karanovo I,Bln-203,6880,100,charcoal
+33.9633,36.1572,Ard Tlaili,Near East,Lebanon,Pottery Neolithic,K-1432,6870,130,charcoal
+41.85,23.62,Eleshnitsa 2,Europe,Bulgaria,Karanovo I,,6865,109,
+43.513,11.8278,Grotta di Monte Venere,Europe,Italy,Neolithic,R-1167,6860,60,charcoal
+42.1167,12.2333,La Marmotta,Europe,Italy,Cardial,R-2360,6855,65,.
+46.92,6.95,Delley-Portalban II,Europe,Switzerland,Neolithic,Lv-624,6850,110,Wood
+47.93,7.96,Portalban 2,Europe,Switzerland,Early Neolithic,Lv-624,6850,110,wood
+41.45,15.5333,Villa Communale,Europe,Italy,Early/Middle Neolithic,MC-2290,6850,130,.
+51.42,9.4,Calden,Europe,Germany,Neolithic,Hd-16228,6835,43,Charcoal
+32.8,34.95,Samir,Near East,Israel,Pottery Neolithic,Pta-3821,6830,60,charcoal
+51.27,-2,Strawberry Hill,Europe,Great Britain,Neolithic,OxA-3041,6820,120,shell
+43.7,7.35,Caucade,Europe,France,Cardial,MC-2342,6800,130,charcoal
+48.1,16.28,Brunn am Gebirge,Europe,Austria,LBK,ETH-11148,6785,75,Charcoal
+37.9667,12.2667,Santa Anna III,Europe,Italy,Early Neolithic,R-322,6780,90,charcoal
+38.08,-2.3,Cueva del Nacimiento,Iberia,Spain,Early Neolithic,Gif-2368,6780,130,charcoal
+39.4833,-8.5333,Pena d'Agua,Iberia,Portugal,Cardial,Wk-9214,6775,60,Olea Sp. Charred
+42.36,0.21,Cueva de Chaves,Iberia,Spain,Cardial,GrN-12685,6770,70,Wood charcoal
+41.7333,-7.4667,Chaves Cave,Iberia,Portugal,Cardial,N-12685,6770,70,wood charcoal
+49.92,15.33,Bylany,Europe,Czech,LBK,BM-569,6754,96,Charcoal
+31.7167,34.6333,Nizzanim,Near East,Israel,Pottery Neolithic,Hv-8509,6740,90,bone
+38.7333,0.1,Cendres Cave,Iberia,Spain,Cardial,Beta-75220,6730,80,Quercus wood
+48.33,3.06,Terres de Prepoux,Europe,France,LBK,Ly-4503,6730,110,bone
+41.45,15.5667,Grotta Scaloria,Europe,Italy,Early Neolithic,LJ-4649,6720,100,charcoal
+40.55,18.0533,Scaloria,Europe,Italy,Cardial,LJ-4649,6720,100,charcoal
+43.89,16,?karin Samograd Cave,Europe,Greece,Cardial,,6718,80,
+40.5,8.66,Grotta Filiestru,Europe,Italy,Cardial,Q-3020,6710,75,
+38.9,16.5833,Acconia,Europe,Italy,Early Neolithic,P-2949,6710,80,.
+50.58,3.68,"Blicquy, Couture de la",Europe,Belgium,LBK,Hv-9271,6705,165,Charcoal
+43.55,6.23,Baume de Fontbregoua,Europe,France,Cardial,Gif-2990,6700,100,charcoal
+38,12.33,Lagnano da Piede,Europe,Italy,Early Neolithic,UCLA-2148,6700,100,collagen from
+44.88,5.65,Saint Mitre,Europe,France,Cardial,MC-264,6700,130,charcoal
+40.25,9.48,Grotta Corbeddu,Europe,Italy,Early Neolithic,UtC-1251,6690,80,
+23.6111,58.4569,Saruq,Arabia,Oman,ABT,Hv-14211,6685,105,
+43.8667,12.6333,Pian di Cereto,Europe,Italy,Early Neolithic,R-548,6680,80,.
+42.4667,1.5,Margineda Cave,Iberia,Andora,Cardial,Ly-2839,6670,120,wood charcoal
+42.08,9.5,Casabianca or Casterra,Europe,France,Cardial,MC-2243,6670,130,charcoal
+41.38,9.16,Araguina Sennola,Europe,France,Cardial,Gif-2325,6650,140,charcoal
+44.45,18.76,Gornja Tuzla,Europe,Bosnia-Herzegovina,Star?evo,GrN-2059,6640,75,charcoal
+41.4598,15.5428,Masseria Candelaro,Europe,Italy,Early Neolithic,OxA-3684,6640,95,bone
+44.31,4.46,Baume d'Oullins,Europe,France,Cardial,MC-2034,6630,110,charcoal
+38.12,13.36,"Stretto, Partanna",Europe,Italy,Neolithic,Rome-291,6630,120,
+44.4167,11.9,Lugo di Romagna,Europe,Italy,Early Neolithic,R-2747,6626,110,.
+41.15,24.2,Sitagroi,Europe,Greece,Early Neolithic,Bln-779,6625,170,charcoal
+47.83,20.58,Szarvas,Europe,Hungary,Körös,BM-1866,6620,60,charcoal
+44.88,7.48,Abri de Pendimoun,Europe,France,Cardial,Ly-5692,6615,105,GLANDS
+44.1,8.01,Grotta Arma dello Stef,Europe,Italy,Cardial,Bln-3276,6610,60,
+44.2833,8.5,Arma dello Stefanin,Europe,Italy,Cardial,Bln-3276,6610,60,charcoal
+23.5014,58.7325,"Bandar Khayran 1, 1",Arabia,Oman,ABT?,Hv-10924,6610,105,
+49.84,8.5,Goddelau,Europe,Germany,LBK,KN-3429,6600,85,Charcoal
+43.08,2.46,Abri Jean Cros,Europe,France,PeriCardial,Gif-3575,6600,130,charcoal
+44.08,5.88,Le Baratin,Europe,France,Cardial,Gif-1855,6600,140,charcoal
+41.958,13.5355,Grotta Continenza,Europe,Italy,Cardial,R-1411,6590,75,.
+46.25,21,Basaroga,Europe,Hungary,Körös,BM-1862,6580,60,charcoal
+43.06,13.06,Maddalena di Muccia,Europe,Italy,Cardial,R-643a,6580,75,charcoal
+42.75,13.267,Villagio Leopardi,Europe,Italy,Cardial,Pi-101,6578,135,charcoal
+41.95,13.6333,S. Stefano di Ortucchi,Europe,Italy,Cardial,R-468,6575,80,.
+42.5,25.93,Karanovo,Europe,Bulgaria,Karanovo II,Bln-201,6573,100,charcoal
+45.72,13.76,Sammardenchia,Europe,Italy,Early Neolithic ,R-2547,6570,74,charcoal
+45.8547,12.6875,Fagnigola,Europe,Italy,Early Neolithic,R-2550,6570,75,charcoal
+43.45,5,Cavaou,Europe,France,Neolithic,Ly-7021,6560,85,organic silt
+29.9397,34.9404,Uvda Valley,Near East,Israel,Pottery Neolithic,,6560,90,
+25.6839,51.5058,Khor 2 (M et D),Arabia,Qatar,Neolithic,,6560,120,
+45.8831,12.7131,Valer,Europe,Italy,Early Neolithic,Bln-4436,6557,71,.
+52.06,20.08,Nieborowa,Europe,Poland,LBK,KN-2514,6550,65,Bone
+23.1833,59,Daghmar 1,Arabia,Oman,ABT?,Hv-10922,6545,105,
+44.5371,10.8167,Fiorano Modenese,Europe,Italy,Early Neolithic,GrN-19839,6540,60,.
+42.0553,14.2095,Fonterossi (Lama dei P,Europe,Italy,Cardial,OxA-1958,6540,80,human
+41.57,14.64,Monte Maulo,Europe,Italy,Early Neolithic,OxA-651,6540,80,cow radius
+51.53,9.93,Göttingen,Europe,Germany,LBK,H-1534/1027,6530,180,Charcoal
+38.95,22.13,Kastria,Europe,Greece,Early Neolithic,DEM-272,6528,55,Charcoal
+41.51,8.91,Renaghju,Europe,France,Cardial,Ly-8327,6525,60,charcoal
+45.5198,11.0172,Lugo di Grezzana,Europe,Italy,Early Neolithic,R-2745,6524,76,.
+41.5,15.66,Santa Tecchia,Europe,Italy,Early Neolithic,BM-2414,6520,70,"collagen, hum"
+43.1167,-6.2167,La Falguera,Iberia,Spain,Cardial,OxA-10191,6510,70,Triticum a.
+50.93,5.77,Elsloo,Europe,Netherlands,LBK,GrN-2311,6510,100,Charcoal
+45.6531,13.7764,Grotta dell'Edera,Europe,Italy,Cardial,MC-2332,6510,110,charcoal
+50.65,5.2,Omal,Europe,Belgium,LBK,Hv-9285,6505,105,Bone
+38.15,20.76,Drakaina Cave,Europe,Greece,Early Neolithic,DEM-628,6500,66,Charcoal
+46.23,7.36,Planta,Europe,Switzerland,Early Neolithic,CRG-280,6500,80,charcoal
+48.4,10,Ulm-Eggingen,Europe,Germany,LBK,Hv-14732,6500,100,Charcoal
+41.0186,15.0211,Fontanarosa Uliveto,Europe,Italy,Cardial,BM-2415,6490,150,.
+43.43,3.9,Grotte de Camprafaud,Europe,France,LBK,Gif-3078,6480,130,charcoal
+45.25,14.23,Grotta Podosojna,Europe,Croatia,Neolithic,Z-198,6470,95,charcoal
+40.0667,18.4833,Porto Badisco,Europe,Italy,Cardial,F-97,6465,185,charcoal
+50.65,5.56,Place Saint Lambert,Europe,Belgium,LBK,Lv-1340,6460,60,
+46.2,20.18,Oszentivan,Europe,Hungary,Early Vinca,Bln-479,6460,80,charcoal
+29.8962,35.0141,Nahal Issaron,Near East,Israel,Pottery Neolithic,Pta-2999,6460,80,
+48.83,10.57,Enkingen,Europe,Germany,LBK,UtC-2344,6460,80,refuse
+43.51,3.28,Source de Reselauze,Europe,France,Cardial,MC-1227,6450,100,charcoal
+44.26,4.43,Baume de Montclus,Europe,France,Cardial,MC-695,6450,100,charcoal
+42.29,23.28,Kremenik 4,Europe,Bulgaria,Early Neolithic,,6450,100,
+45.46,11.6,Molino Casarotto,Europe,Italy,Early Neolithic,BIRM-175,6450,110,wood
+39.5,-8.6167,Almonda Cave,Iberia,Portugal,Cardial,OxA-9287,6445,45,Pierced cervu
+48.36,21.25,Korlat,Europe,Hungary,Bukk,Bln-119,6440,100,
+50.1,19.83,Olszanica,Europe,Poland,LBK,GrN-5384,6430,75,charcoal
+43.13,12.4,"San Marco, Gubbio",Europe,Italy,Cardial,OxA-1853,6430,80,
+40.5,16.5,S. Marco,Europe,Italy,Cardial,OxA-1853,6430,80,seeds
+38.92,16.61,Bevilacqua,Europe,Italy,Stentinello,P-3047,6430,90,
+49.33,17.58,Zopy,Europe,Czech Republic,Early LBK,Bln-57,6430,100,
+51.52,10.27,Duderstadt,Europe,Germany,LBK,H-919/889,6422,100,Charcoal
+44.1167,8.0333,Arma di Nasino,Europe,Italy,Cardial,R-313,6420,65,charcoal
+50.55,5.88,Coron Maton,Europe,Belgium,LBK,Gif-5257,6420,120,charcoal
+50.8,6.46,Lamersdorf,Europe,Germany,LBK,KN-I.367,6410,45,wheat grains
+41.63,2.0333,Frare Cave,Iberia,Spain,Cardial,I-13030,6410,70,Quercus wood
+41.8667,2.1167,La Draga,Iberia,Spain,Cardial,UBAR_314,6410,70,wood
+49.78,16.91,Mohelnice,Europe,Czech Republic,LBK,Bln-102a,6405,100,wheat seeds
+48.06,7.3,Ricoh,Europe,France,Early LBK,Ly-4582,6400,70,bone
+37.3333,23.5,Ayios Petros,Europe,Greece,Neolithic,BM-2020,6400,80,.
+50.66,13.95,Chabarovice,Europe,Czech Republic,Early LBK,Bln-438,6400,120,charcoal
+24,52,Dalma 11,Arabia,U.A.E.,Obeid,AA-52544,6395,60,
+43.81,7.5,Pendimoum,Europe,France,Cardial,Gif-6471,6390,100,shell
+50.3,8.8,Bruchenbrücken,Europe,Germany,LBK,OxA-1630,6390,100,Grain
+48.8,9.07,Gerlingen,Europe,Germany,LBK,KN-2295,6390,160,Charcoal
+45.73,12.5838,Fonte Chiarano,Europe,Italy,Early Neolithic,AECV-1996C,6380,180,.
+51.96,5.75,Geleen,Europe,Netherlands,LBK,GrN-995,6370,60,charcoal
+50.68,5.21,Oleye,Europe,Belgium,LBK,Lv-1685,6370,95,
+46.21,20.08,Katalszeg,Europe,Hungary,Koros,Bln-86,6370,100,
+31.8,35.6,Ghassul,Near East,Jordan,Pottery Neolithic,SUA-734,6370,105,charcoal
+40.95,25.46,Proskinites,Europe,Greece,Neolithic,DEM-23,6368,63,Charcoal
+30.67,35.467,Feinan,Near East,Jordan,Pottery Neolithic,HD-12335,6360,45,charcoal
+46.91,2.48,Saint Germain des Bois,Europe,France,Neolithic,Ly-4566,6360,80,charcoal
+51.18,9.37,"Gudensberg, Güntersber",Europe,Germany,Neolithic,Hd-17130,6352,29,Collagen
+43.31,2.41,Grotte de Gazel,Europe,France,Epicardial,GrN-6707,6350,55,charcoal
+51.51,9.93,Rosdorf,Europe,Germany,Early LBK,Hv-586,6350,70,charcoal
+47.48,7.62,"Arlesheim, Birseck-Erm",Europe,Switzerland,Neolithic,ETH-9650,6350,80,Collagen
+43.2,26.67,Poljanica,Europe,Bulgaria,Poljanica,,6343,74,
+52.17,10.82,Eitzum 2,Europe,Germany,LBK,UtC-1833,6340,70,Cermaic tuff
+40.5,21.16,Dispilio,Europe,Greece,Neolithic,DEM-657,6338,29,Wood
+50.7,6.55,Muddersheim,Europe,Germany,LBK,H-924b/1121,6330,80,charcoal
+39.649,-8.416,Caldeirao,Iberia,Portugal,Cardial,OxA-1035,6330,80,wood charcoal
+44.35,4.46,Saint Marcel d'Ardeche,Europe,France,Middle Cardial/Impres,MC-2376,6330,90,bone
+48.4,6.16,Chemin de Naviot,Europe,France,Late LBK,Ly-4479,6330,140,seeds
+45.95,5.33,GROTTE DU GARDON,Europe,France,Early Neolithic,Ly-8422,6325,40,bone
+15.1847,43.51,Surdud-1 n,Arabia,Yemen,Neolithic,GX-13782,6325,90,
+44.2925,11.8763,Fornace Capuccini di F,Europe,Italy,Cardial,Bln-3372,6320,60,charcoal
+50.91,7,Koln-Mengenich,Europe,Germany,LBK,KN-I.369,6320,70,charcoal
+50.68,5.4,Crisnee,Europe,Belgium,LBK,Lv-1580,6320,75,
+45.8,8.8333,Pizzo di Bodio,Europe,Italy,Early Neolithic,B-5090,6320,80,.
+50.8,5.05,Wange,Europe,Belgium,Late LBK,Lv-1116,6310,75,charcoal
+48.96,21.38,Tiszavasvari-Keresztfa,Europe,Hungary,LBK,Bln-505,6305,100,charcoal
+50.66,5.2,Waremme,Europe,Belgium,LBK,Lv-1693,6300,95,
+42.2,16.91,Marcianese,Europe,Italy,Impressed Ware,BM-2250,6290,60,charcoal
+48.67,15.63,Frauenhofen,Europe,Austria,Stichbandkeramik,KN-2566,6290,65,Charcoal
+42.56,8.73,Revellata,Europe,France,Cardial,Ly-6085,6280,75,charcoal
+42.65,21.15,Pristina,Europe,Yugoslavia,Neolithic,Bln-435,6280,80,charcoal
+47.68,20.21,Tarnabod,Europe,Hungary,LBK,Bln-123,6280,100,
+40.7855,15.43,"Castelgrande, Bellinzo",Europe,Italy,Early Neolithic,B-4564,6270,40,.
+53.31,18.11,Strzelce,Europe,Poland,LBK,GrN-5087,6260,60,charcoal
+48.13,3.36,Armeau,Europe,France,LBK,GrN-6781,6260,65,bone
+50.8,5.66,Kanne,Europe,Belgium,LBK,Lv-1025,6260,75,charcoal
+43.71,13.1,Ripabianca di Monterad,Europe,Italy,Fiorano,R-599,6260,85,charcoal
+43.35,2.7,Grotte de l'Abeurador,Europe,France,Epicardial,MC-2145,6260,90,charcoal
+47.8,18.73,Sturovo,Europe,Slovakia,LBK,Bln-559,6260,100,charcoal
+52.53,12.22,Zollchow,Europe,Germany,LBK,Bln-4199,6250,50,Collagen
+50.16,10.96,Zilgendorf,Europe,Germany,LBK,GrN-7011,6250,65,charcoal
+50.86,6.33,Niedermerz,Europe,Germany,LBK,KN-2128,6250,70,charcoal
+50.96,6.55,Rodingen,Europe,Germany,LBK,H-2117/1536,6250,75,charcoal
+13.9,44.7667,"MK, Sada",Arabia,Yemen,Neolithic,AXX-xx53,6250,90,
+42.4667,14.2167,Grotta dei Piccioni,Europe,Italy,Impressed Ware,PI-46,6247,130,
+38.5167,23.9833,Tharrounia,Europe,Greece,Neolithic,DEM-171-137,6246,49,Anthrakas
+47.17,26.33,Tirpe?ti,Europe,Romania,LBK,,6240,71,
+42.3667,13.3667,Arma dell'Aquila,Europe,Italy,Cardial,Bln-3450,6240,90,charcoal
+50.65,5.18,Darion,Europe,Belgium,LBK,Lv-1579,6240,100,
+45.05,3.85,Les Rivaux,Europe,France,Early Neolithic,Ly-3710,6240,110,charcoal
+48.88,11.75,Hienheim,Europe,Germany,LBK,GrN-7557,6235,45,charcoal
+43.28,2.33,Font Juvenal,Europe,France,PeriCardial,Ly-4770,6235,85,charcoal
+51.05,6.5833,Frimmersdorf 122,Europe,Germany,LBK,UtC-7179,6230,70,seed
+48.4667,8.9333,Rottenburg a. N.,Europe,Germany,LBK,ETH-9548,6230,90,Collagen
+48.5,9.13,Viesenhäuser Hof,Europe,Germany,LBK,Hd-7978,6220,45,Collagen
+23.2369,58.1183,Shuwayr 1,Arabia,Oman,ABT?,Bln-3644/II,6220,60,
+48.7,15.86,Pulkau,Europe,Austria,LBK,Bln-83,6215,100,
+50.7167,16.85,Niemcza,Europe,Poland,LBK,Bln-1319,6210,80,Bone
+47.6,16.55,Neckenmarkt,Europe,Austria,LBK,OxA-1536,6210,80,Grain
+44.1333,10.4167,Muraccio,Europe,Italy,Early Neolithic,R-427,6210,80,.
+53.85,18.1,Strachów 2,Europe,Poland,LBK,Bln-1790B,6205,102,Bone
+44.06,4.63,Grotte de l'Aigle,Europe,France,Cardial,MC-563,6200,100,charcoal
+49.01,4.26,Les Grands Traquiers,Europe,France,LBK,Ly-4453,6200,140,bone
+51,5.87,Sittard,Europe,Netherlands,LBK,GrN-423,6200,150,Charcoal
+50.6833,1.8667,"Menneville, Derrière l",Europe,France,LBK,Ly-1735,6200,190,Collagen
+51.45,5.4667,"Wychen, Het Vormer",Europe,Netherlands,Hazendonk,GrN-7201,6195,45,Charcoal
+51.7,10,Northeim-Imbshausen,Europe,Germany,LBK,H-1573/1126,6192,140,Charcoal
+47.88,12.6,Wang,Europe,Germany,LBK,OxA-1538,6190,80,Grain
+51.48,11.51,Eilsleben,Europe,Germany,Early LBK,OxA-1627,6190,90,bone
+51.58,-0.55,Misbourne Viaduct,Europe,Great Britain,Early Neolithic,OxA-601,6190,90,animal bone
+43.68,7.86,Grotte Lombard,Europe,France,post Epicardial,Ly-3331,6190,120,charcoal
+50.3667,17.8667,Nowy Browiniec,Europe,Poland,LBK,Bln-?,6185,55,Bone
+25.3617,56.0436,ar-Ramlah 6,Arabia,U.A.E.,ABT,Bln-4735*,6181,50,
+52.6,18.9,Brzesc Kujawski,Europe,Poland,LBK,GrN-9255,6180,35,Bone
+43.79,11.21,Mileto,Europe,Italy,Cardial,Beta-44114,6180,80,
+44.4,3.16,Balloy les Reaudins,Europe,France,Late LBK,Ly-12,6180,90,bone
+48.86,20.43,Ostoros,Europe,Hungary,LBK,Bln-549,6180,100,
+46.66,17.16,Zalavar,Europe,Hungary,Early LBK,Bln-87,6180,100,
+48.75,16.47,Schletz,Europe,Austria,LBK,ETH-13289,6175,65,Grain
+37,25.05,Saliagos,Europe,Greece,Neolithic,P-1311,6172,74,.
+42.61,2.15,Le Roc de Dourgne,Europe,France,Peri-Epicardial,MC-1102,6170,100,shell
+45.1333,10.3667,Vhò-Campo Ceresole,Europe,Italy,Early Neolithic,I-11445,6170,110,charcoal
+51.22,12.32,Zwenkau-Harth,Europe,Germany,LBK,GrN-1581,6160,70,Charcoal
+50.8333,5.5833,Vlijtingen,Europe,Belgium,Late LBK,Lv-1117,6160,95,charcoal
+38.95,-6.91,Cueva Chica de Santiag,Iberia,Spain,Early Neolithic,UGRA-254,6160,100,
+47.65,20.15,Sandorresze,Europe,Hungary,LBK,Bln-676,6155,80,
+50.33,8.53,Usingen,Europe,Germany,LBK,UtC-10787,6142,40,seed
+48.33,9.56,Felsdach Lauterach,Europe,Germany,Early LBK,GrN-4750,6140,45,charcoal
+48.25,9.5833,Lautereck,Europe,Germany,LBK,GrN-4750,6140,45,Charcoal
+52.96,11.4,Westeregeln,Europe,Germany,LBK,Bln-92,6140,100,seeds
+48.88,22.6,Szamossalyi,Europe,Hungary,LBK,Bln-404,6136,100,charcoal
+27,49.6,Dosariyah,Arabia,Saudi Arabia,Obeid 3,I-5786,6135,120,
+41.45,21.82,Topolnita 2b,Europe,Romania,Neolithic,,6135,191,
+46.94,20.23,Vésztö-Magory,Europe,Hungary,Tisza,,6133,126,
+37.1833,13.7667,Piano Vento,Europe,Italy,Cardial,A-4474,6130,90,charcoal
+47.5,16.5,Unterpullendorf,Europe,Austria,Early painted Ware,VRI-42,6130,140,charcoal
+44.8667,9.5333,"Travo, Case Gazza",Europe,Italy,Early Neolithic,I-13798,6130,160,charcoal
+51.7,19.18,Skoroszowice,Europe,Poland,LBK,Bln-1960,6125,50,Bone
+50.33,8.75,Friedberg,Europe,Germany,Early LBK,Bln-56,6120,100,
+49.41,4.01,Derriere le Village,Europe,France,Late LBK,Ly-2324,6110,140,bone
+46.27,20.28,Tápe-Lebö 1,Europe,Hungary,Körös,,6109,124,
+51.03,-4.25,Westward Ho!,Europe,Great Britain,Neolithic,HAR-5631,6100,100,wood
+48.08,7.33,Route de Rouffach,Europe,France,Early LBK,Ly-3811,6100,120,bone
+43.98,12.86,Grotta del'Orso,Europe,Italy,Fiorano,R-676,6080,50,charcoal
+47.83,20.5,Bekesszentandras,Europe,Hungary,Late LBK,BM-1860,6080,60,charcoal
+48.48,20.48,Domica Cave,Europe,Slovakia,Bukk,GrN-2435,6080,75,charcoal
+48.5,20.4833,"Kecovo, Domica-Höhle",Europe,Solvakia,LBK,GrN-2435,6080,75,Bone
+44.9,4.63,Baume Bourbon,Europe,France,Neolithic,MC-794,6080,100,charcoal
+49.4,2.8,Le Coq Galleux,Europe,France,LBK,Ly-2716,6080,110,bone
+45.31,21.81,Zorlentu Mare,Europe,Romania,Vinca,GrN-10316,6070,40,seeds
+25.8789,56.0236,Ras al-Jins 37,Arabia,Oman,ABT,Gif-9819,6070,70,
+50.66,5.45,Awans,Europe,Belgium,Late LBK,Lv-1160,6070,90,charcoal
+43.88,3.73,Grotte de l'Abbe Prial,Europe,France,Epicardial,MC-1290,6070,100,charcoal
+48.1,3.26,Passy,Europe,France,LBK,Ly-8823,6065,55,bone
+54.4167,17.4,Lupawa,Europe,Poland,TRB_East,Bln-1814,6060,80,Charcoal
+53.16,8.43,Hude 1,Europe,Germany,Group Dummer,Hv-1220,6060,115,wood
+49.4,0.4333,Kirschnaumen-Evendorff,Europe,France,LBK,Ly-1181,6050,200,Charcoal
+51.1333,12.1333,Köttichau,Europe,Germany,Salzmünde,Bln-250,6045,120,Other
+46.07,11.1,Riparo Gaban,Europe,Italy,Gaban group,Bln-1777,6030,45,charcoal
+50.92,16.8,Stary Zamek,Europe,Poland,Stichbandkeramik,Bln-1737,6030,50,Bone
+50.61,3.75,Irchonwelz,Europe,Belgium,Blicquy Group,Bln-2531,6030,60,charcoal
+44.7,8.0333,Alba,Europe,Italy,Cardial,GX-20845,6030,80,charcoal
+48.62,10.42,Wittislingen,Europe,Germany,LBK,Gro-265,6030,110,Charcoal
+49.4,3.9,"Berry-au-Bac, Croix-Ma",Europe,France,LBK,Ly-2327,6030,130,Collagen
+49.4,4.88,La Croix Maigret,Europe,France,LBK,Ly-2327,6030,130,bone
+48.66,4.55,Norrois,Europe,France,Early Neolithic,Ly-3891,6020,110,bone
+48.7,15.5667,Poigen,Europe,Austria,LBK,H-2121/1552,6017,90,Charcoal
+57.62,-3.07,"Boghead Mound, Fochabe",Europe,Great Britain,Neolithic,SRR-690,6006,60,charcoal
+45.68,5.35,Alfort,Europe,France,Early Neolithic,Ly-386,6000,60,bone
+45.2,5.63,La Grande Rivoire,Europe,France,Epicardial,Ly-176,6000,70,bone
+49.38,3.75,Les Fontinettes,Europe,France,Late LBK,Ly-2331,6000,120,bone
+44.5963,10.7055,Chiozza di Scandiano,Europe,Italy,Early Neolithic,R-458,6000,200,charcoal
+48.16,2.41,Les Dependances de Dig,Europe,France,Late Villeneuve St Ge,Ly-5668,5990,50,charcoal
+44,5.05,Ceron,Europe,France,Early Neolithic,Gif-9997,5990,75,charcoal
+50.1833,11.9167,Hallertau,Europe,Germany,LBK,HAM-197,5990,90,Charcoal
+48.6333,15.6833,Mold,Europe,Austria,LBK,Bln-58,5990,160,Cermaic tuff
+46.6333,6.4167,"Mont-La-Ville, Mollend",Europe,Italy,Early Neolithic,CRG-580,5980,175,.
+52.2333,11.6167,Elbeu,Europe,Germany,Stichbandkeramic,Erl-4092,5969,59,Collagen
+25.3622,55.3911,Al Qassimiya,Arabia,U.A.E.,ABT,Ly-3953,5960,120,
+25.81,55.95,Jazirat al-Hamra 1,Arabia,U.A.E.,ABT,Hv-13192,5955,100,
+50.46,5.25,Trou al'Wesse,Europe,Belgium,Neolithic,Lv-1752,5950,70,
+39.9302,16.035,"Mesocco, Tec Nev",Europe,Italy,Early Neolithic,-,5950,110,.
+48.71,-3.83,Le Guerzit,Europe,France,Early Neolithic,Gif-7614,5950,110,peat bog
+45.5,-0.6,Les Gouillauds,Europe,France,Early Neolithic,Gif-4878,5950,120,charcoal
+44.05,5.15,Unang,Europe,France,Middle Cardial,Gif-1796,5950,130,charcoal
+47.43,6.45,La Tuilerie,Europe,France,Neolithic,Gif-1561,5950,140,charcoal
+51.03,13.53,Dresden-Nickern,Europe,Germany,LBK,Bln-73,5945,100,seeds
+47.5,20.5,Kisköre,Europe,Hungary,Neolithic,,5942,74,
+47.95,16.83,Winden am See,Europe,Austria,LBK,Bln-55,5940,100,organic tempe
+48.65,7.75,Reichstett,Europe,France,LBK,Ly-865,5940,140,Charcoal
+48.6,15.0833,Guttenbrunn,Europe,Austria,LBK,Bln-2227,5935,50,Bone
+51.0667,12.2167,Rehmsdorf,Europe,Germany,LBK,Bln-176,5932,100,Charcoal
+44.4833,11.0333,Savignano sul Panaro,Europe,Italy,Early Neolithic,Bln-2976,5930,130,.
+48.88,2.71,Pente de Croupeton,Europe,France,Neolithic,Gif-8358,5910,80,bone
+43.2,26.75,Ov?arovo,Europe,Bulgaria,Poljanica,,5908,101,
+42.83,3,Port Leucate,Europe,France,Cardial,Gif-2749,5900,140,charcoal
+47.1667,8.4167,Hünenberg-Chämleten,Europe,Switzerland,Cortaillod,UZ-2915,5890,95,Wood
+49.4,2.96,Les Obaux,Europe,France,Villeneuve,Ly-3460,5890,120,bone
+25.5653,55.5533,al-Madar (Point 69),Arabia,U.A.E.,ABT,Ly-3280,5890,170,
+50.58,13.9,Zalany,Europe,Czech,Stichbandkeramik,Bln-240,5881,100,Charcoal
+44.7,28.66,Hamangia-Baia 1,Europe,Romania,Hamangia,GrN-1986,5880,70,charcoal
+16,50,Wadi Shumlya,Arabia,Yemen,Early Neolithic,OS-16933,5870,45,
+49.38,3.4,La Fosse Toumise,Europe,France,Late LBK,Ly-6478,5870,105,bone
+41.4,9.16,Monte Leone,Europe,France,Early Neolithic,Ly-6099,5855,95,bone
+40.08,18.48,Grotta di Porto Badisc,Europe,Italy,Neolithic,R-1225,5850,55,carbonised grain
+43.95,3.18,Roc Troue,Europe,France,Early Neolithic,Gif-7688,5850,80,charcoal
+22.6903,58.5469,Bir Bira 1,Arabia,Oman,ABT?,Hv-10921,5850,115,
+51.72,-9.82,Cashelkeelty I,Europe,Ireland,Neolithic,UB-2413,5845,100,peat
+51,6.55,Kaster,Europe,Germany,LBK,KN-2130,5840,55,Bone
+38.1513,14.926,Colle del Fico,Europe,Italy,Early/Middle Neolithic,OxA-654,5840,70,.
+44.18,5.5,le Moulin,Europe,France,Epicardial,Ly-3804,5840,130,bone
+49.38,3.77,Cuiry-les-Chaudardes,Europe,France,LBK,Ly-2335,5840,140,Collagen
+53.61,-2.03,Rocher Moss 2,Europe,Great Britain,Neolithic,Q-1190,5830,100,
+44.25,4.61,La Vesignie,Europe,France,Cardial,Ly-4745,5815,75,bone
+48.4,3.16,Les Reaudins,Europe,France,Villeneuve,Ly-5543,5800,50,bone
+48.58,-4.58,Roc'h Avel,Europe,France,Neolithic,Gif-5510,5800,100,charcoal
+48.63,4.71,Larzicourt,Europe,France,Early Neolithic,Ly-3907,5800,100,bone
+49.38,3.43,Le Culot,Europe,France,Neolithic,Ly-3750,5790,130,wood
+44.41,2.73,Roquemissou,Europe,France,Early Roucadourian,Ly-4687,5785,105,charcoal
+51.43,-0.56,Runnymede,Europe,Great Britain,Early Neolithic,OxA-3582,5780,85,charcoal
+48.41,18.16,Horne Lefantovce,Europe,Slovakia,Bukk/SBK,Bln-304,5775,140,charcoal
+45.7505,13.675,Grotta del Mitreo,Europe,Italy,Danilo,R-904,5770,60,charcoal
+47.76,-1.95,Saint just,Europe,France,Early Neolithic,Gif-5763,5770,80,charcoal
+27.9,48.7,Abu Khamis,Arabia,Saudi Arabia,Obeid 4,UGa-315,5750,65,
+54.71,-6.85,Ballynagilly,Europe,Ireland,Neolithic,UB-305,5745,90,charcoal
+51.5,0.27,Mar Dyke,Europe,Great Britain,Neolithic,HAR-4522,5740,80,wood
+48.03,7.33,Rufacher Huben,Europe,France,LBK,Ly-2733,5740,130,bone
+16.7022,42.1183,Qummah-3,Arabia,Yemen,Neolithic,Beta-23578,5730,90,
+23.5514,58.6428,Bandar Jissa 1,Arabia,Oman,ABT?,Hv-12975,5730,105,
+59.35,-2.92,Knap of Howar,Europe,Great Britain,Neolithic,SRR-347,5706,85,animal bone
+25.57,55.56,Ile d? Akab,Arabia,U.A.E.,ABT,Ly-5172,5695,90,
+54.27,11.05,Siggeneben-Süd,Europe,Germany,TRB_North,KN-2273,5690,60,Charcoal
+51.37,14.52,Uhyst,Europe,Germany,Stichbandkeramik,Bln-3686,5670,60,Charcoal
+47.5,16.5,Frankenau,Europe,Austria,LBK,VRI-207,5660,100,charcoal
+44.33,4.33,Chazelles,Europe,France,Cardial,Lv-365,5660,110,charcoal
+47.53,-2.9,Petit Mont,Europe,France,Early Neolithic,Gif-6844,5650,70,charcoal
+48.36,2.88,piece de Pincevent,Europe,France,Villeneuve St Germ.,Gif-5005,5630,120,bone
+48.86,2.33,Grand Louvre,Europe,France,Early Neolithic,Gif-7618,5620,70,bone
+48.6833,3.7667,Chichery,Europe,France,LBK,Gif-3354,5600,120,Collagen
+47.38,4.51,Etang David,Europe,France,Late LBK,Gif-3354,5600,120,bone
+23.6133,58.5933,Qurum North 1,Arabia,Oman,ABT?,Hv-14212,5580,160,
+54.1333,20.65,Sarnowo,Europe,Poland,TRB_East,GrN-5035,5570,60,Charcoal
+47.56,7.45,Sierentz,Europe,France,Late LBK,Ly-4498,5570,100,charcoal
+53.35,13.25,Carpin,Europe,Germany,TRB_North,Bln-4667,5550,51,Charcoal
+43.98,3.25,Abri des Usclades,Europe,France,Roucadourian,Gif-9143,5550,70,charcoal
+55.77,22.42,Daktariske,Europe,Lithuania,Neolithic,Vs-808,5530,110,wood
+48.55,3.5833,Barbuise-Courtavant,Europe,France,Neolithic,Ly-2455,5530,150,Bone
+53.22,-4.29,Capel Eithin,Europe,Great Britain,Neolithic,CAR-480,5520,80,
+53.3167,13.8667,Prenzlau,Europe,Germany,LBK,Bln-4221,5520,100,Collagen
+46.91,5.76,Les Planches,Europe,France,Early Neolithic,Gif-3826,5520,130,charcoal
+48.91,2.76,Les longues Raies,Europe,France,Villeneuve St Germ.,Gif-5002,5510,140,bone
+55.38,13.48,Skateholm,Europe,Sweden,Neolithic,LU-2349,5500,60,peat bog
+55.54,-5.32,Machrie Moor Site,Europe,Great Britain,Neolithic,GU-2320,5500,70,charcoal
+53.22,0.13,Giants' Hills,Europe,Great Britain,Neolithic,OxA-641,5450,80,charcoal
+44.13,5.95,Frigouras,Europe,France,Early Neolithic,Gif-8479,5450,100,charcoal
+45.7,4.91,Saint Priest,Europe,France,Early Neolithic,Ly-8685,5445,60,charcoal
+52.22,-0.92,Briar Hill,Europe,Great Britain,Neolithic,HAR-2282,5440,110,charcoal
+52.46,1.45,Broome Heath,Europe,Great Britain,Neolithic,BM-679,5424,117,charcoal
+23.0797,59.0547,Dibab 1,Arabia,Oman,ABT?,Bln-5270/II,5420,60,
+47.2833,8.6167,Feldmeilen-Vorderfeld,Europe,Switzerland,Pfyn,UCLA-1691F,5415,60,Charcoal
+42.7753,12.5499,Grotta del Pertusello,Europe,Italy,Early Neolithic,R-157,5400,90,charcoal
+46.43,5.33,Grotte des Teppes,Europe,France,ProtoCortaillod,Gif-8999,5390,50,charcoal
+55.6667,12.5833,Christiansholm Mose,Europe,Denmark,Neolithic,K-750,5370,100,Charcoal
+49.5667,11.8,Irlbach,Europe,Germany,LBK,Bln-85,5345,100,Cermaic tuff
+47.05,6.58,Abri des pres Mourey,Europe,France,Early Cortaillod,Gif-9096,5340,70,charcoal
+47.83,-3.16,Languidic,Europe,France,Neolithic,Gif-5765,5330,80,charcoal
+47.5167,6.8,Montbelliard,Europe,France,LBK,Gif-5165,5320,120,Bone
+51.17,12.08,Wahlitz,Europe,Germany,Stichbandkeramik,GrN-433,5300,200,Grain
+48.9833,-0.2333,"Les Longrais, Soumont-",Europe,France,LBK,Ly-150,5290,150,Charcoal
+54.25,10.0667,Flintbek,Europe,Germany,TRB_North,Ki-3072,5280,120,Bone
+56.4,10.7,Barkær,Europe,Denmark,TRB_North,K-2634,5270,75,Shell
+54.98,-2.61,Midgeholme Moss,Europe,Great Britain,Early Neolithic,OxA-2326,5270,90,plant remains
+53.26,-1.94,Lismore Fields,Europe,Great Britain,Neolithic,OxA-2433,5270,100,charcoal
+51.5,-0.72,"Cannon Hill, Bray",Europe,Great Britain,Neolithic,HAR-1198,5270,110,charcoal
+55.97,-3.6,Linlithgow,Europe,Great Britain,Neolithic,GU-1875,5265,55,charcoal
+51.79,-1.22,Sidlings Copse,Europe,Great Britain,Neolithic,OxA-3560,5250,75,shell
+55.55,11.63,Kongemosen 3 (Kongemos,Europe,Denmark,TRB_North,K-4891,5240,65,Wood
+54.27,-8.53,Carrowmore,Europe,Ireland,Neolithic,LU-1441,5240,80,charcoal
+50.2403,15.4908,Nov? Bydzov,Europe,Czech,LBK,Bln-74,5225,100,Cermaic tuff
+51.16,-2.83,"Sweet Track, Shapwick",Europe,Great Britain,Neolithic,Q-968,5224,75,peat
+47.73,8.7,"Thayngen, Weier",Europe,Switzerland,Pfyn,H-61/149,5222,130,Wood
+49.08,2,Sente Saillancourt,Europe,France,LBK,Gif-5840,5220,110,bone
+50.7,-2.15,"Worgret, Wareham",Europe,Great Britain,Neolithic,HAR-9595,5210,70,wood
+51.17,-2.8,Meare Lake Village Wes,Europe,Great Britain,Neolithic,HAR-2616,5210,80,peat
+47.1,7.15,Twann,Europe,Switzerland,Cortaillod,B-2698,5200,90,
+52.16,10.5,Ferriters Cove,Europe,Ireland,Early Neolithic,BM-2227A,5190,110,charcoal
+42.83,2.91,Abri de la Coma,Europe,France,Cardial,Gif-9080,5180,60,charcoal
+54.7,9.5333,Bistoft,Europe,Germany,TRB_North,Ki-1285,5180,60,Wood
+47.36,8.68,Greifensee-Storen/Wild,Europe,Switzerland,Pfyn,UCLA-1824,5180,70,cereal
+46.78,6.78,Vallon-des-Vaux,Europe,Switzerland,Cortaillod,B-659,5180,120,
+47.38,4.51,Myard,Europe,France,Cortaillod,Gif-2342,5175,135,charcoal
+47.4,4.53,"Vitteaux, Oppidum Myar",Europe,France,Cortaillod,Gif-2342,5175,135,Charcoal
+47.23,8.78,Feldbach,Europe,Switzerland,Pfyn,UCLA-1809A,5170,70,
+56.54,-3.44,Inchtuthil,Europe,Great Britain,Neolithic,GU-2760,5160,70,charcoal
+57.05,-2.44,Balbridie,Europe,Great Britain,Neolithic,GU-1038,5150,60,charcoal
+55.01,-6.41,"Dooey's Cairn, Ballyma",Europe,Ireland,Neolithic,UB-2030,5150,90,charcoal
+47.18,8.01,Egolzwil 4,Europe,Switzerland,Egolzwil,H-228/276,5150,100,wood
+47.36,8.58,Zurich,Europe,Switzerland,Cortaillod,UCLA-1772 B,5145,70,wood
+53.13,-2.7,Beeston Castle,Europe,Great Britain,Neolithic,HAR-6462,5140,90,charcoal
+47.45,7.23,Mannlefelsen,Europe,France,LBK,Gif-2634,5140,140,charcoal
+47.45,7.2333,Oberlag,Europe,France,LBK,Gif-2634,5140,140,Charcoal
+46.9667,6.8666,Auvernier,Europe,Switzerland,Cortaillod,B-2559,5130,120,Wood
+22.9333,57.5333,Wadi Shab 1,Arabia,Oman,ABT?,GX-17881,5127,80,
+55.71,11.72,Bodal Mose,Europe,Denmark,TRB_North,K-6444,5110,75,refuse
+55.51,-5.14,"Monamore, Arran",Europe,Great Britain,Neolithic,Q-675,5110,110,charcoal
+52.42,-8.62,Tankardstown,Europe,Ireland,Western Neolithic,GrN-14713,5105,45,charcoal
+52.6,1.26,Eaton Heath,Europe,Great Britain,Mildenhall,BM-770,5095,49,
+54.98,-5.93,"Mad Man's Window, Glen",Europe,Ireland,Neolithic,UB-205,5095,120,charcoal
+58.99,-3.18,Maes Howe,Europe,Great Britain,Neolithic,SRR-791,5094,60,
+50.86,-0.44,Blackpatch,Europe,Great Britain,Neolithic,BM-290,5090,130,antler
+54.56,-0.83,"Street House Farm, Lof",Europe,Great Britain,Neolithic,BM-2061N,5080,60,charcoal
+56.0333,9.9333,Ringkloster,Europe,Denmark,TRB_North,K-4371,5080,70,Charcoal
+55.4333,9.9167,Mosegården,Europe,Denmark,TRB_North,K-3463,5080,90,Charcoal
+42.75,2.56,Les Coudoumines,Europe,France,postCardial,Ly-225,5060,45,charcoal
+56,-3.67,Nether Kinneil,Europe,Great Britain,Neolithic,SRR-1486.01,5060,50,shell
+50.3333,20.35,Bronocice,Europe,Poland,TRB_East,DIC-719,5060,110,Bone
+51.68,-1.26,Abingdon,Europe,Great Britain,Neolithic,BM-351,5060,130,charcoal
+51.87,-3.15,Gwernvale,Europe,Great Britain,Neolithic,CAR-113,5050,75,charcoal
+52.32,-0.16,Rectory Farm,Europe,Great Britain,Neolithic,OxA-3370,5050,80,charcoal
+50.93,-1.66,Scord of Brouster,Europe,Great Britain,Neolithic,CAR-253,5050,90,charcoal
+50.88,-0.7,Long Down,Europe,Great Britain,Neolithic,OxA-1152,5050,100,bone
+51.17,-1.81,Coneybury Henge,Europe,Great Britain,Neolithic,OxA-1402,5050,100,animal bone
+54.75,-6.82,Carnanbane,Europe,Ireland,Western Neolithic,UB-535,5045,95,charcoal
+55.42,-3.36,"Rotten Bottom, Games H",Europe,Great Britain,Neolithic,OxA-3540,5040,100,wood
+57.61,-3.07,Fochabers  Boghead Mou,Europe,Great Britain,Neolithic,SRR-685,5031,100,charcoal
+52.1167,7.1,Heek,Europe,Germany,TRB_West,GrN-11762,5030,70,Charcoal
+50.7,-2.48,Maiden Castle,Europe,Great Britain,Neolithic,OxA-1337,5030,80,bone
+55.55,11.4,L?jesm?lle skov (Mosen,Europe,Denmark,TRB_North,AAR-1850,5030,90,refuse
+54.26,-0.46,"Seamer Moor, East Ayto",Europe,Great Britain,Neolithic,NPL-73,5030,90,charcoal
+47.58,8.93,Phyn,Europe,Switzerland,Pfyn,GrN-5957,5020,40,cereal
+54.16,-0.57,East Heslerton Wold,Europe,Great Britain,Neolithic,HAR-7030,5020,70,charcoal
+55.73,-6.39,Port Charlotte,Europe,Great Britain,Neolithic,HAR-3487,5020,90,charcoal
+51.85,-1.56,Ascott-under-Wychwood,Europe,Great Britain,Neolithic,BM-833,5020,92,charcoal
+50.53,-3.69,Broken Cave,Europe,Great Britain,Neolithic,OxA-3207,5015,80,tooth
+50.49,-3.68,Three holes Cave,Europe,Great Britain,Neolithic,OxA-4495,5010,70,tooth
+55.6,11.5833,Præstelyngen,Europe,Denmark,TRB_North,K-1473,5010,100,Wood
+55.4,11.5,Lindebjerg,Europe,Denmark,TRB_North,K-1659,5010,100,Charcoal
+51.87,-1.9,Hazleton North,Europe,Great Britain,Neolithic,OxA-910,5000,70,human bone
+51.75,-4.48,Coygan Camp,Europe,Great Britain,Neolithic,NPL-132,5000,95,nutshell
+50.22,-5.24,Carn Brea,Europe,Great Britain,Neolithic,BM-825,4999,64,charcoal
+52.7,-2.36,Spong Hill,Europe,Great Britain,Neolithic,BM-1535,4990,80,charcoal
+51.66,-1.31,Drayton,Europe,Great Britain,Neolithic,HAR-6477,4990,100,animal bone
+57.48,-4.19,Raigmore,Europe,Great Britain,Neolithic,SRR-188,4983,130,wood
+55.2,10.1667,Jordl?se Mose,Europe,Denmark,TRB_North,K-3776,4980,65,refuse
+56.43,9.05,Vroue Hede II,Europe,Denmark,TRB_North,K-1570,4980,100,Charcoal
+47.16,8.13,Schenkon,Europe,Switzerland,Cortaillod,B-881,4980,120,
+51.97,-3.23,Pen-y-Wyrlod,Europe,Great Britain,Neolithic,HAR-674,4970,80,bone
+54.08,-4.75,Port St.Mary Rushen,Europe,Great Britain,Early Neolithic,OxA-2481,4970,80,shell
+56.1167,9.5167,Rustrup I,Europe,Denmark,TRB_North,K-2254,4970,100,Charcoal
+58.53,-3.6,Loch Calder  Tulloch o,Europe,Great Britain,Neolithic,GU-1332,4965,60,animal bone
+55.79,-6.26,Newton,Europe,Great Britain,Neolithic,GU-1952,4965,60,
+52.57,-0.2,Fengate,Europe,Great Britain,Neolithic,GaK-4196,4960,64,wood
+55.68,11.17,T?mmerup mose IV,Europe,Denmark,TRB_North,K-2775,4960,65,refuse
+52.64,-3.16,Sarn-y-Bryn-Calod,Europe,Great Britain,Neolithic,OxA-3997,4960,70,charcoal
+50.71,-2.43,"Flagstones House, Dorc",Europe,Great Britain,Early Neolithic,HAR-9161,4960,80,charcoal
+54.46,-7.82,"Tully, Aldergrove Airp",Europe,Ireland,Neolithic,UB-2115,4960,85,charcoal
+55.6833,12.5333,Salpetermosen,Europe,Denmark,TRB_North,K-4771,4960,90,Collagen
+56.0167,10.2667,Norsminde,Europe,Denmark,TRB_North,K-2192,4960,100,Shell
+58.38,-3.27,Camster Long Cairn,Europe,Great Britain,Neolithic,GU-1707,4950,80,charcoal
+51.18,-2.82,Baker Platform,Europe,Great Britain,Neolithic,HAR-2845,4950,80,wood
+52.42,0.41,"Shippea Hill, Peacocks",Europe,Great Britain,Neolithic,Q-527,4950,120,charcoal
+55.35,11.42,S?rbylille I,Europe,Denmark,TRB_North,Ka-6448,4940,80,refuse
+56.0833,12.3667,Ferle Enge,Europe,Denmark,TRB_North,K-6299,4940,95,Collagen
+56.15,8.4833,Muldbjerg,Europe,Denmark,TRB_North,K-129,4940,160,seed
+53.99,-0.73,"Callis Wold, Barrow 27",Europe,Great Britain,Neolithic,BM-1170,4933,64,charcoal
+52.69,-8.25,Shanballyedmond,Europe,Ireland,Neolithic,GrN-11431,4930,60,charcoal 
+50.89,-0.02,Offham Hill,Europe,Great Britain,Neolithic,BM-1414,4925,80,
+52.05,7.65,Gittrup,Europe,Germany,TRB_West,GrN-12262,4920,70,Charcoal
+56.0667,12.2833,Paarup,Europe,Denmark,TRB_North,K-6297,4920,95,Collagen
+56,10.2333,Rude,Europe,Denmark,TRB_North,K-3124,4910,90,Charcoal
+54.12,-0.24,"Grindale, Barrow 1",Europe,Great Britain,Neolithic,HAR-269,4910,120,antler
+51.45,-1.87,Millbarrow,Europe,Great Britain,Early Neolithic,OxA-3172,4900,110,human bone
+51.8167,9.8667,"Einbeck, Kühner Höhe",Europe,Germany,TRB_West,Hv-19722,4900,185,Charcoal
+55.6167,11.5,Orelund Mose I,Europe,Denmark,TRB_North,Ka-6445,4870,70,refuse
+50.92,-1.88,Windmill Hill,Europe,Great Britain,Early Neolithic,OxA-2406,4870,70,animal bone
+53.25,0.33,Wolla Bank,Europe,Great Britain,Neolithic,OxA-5965,4865,65,wood
+51.83,-2.15,Peak Camp,Europe,Great Britain,Neolithic,OxA-1622,4865,80,animal bone
+55.62,11.53,Ulkestrup Lyng,Europe,Denmark,TRB_North,K-3778,4860,135,refuse
+50.9,-2.2,Hambledon Hill,Europe,Great Britain,Neolithic,HAR-3062,4850,100,charcoal
+54.12,-0.23,"Boynton, High Easton",Europe,Great Britain,Neolithic,HAR-268,4840,80,charcoal
+55.29,-1.98,Chatton Sandyford,Europe,Great Britain,Neolithic,GaK-1507,4840,90,charcoal
+55.48,11.24,Dragsholm,Europe,Denmark,TRB_North,K-2291,4840,100,Collagen
+54.68,25.3,Vilnius,Europe,Lithuania,Neolithic,Vs-420,4840,100,wood
+52.02,-4.82,Carreg Coetan,Europe,Great Britain,Neolithic,CAR-392,4830,80,charcoal
+54.09,-0.38,Kilham,Europe,Great Britain,Neolithic,BM-293,4830,125,charcoal
+52.33,-0.59,Redlands Farm,Europe,Great Britain,Early Neolithic,OxA-5632,4825,65,human bone
+51.41,-1.85,West Kennet,Europe,Great Britain,Neolithic,OxA-449,4825,90,human bone
+53.5167,18.3667,Gródek Nadbuzny,Europe,Poland,TRB_East,KN-I.243,4820,40,Charcoal
+47.82,13.45,See am Mondsee,Europe,Austria,LBK,,4820,82,
+52.32,-0.59,Stanwick South,Europe,Great Britain,Neolithic,OxA-3001,4810,80,seeds
+56.65,-3.74,Pitnacree,Europe,Great Britain,Neolithic,GaK-601,4810,90,charcoal
+52.99,-6.68,Ballintruer More,Europe,Ireland,Drimnagh,GrN-10469,4800,70,human bone
+51.08,-1.32,Winnall Down,Europe,Great Britain,Neolithic,HAR-2196,4800,80,antler
+50.98,-1.15,"Corhampton House, Corh",Europe,Great Britain,Neolithic,BM-1889,4790,70,bone
+56.0667,12.29,Maglemose,Europe,Denmark,TRB_North,OxA-1326,4790,70,fiber
+54.47,-3.14,Great Langdale,Europe,Great Britain,Neolithic,OxA-2181,4790,80,charcoal
+51.23,-0.79,Badshot,Europe,Great Britain,Neolithic,BM-2273N1,4780,40,collagen from
+51.73,0.73,Stumble,Europe,Great Britain,Neolithic,OxA-2298,4780,70,charred seeds
+51.1667,22.5833,Cmielów,Europe,Poland,TRB_East,GrN-5089,4775,40,Charcoal
+54.25,-5.85,Dundrum Nature Reserve,Europe,Ireland,Neolithic,UB-412,4775,140,charcoal
+50.93,-2,Dorset Cursus (Down Fa,Europe,Great Britain,Neolithic,OxA-626,4770,120,animal bone
+51.56,-1.59,"Wayland's Smithy, Ashb",Europe,Great Britain,Neolithic,I-1468,4770,130,wood
+51.18,-2.88,Chilton 1-2,Europe,Great Britain,Neolithic,HAR-649,4760,80,wood
+55.2,10.1,Sarup I,Europe,Denmark,TRB_North,K-2632,4760,90,Wood
+51.22,-1.85,Netheravon Bake,Europe,Great Britain,Neolithic,OxA-1407,4760,90,antler
+53.27,-1.24,Markland Grips,Europe,Great Britain,Neolithic,OxA-4447,4760,90,human bone
+55.6,11.58,Undl?se Mose,Europe,Denmark,TRB_North,K-6300,4760,95,Collagen
+51.42,-1.87,"South Street, Avebury",Europe,Great Britain,Neolithic,BM-356,4760,130,charcoal
+50.92,-1.37,Shurton Hill,Europe,Great Britain,Neolithic,UB-2122,4750,50,fossil soil
+51.5,-0.66,Eton Wick,Europe,Great Britain,Neolithic,BM-2533,4750,80,collagen from
+51.12,-1.29,Burntwood Farm (Site R,Europe,Great Britain,Neolithic,OxA-1384,4750,140,animal bone
+50.85,0.34,Orsett,Europe,Great Britain,Neolithic,BM-1213,4741,113,
+55.7,9.58,Bygholm N?rremark,Europe,Denmark,TRB_North,K-3473,4740,90,Bone
+51.21,-1.86,Robin Hood's Ball,Europe,Great Britain,Neolithic,OxA-1400,4740,100,animal bone
+51.39,-1.91,Easton Down,Europe,Great Britain,Early Neolithic,OxA-3760,4730,65,antler
+55.17,8.55,Toftum,Europe,Denmark,TRB_North,K-2988,4730,90,Charcoal
+56.29,-3.16,"Kinloch Farm, Collessi",Europe,Great Britain,Neolithic,GU-1375,4725,70,charcoal
+57.04,-6.27,Rhum (Kinloch),Europe,Great Britain,Neolithic,GU-2043,4725,140,charcoal
+51.42,-1.95,Cherhill,Europe,Great Britain,Neolithic,BM-493,4715,90,charcoal
+51.4833,17.8833,Niedzwiedz,Europe,Poland,TRB_East,Bln-927,4715,100,Bone
+54.04,-0.77,Hanging Grimstone,Europe,Great Britain,Neolithic,HAR-2160,4710,90,bone
+50.94,-0.87,North Marden,Europe,Great Britain,Neolithic,HAR-5544,4710,110,charcoal
+51.37,-1.82,Knap Hill,Europe,Great Britain,Neolithic,BM-205,4710,115,antler
+55.55,11.6333,Maglelyng 3,Europe,Denmark,TRB_North,K-3779,4700,65,refuse
+50.88,-2.17,Stepleton,Europe,Great Britain,Neolithic,OxA-932,4690,70,charred seeds
+55.65,-3.26,"Meldon Bridge, near Pe",Europe,Great Britain,Neolithic,SRR-644,4686,90,nuts
+55.75,12.25,Sigersdal Mose,Europe,Denmark,TRB_North,K-3745,4680,75,Collagen
+50.92,-0.58,Bury Hill,Europe,Great Britain,Neolithic,HAR-3596,4680,80,animal bone
+54.3,-9.4,Ballyglass (Ma.13),Europe,Ireland,Neolithic,SI-1450,4680,95,charcoal
+54.45,-3.12,Langdale  Pike of Stic,Europe,Great Britain,Neolithic,BM-281,4680,135,charcoal
+52.88,-8.15,Ardcrony,Europe,Ireland,Ballyalton,GrN-9708,4675,35,bone
+51.41,-1.85,"Silbury Hill, Avebury",Europe,Great Britain,Neolithic,SI-910A,4675,110,sod
+51.57,-1.13,North Stoke,Europe,Great Britain,Neolithic,BM-1405,4672,49,collagen
+58.01,-4.43,"The Ord North, Lairg",Europe,Great Britain,Neolithic,GU-1169,4665,70,charcoal
+56.79,-2.61,"Dalladies Farm, Fetter",Europe,Great Britain,Neolithic,SRR-289,4660,50,wood
+55.95,11.9,S?lager,Europe,Denmark,TRB_North,K-1724,4650,100,Charcoal
+51.2,-1.85,Winterbourne stoke,Europe,Great Britain,Neolithic,OxA-1405,4640,100,animal bone
+51.21,-2.41,Bridgemere,Europe,Great Britain,Neolithic,BM-2565,4630,50,charcoal
+52.85,6.85,Odoorn,Europe,Netherlands,TRB_West,GrN-13184,4630,60,Charcoal
+55.3,21,Nida,Europe,Lithuania,Neolithic,Vs-321,4630,120,wood/bone
+51.16,-2.78,Ashcott Heath,Europe,Great Britain,Neolithic,Q-598,4625,120,wood
+55.1333,10.9167,Lohals,Europe,Denmark,TRB_North,K-2277,4620,100,Collagen
+55.57,12.13,Snoldelev Mose,Europe,Denmark,TRB_North,K-2778,4600,90,Collagen
+51.14,-2.78,"Jones's Track, Ashcott",Europe,Great Britain,Neolithic,HAR-3078,4590,70,wood
+59,-3.22,Barnhouse,Europe,Great Britain,Neolithic,OxA-3499,4590,75,seeds
+58.99,-3.01,Quanterness,Europe,Great Britain,Neolithic,Q-1294,4590,75,organic soil
+50.79,0.21,Combe Hill,Europe,Great Britain,Neolithic,I-11613,4590,110,
+52.7667,18.25,Matwy,Europe,Poland,TRB_East,Bln-1314,4580,50,Bone
+55.43,11.48,Ulvemose,Europe,Denmark,TRB_North,K-6306,4580,90,Collagen
+55.57,11.52,Verup Mose II,Europe,Denmark,TRB_North,Ka-6452,4570,150,refuse
+51.7833,9.8833,Odagsen I,Europe,Germany,TRB_West,KiA-6987,4564,26,Charcoal
+52.41,-0.54,Aldwincle,Europe,Great Britain,Neolithic,HAR-1411,4560,70,charcoal
+55.85,9.6,Dorthealund N,Europe,Denmark,TRB_North,K-2432,4550,100,Charcoal
+51.16,0.97,Devil's Kneading Troug,Europe,Great Britain,Neolithic,BM-254,4540,105,charcoal
+56.5,9.5833,Foulum,Europe,Denmark,TRB_North,K-1601,4540,110,Charcoal
+51.16,-2.81,Shapwick Heath,Europe,Great Britain,Neolithic,Q-430,4540,130,wood
+53.71,-6.49,Newgrange,Europe,Ireland,Neolithic,UB-361,4535,105,humic acid
+54.7667,11.5167,Borremose,Europe,Denmark,TRB_North,K-5537,4525,90,Collagen
+52.35,5.6333,"Harderwijk, Beekhuizer",Europe,Netherlands,TRB_West,GrN-7746,4520,70,Charcoal
+53.42,14.58,Szczecin-Ustowo,Europe,Poland,TRB_East,Bln-1807,4510,80,Collagen
+51.66,-1.17,Dorchester Site VIII,Europe,Great Britain,Neolithic,BM-2443,4510,100,collagen/antl
+51.16,-1.83,"Normanton Down, Amesbu",Europe,Great Britain,Neolithic,BM-505,4510,103,antler protei
+53.6667,8.8167,Flögeln,Europe,Germany,TRB_West,Hv-8450,4500,65,Charcoal
+51.18,-1.81,King Barrow Ridge,Europe,Great Britain,Neolithic,OxA-1397,4500,120,animal bone
