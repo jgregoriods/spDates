@@ -2,23 +2,23 @@
 % Please edit documentation in R/spDates.R
 \name{filterDates}
 \alias{filterDates}
-\title{Filter a set of archaeological site coordinates and dates, retaining only the
+\title{Filter archaeological site coordinates and dates, retaining only the
 earliest radiocarbon date per site.}
 \usage{
 filterDates(sites, c14bp)
 }
 \arguments{
-\item{sites}{a SpatialPointsDataFrame object with archaeological sites and
+\item{sites}{A SpatialPointsDataFrame object with archaeological sites and
 associated radiocarbon ages.}
 
-\item{c14bp}{a string. Name of the field with the radiocarbon ages in C14 BP
+\item{c14bp}{A string. Name of the field with the radiocarbon ages in C14 BP
 format.}
 }
 \value{
-a SpatialPointsDataFrame object with the earliest C14 date for every
+A SpatialPointsDataFrame object with the earliest C14 date for every
 site.
 }
 \description{
-Filter a set of archaeological site coordinates and dates, retaining only the
+Filter archaeological site coordinates and dates, retaining only the
 earliest radiocarbon date per site.
 }

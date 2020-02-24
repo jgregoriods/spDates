@@ -183,14 +183,16 @@ rmaDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 #' distances from a hypothetical origin, with fitted lines.
 #'
 #' @param dateModel a dateModel object created with rmaDates().
-#' @return a ggplot.
+#' @return a ggplot object.
 #' @export
 plot.dateModel <- function(dateModel) {
 
     binSites <- data.frame("dists" = dateModel$binSites$dists,
-                           "dates" = dateModel$binSites$med)
+                           "dates" = dateModel$binSites$med,
+                           "binned" = 1)
     allSites <- data.frame("dists" = dateModel$allSites$dists,
-                           "dates" = dateModel$allSites$med)
+                           "dates" = dateModel$allSites$med,
+                           "binned" = 0)
 
     model <- as.data.frame(dateModel$model)
 
@@ -211,27 +213,51 @@ plot.dateModel <- function(dateModel) {
 
     rval <- paste("r = -", format(sqrt(mean(mean(model$r))), dig = 2), sep="")
 
+    points <- rbind(allSites, binSites)
+
     plt <- ggplot() + xlim(0, max(allSites$dists)) +
                       ylim(min(allSites$dates), max(model$int)) +
-                      xlab("Distance from origin (km)") + ylab("Cal yr BP") +
                       geom_abline(data = model,
                                   aes(intercept = int, slope = slo),
                                   alpha = 0.05, lwd=0.5,
                                   colour = "lightcoral") +
                       geom_abline(aes(intercept = int.m, slope = slo.m)) +
-                      geom_point(data = allSites, aes(x = dists, y = dates),
-                                 shape = 21, size = 1, fill = "white") +
-                      geom_point(data = binSites, aes(x = dists, y = dates),
-                                 shape = 21, size = 2, fill = "black") +
+                      geom_point(data = points, aes(x = dists, y = dates,
+                                 fill = factor(binned)), shape = 21, size = 2) +
+                      labs(x = "Distance from origin (km)", y = "Cal yr BP",
+                           fill = paste(dateModel$binWidth, " km bins")) +
+                      scale_fill_manual(labels = c("all dates",
+                                                   "earliest per bin"),
+                                        values = c("white", "black")) +
                       annotate("text", x = min(allSites$dists),
                                        y = min(allSites$dates),
                                        label = paste(rval, pval), hjust = 0) +
-                      annotate("text", x = max(allSites$dists),
-                                       y = max(model$int),
-                                       label = paste("bins: ",
-                                                     dateModel$binWidth,
-                                                     " km"), hjust = 1)
+                      theme(legend.position = c(1, 1),
+                            legend.justification = c(1, 1))
     return(plt)
+}
+
+
+#' Return summary statistics for a dateModel object.
+#'
+#' @param dateModel A dateModel object created with rmaDates().
+#' @return A dataframe with estimated start date and speed of advance.
+#' @export
+summary.dateModel <- function(dateModel) {
+    start <- mean(dateModel$model[, "int"])
+    start.SD <- sd(dateModel$model[, "int"])
+    speed <- 1 / mean(dateModel$model[, "slo"])
+    speed.SD <- (1 / ((mean(dateModel$model[, "slo"])) +
+                (1.96 * sd(dateModel$model[, "slo"])))) - speed
+    df <- data.frame(c(paste(format(start, digits = 0, scientific = FALSE),
+                             "+/-", format(start.SD, digits = 0,
+                             scientific = FALSE), "cal BP"),
+                       paste(format(abs(speed), digits = 2, scientific = FALSE),
+                             "+/-", format(abs(speed.SD), digits = 2,
+                             scientific = FALSE), "km per year")))
+    rownames(df) <- c("Start date:", "Speed of advance:")
+    colnames(df) <- NULL
+    return(df)
 }
 
 
