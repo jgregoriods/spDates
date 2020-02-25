@@ -534,23 +534,3 @@ summary.dateModel <- function(dateModel) {
 
     return(df)
 }
-
-
-# Load sample Neolithic dates
-neo <- read.csv("./data/neolithic.csv")
-coordinates(neo) <- ~Longitude+Latitude
-projection(neo) <- CRS("+init=epsg:4326")
-
-# Load potential centers of origin
-centers <- read.csv("./data/centers.csv")
-coordinates(centers) <- ~Longitude+Latitude
-projection(centers) <- CRS("+init=epsg:4326")
-
-if (!exists("neo.f")) {
-    neo.f <- filterDates(neo, "C14Age")
-    neo.f$cal <- calibrate(neo.f$C14Age, neo.f$C14SD, calCurves = neo.f$Curve)
-    neo.f$med <- medCal(neo.f$cal)
-}
-
-# Load sample cost surface
-cost <- raster("./data/cost.tif")

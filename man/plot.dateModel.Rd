@@ -8,10 +8,10 @@ distances from a hypothetical origin, with fitted lines.}
 plot.dateModel(dateModel)
 }
 \arguments{
-\item{dateModel}{a dateModel object created with rmaDates().}
+\item{dateModel}{a dateModel object created with modelDates().}
 }
 \value{
-a ggplot.
+a ggplot object.
 }
 \description{
 Plot the results of the RMA bootstrap on archaeological dates versus
