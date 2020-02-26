@@ -133,7 +133,7 @@ iterateSites <- function(ftrSites, c14bp, siteNames, origins, binWidths = 0,
                 # together with the corresponding bin width
 
                 res[counter, "r"] <- round(as.double(sqrt(meanr)), 4)
-                res[counter, "p"] <- round(as.double(meanp), 4)
+                res[counter, "p"] <- round(as.double(meanp), 2)
                 res[counter, "bin"] <- binWidths[i]
                 res[counter, "n"] <- nsites
                 res[counter, "site"] <- paste(toString(origins[[siteNames]][j]),
@@ -358,7 +358,7 @@ plot.dateModel <- function(dateModel) {
                           geom_abline(data = model,
                                       aes(intercept = int, slope = slo),
                                       alpha = 0.05, lwd = 0.5,
-                                      colour = "lightcoral") +
+                                      colour = "#f8766d") +
                           geom_abline(aes(intercept = int.m, slope = slo.m)) +
                           geom_point(data = points, aes(x = dists, y = dates,
                                                         fill = factor(binned)),
@@ -416,13 +416,13 @@ plot.dateModel <- function(dateModel) {
                           geom_abline(data = dt.model,
                                       aes(intercept = int, slope = slo),
                                       alpha = 0.05, lwd = 0.5,
-                                      colour = "lightskyblue") +
+                                      colour = "#00bfc4") +
                           geom_abline(data = td.model,
                                       aes(intercept = int, slope = slo),
                                       alpha = 0.05, lwd = 0.5,
-                                      colour = "lightcoral") +
+                                      colour = "#f8766d") +
                           geom_abline(aes(intercept = dt.int.m,
-                                          slope = dt.slo.m)) +
+                                          slope = dt.slo.m), lty = 2) +
                           geom_abline(aes(intercept = td.int.m,
                                           slope = td.slo.m)) +
                           geom_point(data = points, aes(x = dists, y = dates,
@@ -487,7 +487,7 @@ summary.dateModel <- function(dateModel) {
                                         scientific = FALSE),
                                  "+/-", format(abs(speed.SD), digits = 2,
                                                scientific = FALSE),
-                                 "km per year")))
+                                 "km/yr")))
 
         rownames(df) <- c("Start date:", "Speed of advance:")
         colnames(df) <- NULL
@@ -516,7 +516,7 @@ summary.dateModel <- function(dateModel) {
                                         scientific = FALSE),
                                  "+/-", format(abs(td.speed.SD), digits = 2,
                                                scientific = FALSE),
-                                 "km per year")),
+                                 "km/yr")),
                          c(paste(format(dt.start, digits = 0,
                                         scientific = FALSE), "+/-",
                                  format(dt.start.SD, digits = 0,
@@ -525,7 +525,7 @@ summary.dateModel <- function(dateModel) {
                                         scientific = FALSE),
                                  "+/-", format(abs(dt.speed.SD), digits = 2,
                                                scientific = FALSE),
-                                 "km per year")))
+                                 "km/yr")))
 
         rownames(df) <- c("Start date:", "Speed of advance:")
         colnames(df) <- c("Time-versus-distance", "Distance-versus-time")
