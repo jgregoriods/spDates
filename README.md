@@ -19,3 +19,4 @@ data("centers")
 jericho <- centers[centers$Site=="Jericho",]
 model <- modelDates(neof, "C14Age", jericho, method="ols")
 plot(model)</pre></code>
+
