@@ -33,6 +33,5 @@ Speed of advance: 0.97 +/- 0.0073 km/yr 0.64 +/- 0.0063 km/yr</pre></code>
 
 <p>Another method that has been used in time-space regressions is reduced major axis (RMA), which, unlike OLS, assumes a symmetrical distribution of error between both variables and has been shown to be robust to outliers (Steele 2010; Russell et al. 2014):</p>
 
-</pre></code>rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
+<pre><code>rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
 plot(rmamodel)</pre></code>
-
