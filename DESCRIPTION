@@ -7,8 +7,26 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jonas.gregorio@gmail.com",
            comment = c(ORCID = "0000-0001-6032-4443"))
-Description: What the package does (one paragraph).
-License: What license it uses
+Description: Analysis of Spatial Gradients in Radiocarbon Dates. Inspired by
+    space-time regressions often performed to assess the expansion of the
+    Neolithic from the Near East to Europe. Test for significant correlations
+    between the (earliest) radiocarbon dates of archaeological sites and their
+    respective distances from a hypothetical center of origin. Distances can be
+    either great-circle or least-cost paths calculated from a friction surface.
+    Both ordinary least squares (OLS) and reduced major axis (RMA) methods are
+    supported. It is also possible to iterate over many sites to identify the
+    most likely origin.
+Depends: R (>= 3.3.0)
+Imports:
+    data.table,
+    dplyr,
+    gdistance,
+    ggplot2,
+    parallel,
+    raster,
+    rcarbon,
+    smatr
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2

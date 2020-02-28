@@ -1,4 +1,3 @@
-library(base)
 library(data.table)
 library(dplyr)
 library(gdistance)
@@ -48,21 +47,22 @@ filterDates <- function(sites, c14bp) {
 #' objects) in a field named "cal".
 #' @param c14bp A string. Name of the field with the radiocarbon ages in C14
 #' BP format.
-#' @param siteNames A string. Name of the field with the site names or ids.
 #' @param origins A SpatialPointsDataFrame object. The sites to be tested for
 #' the most likely origin of expansion.
+#' @param siteNames A string. Name of the field with the site names or ids for
+#' the potential origins.
 #' @param binWidths A number or vector of numbers. Width(s) of the spatial bins
 #' in km.
 #' @param nsim A number. Number of simulations to be run during the
 #' bootstrapping procedure. Default is 999.
-#' @param cost A RasterLayer with friction values to calculate least cost
-#' path distances instead of great circle distances.
+#' @param cost Optional. A RasterLayer with friction values to calculate
+#' least cost path distances instead of great circle distances.
 #' @param method A string. Method to be used in the regression. One of "rma"
 #' or "ols". Default is "rma".
 #' @return a list with two elements, the result of the iteration over all
 #' potential origins and the best model selected among those.
 #' @export
-iterateSites <- function(ftrSites, c14bp, siteNames, origins, binWidths = 0,
+iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
                          nsim = 999, cost = NULL, method = "rma") {
 
     datalen <- length(binWidths) * length(origins)
@@ -170,8 +170,8 @@ iterateSites <- function(ftrSites, c14bp, siteNames, origins, binWidths = 0,
 #' distance intervals from the hypothetical origin. Default is 0 (no bins).
 #' @param nsim A number. Number of simulations to be run during the
 #' bootstrapping procedure. Default is 999.
-#' @param cost A RasterLayer with friction values to calculate least cost
-#' path distances instead of great circle distances.
+#' @param cost Optional. A RasterLayer with friction values to calculate
+#' least cost path distances instead of great circle distances.
 #' @param method A string. Method to be used in the regression. One of "rma"
 #' or "ols". Default is "rma".
 #' @return a dateModel object.
@@ -552,7 +552,8 @@ summary.dateModel <- function(dateModel) {
 #'   \item C14Age. Date in C14 years BP.
 #'   \item C14SD. Standard error of the radiocarbon date.
 #'   \item Material. Material dated (Charcoal, shell etc.).
-#'   \item Curve. Curve to be used in the calibration of each date (intcal13, marine13).
+#'   \item Curve. Curve to be used in the calibration of each date (intcal13,
+#'                marine13).
 #'   \item cal. Calibrated dates as CalDates objects.
 #'   \item med. Median of the calibrated date in cal yr BP.
 #' }
