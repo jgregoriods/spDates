@@ -35,3 +35,5 @@ Speed of advance: 0.97 +/- 0.0073 km/yr 0.64 +/- 0.0063 km/yr</pre></code>
 
 <pre><code>rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
 plot(rmamodel)</pre></code>
+
+<img src="https://github.com/jgregoriods/spDates/blob/master/rmamodel.jpeg" width="300">
