@@ -183,7 +183,7 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
     cl <- makeCluster(no_cores - 1)
     clusterEvalQ(cl, library("rcarbon"))
     clusterEvalQ(cl, library("smatr"))
-    clusterExport(cl, "sampleDates", envir = .GlobalEnv)
+    clusterExport(cl, "sampleCalDates", envir = .GlobalEnv)
 
     # If a cost surface is provided, calculate cost distances
     if (!missing(cost) & class(cost) == "RasterLayer") {
@@ -220,7 +220,7 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
                       envir = environment())
     
         models <- parLapply(cl, 1:nsim, function(k) {
-            dates <- sampleDates(calDates)
+            dates <- sampleCalDates(calDates)
             model <- sma(dates ~ dists, robust = TRUE)
         })
 
@@ -253,13 +253,13 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 
         # Time-versus-distance
         td.models <- parLapply(cl, 1:nsim, function(k) {
-            dates <- sampleDates(calDates)
+            dates <- sampleCalDates(calDates)
             model <- lm(dates ~ dists)
         })
 
         # Distance-versus-time
         dt.models <- parLapply(cl, 1:nsim, function(k) {
-            dates <- sampleDates(calDates)
+            dates <- sampleCalDates(calDates)
             model <- lm(dists ~ dates)
         })
 
@@ -452,7 +452,7 @@ plot.dateModel <- function(dateModel) {
 #' @param calDates A CalDates object or a vector of CalDates.
 #' @return A vector of cal BP single year estimates.
 #' @export
-sampleDates <- function(calDates) {
+sampleCalDates <- function(calDates) {
 
     years <- numeric(length(calDates))
     
