@@ -20,4 +20,7 @@ jericho <- centers[centers$Site=="Jericho",]
 model <- modelDates(neof, "C14Age", jericho, method="ols")
 plot(model)</pre></code>
 
-![Image 1](https://github.com/jgregoriods/spDates/blob/master/model.jpeg)
+<img src="https://github.com/jgregoriods/spDates/blob/master/model.jpeg" width="300">
+
+<p>Normally, regression is performed on dates versus distances, given the assumption that most of the error will be concentrated on the former (Pinhasi et al. 2005). Nevertheless, distances may also be uncertain, with great-circle distances being only an approximation to the actual path travelled to the site. To account for that, regression on distances versus dates can also be run. In the plot above, the solid line corresponds to the dates-versus-distances regression, while the dashed line shows the distances-versus-dates regression.</p>
+<p>To mitigate the uncertainty in radiocarbon dates, the robustness of the regression can be assessed by bootstrapping (Gkiasta et al. 2003). Here, the modelDates() function executes 999 regressions, each time sampling from the 
