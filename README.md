@@ -24,4 +24,15 @@ plot(model)</pre></code>
 
 <p>Normally, regression is performed on dates versus distances, given the assumption that most of the error will be concentrated on the former (Pinhasi et al. 2005). Nevertheless, distances may also be uncertain, with great-circle distances being only an approximation to the actual path travelled to the site. To account for that, regression on distances versus dates can also be run. In the plot above, the solid line corresponds to the dates-versus-distances regression, while the dashed line shows the distances-versus-dates regression.</p>
 <p>To mitigate the uncertainty in radiocarbon dates, the robustness of the regression can be assessed by a bootstrapping procedure (Gkiasta et al. 2003). Here, the modelDates() function executes 999 regressions, each time sampling a single year from the calibrated age ranges. The lines of each regression are shown in the plot, providing an uncertanty envelope (red for dates-versus-distances, blue for distances-versus-dates). The black lines correspond to the average of each bootstrapping.</p>
-<p>One can check the estimates for the expansion start date and speed</p>
+<p>One can check the estimates for the expansion start date and speed:</p>
+
+<pre><code>summary(model)
+                   Time-versus-distance  Distance-versus-time
+Start date:          9782 +/- 11 cal BP   11115 +/- 21 cal BP
+Speed of advance: 0.97 +/- 0.0073 km/yr 0.64 +/- 0.0063 km/yr</pre></code>
+
+<p>Another method that has been used in time-space regressions is reduced major axis (RMA), which, unlike OLS, assumes a symmetrical distribution of error between both variables and has been shown to be robust to outliers (Steele 2010; Russell et al. 2014):</p>
+
+</pre></code>rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
+plot(rmamodel)</pre></code>
+
