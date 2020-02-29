@@ -14,8 +14,8 @@
 <p>The package includes data sets with radiocarbon dates of Neolithic sites and potential centers of expansion modified from Pinhasi et al. (2005). The radiocarbon dates have already been filtered to retain only the earliest date per site - since including the more recent dates would affect the results of the regression (we are interested in the time of first arrival of the Neolithic). Let us load the data sets and perform a first regression of the dates versus distances from Jericho - a site that is commonly used as a hypothetical center of origin:</p>
 
 <pre><code>library(spDates)
-data("neof")
-data("centers")
+data(neof)
+data(centers)
 jericho <- centers[centers$Site=="Jericho",]
 model <- modelDates(neof, "C14Age", jericho, method="ols")
 plot(model)</pre></code>
@@ -44,3 +44,11 @@ plot(rmamodel)</pre></code>
 plot(rmabins)</pre></code>
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/rmabins.jpeg" width="300">
+
+<p>As mentioned above, some level of uncertainty has to be taken into account for the distances as well as for the dates. That is because the exact routes travelled are unknown, and, so far, all distances have been calculated from great circles. It is also possible to incorporate a cost surface in order to calculate least-cost paths. The package includes a cost surface where the coast is easier to travel, but sea and land above 1750 m are barriers:</p>
+
+<pre><code>data(cost)
+rmacost <- modelDates(neof, "C14Age", jericho, binWidth=500, cost=cost)
+plot(rmacost)</pre></code>
+
+<img src="https://github.com/jgregoriods/spDates/blob/master/rmacost.jpeg" width="300">
