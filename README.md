@@ -20,7 +20,7 @@ jericho <- centers[centers$Site=="Jericho",]
 model <- modelDates(neof, "C14Age", jericho, method="ols")
 plot(model)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/model.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/model.jpeg" width="300">
 
 <p>Normally, regression is performed on dates versus distances, given the assumption that most of the error will be concentrated on the former (Pinhasi et al. 2005). Nevertheless, distances may also be uncertain, with great-circle distances being only an approximation to the actual path travelled to the site. To account for that, regression on distances versus dates can also be run. In the plot above, the solid line corresponds to the dates-versus-distances regression, while the dashed line shows the distances-versus-dates regression.</p>
 <p>To mitigate the uncertainty in radiocarbon dates, the robustness of the regression can be assessed by a bootstrapping procedure (Gkiasta et al. 2003). Here, the modelDates() function executes 999 regressions, each time sampling a single year from the calibrated age ranges. The lines of each regression are shown in the plot, providing an uncertanty envelope (red for dates-versus-distances, blue for distances-versus-dates). The black lines correspond to the average of each bootstrapping.</p>
@@ -36,14 +36,14 @@ Speed of advance: 0.97 +/- 0.0073 km/yr 0.64 +/- 0.0063 km/yr</pre></code>
 <pre><code>rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
 plot(rmamodel)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/rmamodel.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/rmamodel.jpeg" width="300">
 
 <p>So far, we have used all of the sites in the analysis. One can also apply a binning procedure to retain only the earliest site per spatial bins - defined by regular distance intervals from the hypothetical origin (Hamilton and Buchanan 2007; Steele 2010). Let us apply spatial bins of 500 km (RMA is executed by default):</p>
 
 <pre><code>rmabins <- modelDates(neof, "C14Age", jericho, binWidth=500)
 plot(rmabins)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/rmabins.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/rmabins.jpeg" width="300">
 
 <p>As mentioned above, some level of uncertainty has to be taken into account for the distances as well as for the dates. That is because the exact routes travelled are unknown, and, so far, all distances have been calculated from great circles. It is also possible to incorporate a cost surface in order to calculate least-cost paths. The package includes a cost surface where the coast is easier to travel, but sea and land above 1750 m are barriers:</p>
 
@@ -51,4 +51,4 @@ plot(rmabins)</pre></code>
 rmacost <- modelDates(neof, "C14Age", jericho, binWidth=500, cost=cost)
 plot(rmacost)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/rmacost.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/rmacost.jpeg" width="300">
