@@ -70,3 +70,5 @@ iter$results
 9: 0.9188 0 500 11        Ali Kosh**
 
 plot(iter$model)</pre></code>
+
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/iter.jpeg" width="300">
