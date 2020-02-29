@@ -18,7 +18,8 @@ per site are included.}
   \item C14Age. Date in C14 years BP.
   \item C14SD. Standard error of the radiocarbon date.
   \item Material. Material dated (Charcoal, shell etc.).
-  \item Curve. Curve to be used in the calibration of each date (intcal13, marine13).
+  \item Curve. Curve to be used in the calibration of each date (intcal13,
+               marine13).
   \item cal. Calibrated dates as CalDates objects.
   \item med. Median of the calibrated date in cal yr BP.
 }}

@@ -9,8 +9,8 @@ distances for the spatial binning of the dates.}
 iterateSites(
   ftrSites,
   c14bp,
-  siteNames,
   origins,
+  siteNames,
   binWidths = 0,
   nsim = 999,
   cost = NULL,
@@ -25,10 +25,11 @@ objects) in a field named "cal".}
 \item{c14bp}{A string. Name of the field with the radiocarbon ages in C14
 BP format.}
 
-\item{siteNames}{A string. Name of the field with the site names or ids.}
-
 \item{origins}{A SpatialPointsDataFrame object. The sites to be tested for
 the most likely origin of expansion.}
+
+\item{siteNames}{A string. Name of the field with the site names or ids for
+the potential origins.}
 
 \item{binWidths}{A number or vector of numbers. Width(s) of the spatial bins
 in km.}
@@ -36,8 +37,8 @@ in km.}
 \item{nsim}{A number. Number of simulations to be run during the
 bootstrapping procedure. Default is 999.}
 
-\item{cost}{A RasterLayer with friction values to calculate least cost
-path distances instead of great circle distances.}
+\item{cost}{Optional. A RasterLayer with friction values to calculate
+least cost path distances instead of great circle distances.}
 
 \item{method}{A string. Method to be used in the regression. One of "rma"
 or "ols". Default is "rma".}
