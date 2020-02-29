@@ -55,7 +55,18 @@ plot(rmacost)</pre></code>
 
 <p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (2003). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
 
-<pre><code>data(cost)
-iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
-iter$result
+<pre><code>iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
+iter$results
+
+        r p bin  n              site
+1: 0.9640 0 500  9           Aswad**
+2: 0.9516 0 500  9          Cayönü**
+3: 0.9496 0 500  8     Çatal Höyük**
+4: 0.9488 0 500  8 Shillourokambos**
+5: 0.9469 0 500  9         Jericho**
+6: 0.9451 0 500  9     Qermez Dere**
+7: 0.9429 0 500 10        Abu Madi**
+8: 0.9316 0 500  9     Abu Hureyra**
+9: 0.9188 0 500 11        Ali Kosh**
+
 plot(iter$model)</pre></code>
