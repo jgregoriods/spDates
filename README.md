@@ -37,3 +37,10 @@ Speed of advance: 0.97 +/- 0.0073 km/yr 0.64 +/- 0.0063 km/yr</pre></code>
 plot(rmamodel)</pre></code>
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/rmamodel.jpeg" width="300">
+
+<p>So far, we have used all of the sites in the analysis. One can also apply a binning procedure to retain only the earliest site per spatial bins - defined by regular distance intervals from the hypothetical origin (Hamilton and Buchanan 2007; Steele 2010). Let us apply spatial bins of 500 km (RMA is executed by default):</p>
+
+<pre><code>rmabins <- modelDates(neof, "C14Age", jericho, binWidth=500)
+plot(rmabins)</pre></code>
+
+<img src="https://github.com/jgregoriods/spDates/blob/master/rmabins.jpeg" width="300">
