@@ -75,7 +75,7 @@ plot(iter$model)</pre></code>
 
 <h3>Important</h3>
 
-<p>When preparing your own data, it is crucial that you include two columns named "cal" and "med", containing, respectively, calibrated dates in the form of CalDates objects (from the rcarbon package) and the median of each calibrated date. These can be created in the following way:</p>
+<p>When preparing your own data, it is crucial that you include two columns named "cal" and "med", containing, respectively, calibrated dates in the form of CalDates objects (from the rcarbon package) and the median of each calibrated date (for display in the plots). These can be created in the following way:</p>
 
 <pre><code>library(rcarbon)
 mydates <- read.csv("myfile.csv")
