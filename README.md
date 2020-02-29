@@ -72,3 +72,12 @@ iter$results
 plot(iter$model)</pre></code>
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/img/iter.jpeg" width="300">
+
+<h3>Important</h3>
+
+<p>When preparing your own data, it is crucial that you include two columns named "cal" and "med", containing, respectively, calibrated dates in the form of CalDates objects (from the rcarbon package) and the median of each calibrated date. These can be created in the following way:</p>
+
+<pre><code>library(rcarbon)
+mydates <- read.csv("myfile.csv")
+mydates$cal <- calibrate(mydates$C14Age, mydates$C14SD)
+mydates$med <- medCal(mydates$cal)</pre></code>
