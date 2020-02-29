@@ -52,3 +52,10 @@ rmacost <- modelDates(neof, "C14Age", jericho, binWidth=500, cost=cost)
 plot(rmacost)</pre></code>
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/img/rmacost.jpeg" width="300">
+
+<p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (2003). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
+
+<pre><code>data(cost)
+iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
+iter$result
+plot(iter$model)</pre></code>
