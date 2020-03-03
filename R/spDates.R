@@ -1,7 +1,9 @@
+library(automap)
 library(data.table)
 library(dplyr)
 library(gdistance)
 library(ggplot2)
+library(maptools)
 library(parallel)
 library(raster)
 library(rcarbon)
@@ -71,6 +73,8 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
                       "bin" = numeric(datalen), "n" = numeric(datalen),
 		              "site" = character(datalen))
 
+    origins$r <- 0
+
     # Perform reduced major axis regression for each bin width and for each
     # hypothetical origin, if more than one is specified
     pb <- txtProgressBar(min = 0, max = datalen, style = 3)
@@ -131,21 +135,43 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
 
                 # Extract the r and p of each model and store it in the result,
                 # together with the corresponding bin width
-
-                res[counter, "r"] <- round(as.double(sqrt(meanr)), 4)
+                rval <- round(as.double(sqrt(meanr)), 4)
+                res[counter, "r"] <- rval
                 res[counter, "p"] <- round(as.double(meanp), 2)
                 res[counter, "bin"] <- binWidths[i]
                 res[counter, "n"] <- nsites
                 res[counter, "site"] <- paste(toString(origins[[siteNames]][j]),
                                               ast, sep="")
+                
+                if (rval > origins$r[j]) {
+                    origins$r[j] <- rval
+                }
             }
             setTxtProgressBar(pb, counter)
         }
     }
     close(pb)
 
+    # Reproject to Robinson for Kriging
+    origins.m <- spTransform(origins, CRS("+proj=robin +lon_0=0 +x_0=0 +y_0=0
+                                           +ellps=WGS84 +datum=WGS84 +units=m
+                                           +no_defs"))
+    
+    # Perform autoKriging
+    krg.m <- autoKrige(r~1, origins.m)
+    
+    # Reproject back to lonlat
+    newr <- raster(extent(origins))
+    proj4string(newr) <- proj4string(origins)
+    res(newr) <- 0.25
+    krg <- projectRaster(raster(krg.m$krige), newr)
+
+    # Create map object
+    map <- list("sites" = ftrSites, "origins" = origins, "krg" = krg)
+    class(map) <- "dateMap"
+
     res <- res[order(-r)]
-    return(list("results" = res, "model" = bestModel))
+    return(list("results" = res, "model" = bestModel, "map" = map))
 }
 
 
@@ -300,6 +326,19 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
     class(dateModel) <- "dateModel"
 
     return(dateModel)
+}
+
+
+plot.dateMap <- function(dateMap) {
+    data(land)
+    e <- extent(dateMap$sites)
+    sites <- list("sp.points", dateMap$sites, cex=0.25, col="black")
+    continent <- list("sp.polygons", land, first = FALSE)
+    plt <- spplot(dateMap$krg,
+                  xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
+                  sp.layout = list(sites, continent),
+                  scales=list(draw = TRUE, cex=0.5, font=1, tck=c(1,0)))
+    return(plt)
 }
 
 
@@ -578,3 +617,9 @@ summary.dateModel <- function(dateModel) {
 #' 
 #' @format A RasterLayer object.
 "cost"
+
+
+#' Land polygons.
+#' 
+#' @format A SpatialPolygonsDataFrame object.
+"land"
