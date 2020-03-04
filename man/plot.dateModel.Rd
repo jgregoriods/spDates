@@ -2,7 +2,7 @@
 % Please edit documentation in R/spDates.R
 \name{plot.dateModel}
 \alias{plot.dateModel}
-\title{Plot the results of the RMA bootstrap on archaeological dates versus
+\title{Plot the results of the regression bootstrap on archaeological dates versus
 distances from a hypothetical origin, with fitted lines.}
 \usage{
 plot.dateModel(dateModel)
@@ -14,6 +14,6 @@ plot.dateModel(dateModel)
 a ggplot object.
 }
 \description{
-Plot the results of the RMA bootstrap on archaeological dates versus
+Plot the results of the regression bootstrap on archaeological dates versus
 distances from a hypothetical origin, with fitted lines.
 }

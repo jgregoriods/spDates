@@ -8,6 +8,7 @@ library(parallel)
 library(raster)
 library(rcarbon)
 library(smatr)
+library(viridisLite)
 
 
 #' Filter archaeological site coordinates and dates, retaining only the
@@ -163,7 +164,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
     # Reproject back to lonlat
     newr <- raster(extent(origins))
     proj4string(newr) <- proj4string(origins)
-    res(newr) <- 0.25
+    res(newr) <- 0.1
     krg <- projectRaster(raster(krg.m$krige), newr)
 
     # Create map object
@@ -329,20 +330,34 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 }
 
 
+#' Plot a map with the results of the iteration over multiple sites, showing
+#' an interpolated surface of r values for the sites considered as potential
+#' origins.
+#'
+#' @param dateMap a dateMap object. One of the list elements returned from
+#' the iterateSites() function.
+#' @return a spplot object.
+#' @export
 plot.dateMap <- function(dateMap) {
     data(land)
     e <- extent(dateMap$sites)
-    sites <- list("sp.points", dateMap$sites, cex=0.25, col="black")
-    continent <- list("sp.polygons", land, first = FALSE)
-    plt <- spplot(dateMap$krg,
+    sites <- list("sp.points", dateMap$sites, cex = 0.25, col = "black",
+                  alpha = 0.5)
+    continent <- list("sp.polygons", land, fill = "white")
+    plt <- spplot(mask(dateMap$krg, land), cuts = 8,
+                  col.regions = plasma,
                   xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
+                  par.settings = list(panel.background =
+                    list(col = "lightcyan2")),
                   sp.layout = list(sites, continent),
-                  scales=list(draw = TRUE, cex=0.5, font=1, tck=c(1,0)))
+                  scales = list(draw = TRUE, cex = 0.5, font = 1,
+                                tck = c(1, 0)),
+                  colorkey = list(height = 0.75, space = "bottom"))
     return(plt)
 }
 
 
-#' Plot the results of the RMA bootstrap on archaeological dates versus
+#' Plot the results of the regression bootstrap on archaeological dates versus
 #' distances from a hypothetical origin, with fitted lines.
 #'
 #' @param dateModel a dateModel object created with modelDates().
