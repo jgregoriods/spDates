@@ -73,6 +73,12 @@ plot(iter$model)</pre></code>
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/img/iter.jpeg" width="300">
 
+<p>One can plot a map with the results of the iteration, showing an interpolated surface with the correlation coefficient of all sites tested as potential origins:</p>
+
+<pre><code>plot(iter$map)</pre></code>
+
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/itermap.jpeg" width="300">
+
 <h3>Important</h3>
 
 <p>When preparing your own data, it is crucial that you include two columns named "cal" and "med", containing, respectively, calibrated dates in the form of CalDates objects (from the rcarbon package) and the median of each calibrated date (for display in the plots). These can be created in the following way:</p>
