@@ -87,3 +87,4 @@ plot(iter$model)</pre></code>
 mydates <- read.csv("myfile.csv")
 mydates$cal <- calibrate(mydates$C14Age, mydates$C14SD)
 mydates$med <- medCal(mydates$cal)</pre></code>
+<p>In this example we are reading a csv file but your dataset, of course, can already be stored as a SpatialPointsDataFrame.</p>
