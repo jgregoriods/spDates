@@ -1,7 +1,7 @@
 <h1>spDates</h1>
 <h2>Analysis of Spatial Gradients in Radiocarbon Dates</h2>
 
-<p>This package provides tools to perform time-space regressions, an approach often used by archaeologists examining the expansion of cultural phenomena. In essence, one plots the radiocarbon ages of archaeological sites against their distances from a hypothetical origin. If a cultural advance has indeed taken place, the expectation is that radiocarbon dates will be more recent as one moves away from the center of origin. If a significant correlation is found, the intercept of the regression can be used as an estimate of the start date for the dispersal, while the regression slope provides an estimate of the speed of advance. Most applications have been focused on the Neolithic expansion from the Near East to Europe (Ammerman and Cavalli-Sforza 1971; Gkiasta et al. 2003; Pinhasi et al. 2005), but other case studies include the Paleolithic recolonization of Northern Europe (Fort et al. 2004), the Clovis expansion in North America (Hamilton and Buchanan 2007), the human colonization of the Americas from Asia (Hamilton and Buchanan 2010), the Lapita spread in Austronesia (Fort 2002), and the Bantu spread in Africa (Isern and Fort 2019).</p>
+<p>This package provides tools to perform time-space regressions, an approach often used by archaeologists examining the expansion of cultural phenomena. In essence, one plots the radiocarbon ages of archaeological sites against their distances from a hypothetical origin. If a cultural advance has indeed taken place, the expectation is that radiocarbon dates will be more recent as one moves away from the center of origin. If a significant correlation is found, the intercept of the regression can be used as an estimate of the start date for the dispersal, while the regression slope provides an estimate of the speed of advance. Most applications have been focused on the Neolithic expansion from the Near East to Europe (<a href="https://doi.org/10.2307/2799190">Ammerman and Cavalli-Sforza 1971</a>; Gkiasta et al. 2003; Pinhasi et al. 2005), but other case studies include the Paleolithic recolonization of Northern Europe (Fort et al. 2004), the Clovis expansion in North America (Hamilton and Buchanan 2007), the human colonization of the Americas from Asia (Hamilton and Buchanan 2010), the Lapita spread in Austronesia (Fort 2003), and the Bantu spread in Africa (Isern and Fort 2019).</p>
 
 <h3>Installation</h3>
 
@@ -53,7 +53,7 @@ plot(rmacost)</pre></code>
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/img/rmacost.jpeg" width="300">
 
-<p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (2003). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
+<p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (2005). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
 
 <pre><code>iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
 iter$results
@@ -88,3 +88,7 @@ mydates <- read.csv("myfile.csv")
 mydates$cal <- calibrate(mydates$C14Age, mydates$C14SD)
 mydates$med <- medCal(mydates$cal)</pre></code>
 <p>In this example we are reading a csv file but your dataset, of course, can already be stored as a SpatialPointsDataFrame.</p>
+
+<h3>References</h3>
+<p>Ammerman, A J, and L L Cavalli-Sforza. 1971. <a href="https://doi.org/10.2307/2799190">“Measuring the Rate of Spread of Early Farming in Europe.”</a> Man 6 (4): 674–88.</p>
+<p>Fort, Joaquim. 2003. “Population Expansion in the Western Pacific (Austronesia): A Wave of Advance Model.” Antiquity 77 (297): 520–30.</p>
