@@ -77,7 +77,7 @@ plot(iter$model)</pre></code>
 
 <pre><code>plot(iter$map)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/itermap.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/img/itermap.jpeg" width="400">
 
 <h3>Important</h3>
 
