@@ -3,6 +3,7 @@ library(data.table)
 library(dplyr)
 library(gdistance)
 library(ggplot2)
+library(gstat)
 library(maptools)
 library(parallel)
 library(raster)
@@ -154,25 +155,44 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
     close(pb)
 
     # Reproject to Robinson for Kriging
-    origins.m <- spTransform(origins, CRS("+proj=robin +lon_0=0 +x_0=0 +y_0=0
-                                           +ellps=WGS84 +datum=WGS84 +units=m
-                                           +no_defs"))
+    #origins.m <- spTransform(origins, CRS("+proj=robin +lon_0=0 +x_0=0 +y_0=0
+    #                                       +ellps=WGS84 +datum=WGS84 +units=m
+    #                                       +no_defs"))
     
     # Perform autoKriging
-    krg.m <- autoKrige(r~1, origins.m)
+    #krg.m <- autoKrige(r~1, origins.m)
     
     # Reproject back to lonlat
-    newr <- raster(extent(origins))
-    proj4string(newr) <- proj4string(origins)
-    res(newr) <- 0.1
-    krg <- projectRaster(raster(krg.m$krige), newr)
+    #newr <- raster(extent(origins))
+    #proj4string(newr) <- proj4string(origins)
+    #res(newr) <- 0.1
+    #krg <- projectRaster(raster(krg.m$krige), newr)
+
+    origins.idw <- interpolateIDW(origins, "r")
 
     # Create map object
-    map <- list("sites" = ftrSites, "origins" = origins, "krg" = krg)
+    map <- list("sites" = ftrSites, "origins" = origins, "idw" = origins.idw)
     class(map) <- "dateMap"
 
     res <- res[order(-r)]
     return(list("results" = res, "model" = bestModel, "map" = map))
+}
+
+
+#' Interpolate using inverse distance weighting.
+#' @param points A SpatialPointsDataFrame object.
+#' @param attr A string. Name of the field with values to interpolate.
+#' @return A RasterLayer.
+interpolateIDW <- function(points, attr) {
+    grd <- as.data.frame(spsample(points, "regular", n = 10000))
+    names(grd) <- c("x", "y")
+    coordinates(grd) <- ~x+y
+    proj4string(grd) <- proj4string(points)
+    gridded(grd) <- TRUE
+    fullgrid(grd) <- TRUE
+
+    points.idw <- idw(get(attr) ~ 1, points, newdata = grd, idp = 2.0)
+    return(raster(points.idw))
 }
 
 
@@ -344,15 +364,18 @@ plot.dateMap <- function(dateMap) {
     sites <- list("sp.points", dateMap$sites, cex = 0.25, col = "black",
                   alpha = 0.5)
     continent <- list("sp.polygons", land, fill = "white")
-    plt <- spplot(mask(dateMap$krg, land), cuts = 8,
-                  col.regions = plasma,
+    plt <- spplot(mask(dateMap$idw, land), cuts = 8,
+                  col.regions = magma,
                   xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
-                  par.settings = list(panel.background =
-                    list(col = "lightcyan2")),
+                  xlab = list("R", cex = 0.75),
+                  par.settings = list(panel.background = list(col = "lightcyan2"),
+                                      layout.heights = list(xlab.key.padding = 1)),
                   sp.layout = list(sites, continent),
                   scales = list(draw = TRUE, cex = 0.5, font = 1,
                                 tck = c(1, 0)),
-                  colorkey = list(height = 0.75, space = "bottom"))
+                  colorkey = list(height = 0.75, space = "bottom"),
+                  main = list(label = "Interpolation map of potential origins' R values",
+                              cex = 1))
     return(plt)
 }
 
