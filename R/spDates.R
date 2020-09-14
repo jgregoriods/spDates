@@ -1,4 +1,5 @@
 library(dplyr)
+library(rcarbon)
 
 
 #' Filter archaeological site coordinates and dates, retaining only the
@@ -207,6 +208,8 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
     parallel::clusterEvalQ(cl, library("smatr"))
     parallel::clusterExport(cl, "sampleCalDates", envir = .GlobalEnv)
 
+	ftrSites$id <- 1:nrow(ftrSites)
+
     # If a cost surface is provided, calculate cost distances
     if (!missing(cost) & class(cost) == "RasterLayer") {
         tr <- gdistance::transition(cost, function(x) 1/mean(x), 16)
@@ -224,8 +227,9 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
     if (binWidth > 0)  {
         ftrSites$bin <- floor(ftrSites$dists / binWidth)
         ftrSites.df <- as.data.frame(ftrSites)
+		ftrSites.df$cal <- NULL
         ftrSites.max <- ftrSites.df %>% group_by(bin) %>% top_n(1, get(c14bp))
-        binSites <- as.data.frame(ftrSites.max)
+        binSites <- ftrSites[match(ftrSites.max$id, ftrSites$id),]
         dists <- binSites$dists
         calDates <- binSites$cal
     } else {
