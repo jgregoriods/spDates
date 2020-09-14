@@ -159,6 +159,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
 #' @param points A SpatialPointsDataFrame object.
 #' @param attr A string. Name of the field with values to interpolate.
 #' @return A RasterLayer.
+#' @export
 interpolateIDW <- function(points, attr) {
     grd <- as.data.frame(sp::spsample(points, "regular", n = 10000))
     names(grd) <- c("x", "y")
