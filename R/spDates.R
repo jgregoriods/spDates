@@ -5,6 +5,7 @@ library(rcarbon)
 #' Filter archaeological site coordinates and dates, retaining only the
 #' earliest radiocarbon date per site.
 #'
+#' @import dplyr
 #' @param sites A SpatialPointsDataFrame object with archaeological sites and
 #' associated radiocarbon ages.
 #' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
@@ -12,7 +13,7 @@ library(rcarbon)
 #' @return A SpatialPointsDataFrame object with the earliest C14 date for every
 #' site.
 #' @export
-filterDates <- function(sites, c14bp) {
+filterDates <- unction(sites, c14bp) {
     x <- c(colnames(sp::coordinates(sites)))[1]
     y <- c(colnames(sp::coordinates(sites)))[2]
 
@@ -181,7 +182,8 @@ interpolateIDW <- function(points, attr) {
 #' circle distances. Regression can be either reduced major axis or ordinary
 #' least squares. If using ordinary least squares, regression is performed
 #' both on time-versus-distance and on distance-versus-time.
-#' 
+#'
+#' @import dplyr rcarbon 
 #' @param ftrSites A SpatialPointsDataFrame object with associated earliest
 #' C14 dates per site and respective calibrated distributions (CalDates
 #' objects) in a field named "cal". Result of applying filterDates() and
@@ -334,17 +336,18 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 #' an interpolated surface of r values for the sites considered as potential
 #' origins.
 #'
-#' @param dateMap a dateMap object. One of the list elements returned from
+#' @param x a dateMap object. One of the list elements returned from
 #' the iterateSites() function.
+#' @param ... ignored
 #' @return a spplot object.
 #' @export
-plot.dateMap <- function(dateMap) {
+plot.dateMap <- function(x, ...) {
     data(land)
-    e <- raster::extent(dateMap$sites)
-    sites <- list("sp.points", dateMap$sites, cex = 0.25, col = "black",
+    e <- raster::extent(x$sites)
+    sites <- list("sp.points", x$sites, cex = 0.25, col = "black",
                   alpha = 0.5)
     continent <- list("sp.polygons", land, fill = "white")
-    plt <- sp::spplot(raster::mask(dateMap$idw, land), cuts = 8,
+    plt <- sp::spplot(raster::mask(x$idw, land), cuts = 8,
                       col.regions = viridisLite::magma,
                   	  xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
                   	  xlab = list("R", cex = 0.75),
@@ -363,34 +366,35 @@ plot.dateMap <- function(dateMap) {
 #' Plot the results of the regression bootstrap on archaeological dates versus
 #' distances from a hypothetical origin, with fitted lines.
 #'
-#' @param dateModel a dateModel object created with modelDates().
+#' @param x a dateModel object created with modelDates().
+#' @param ... ignored
 #' @return a ggplot object.
 #' @export
-plot.dateModel <- function(dateModel) {
+plot.dateModel <- function(x, ...) {
 
-    if (!is.null(dateModel$binSites)) {
-        binSites <- data.frame("dists" = dateModel$binSites$dists,
-                               "dates" = dateModel$binSites$med,
+    if (!is.null(x$binSites)) {
+        binSites <- data.frame("dists" = x$binSites$dists,
+                               "dates" = x$binSites$med,
                                "binned" = 1)
     } else {
         binSites <- NULL
     }
 
-    allSites <- data.frame("dists" = dateModel$allSites$dists,
-                           "dates" = dateModel$allSites$med,
+    allSites <- data.frame("dists" = x$allSites$dists,
+                           "dates" = x$allSites$med,
                            "binned" = 0)
 
     if (!is.null(binSites)) {
         points <- rbind(allSites, binSites)
-        binLabel <- paste(dateModel$binWidth, " km bins")
+        binLabel <- paste(x$binWidth, " km bins")
     } else {
         points <- allSites
         binLabel <- NULL
     }
 
-    if (dateModel$method == "rma") {
+    if (x$method == "rma") {
 
-        model <- as.data.frame(dateModel$model)
+        model <- as.data.frame(x$model)
 
         # Mean intercept and slope of bootstrap for display
         int.m <- mean(model$int)
@@ -434,10 +438,10 @@ plot.dateModel <- function(dateModel) {
                           		   ggplot2::theme(legend.position = c(1, 1),
                                 				  legend.justification = c(1, 1))
 
-    } else if (dateModel$method == "ols") {
+    } else if (x$method == "ols") {
 
         # Time-versus-distance
-        td.model <- as.data.frame(dateModel$td.model)
+        td.model <- as.data.frame(x$td.model)
         td.int.m <- mean(td.model$int)
         td.slo.m <- mean(td.model$slo)
 
@@ -454,7 +458,7 @@ plot.dateModel <- function(dateModel) {
                          sep="")
 
         # Distance-versus-time
-        dt.model <- as.data.frame(dateModel$dt.model)
+        dt.model <- as.data.frame(x$dt.model)
         dt.int.m <- mean(dt.model$int)
         dt.slo.m <- mean(dt.model$slo)
 
@@ -512,6 +516,7 @@ plot.dateModel <- function(dateModel) {
 #' Extract a single year estimate for ranges of calibrated dates with a
 #' probability given by the calibrated probability distribution.
 #'
+#' @import rcarbon
 #' @param calDates A CalDates object or a vector of CalDates.
 #' @return A vector of cal BP single year estimates.
 #' @export
@@ -530,18 +535,19 @@ sampleCalDates <- function(calDates) {
 
 #' Return summary statistics for a dateModel object.
 #'
-#' @param dateModel A dateModel object created with modelDates().
+#' @param object A dateModel object created with modelDates().
+#' @param ... ignored
 #' @return A dataframe with estimated start date and speed of advance.
 #' @export
-summary.dateModel <- function(dateModel) {
+summary.dateModel <- function(object, ...) {
 
-    if (dateModel$method == "rma") {
+    if (object$method == "rma") {
 
-        start <- mean(dateModel$model[, "int"])
-        start.SD <- sd(dateModel$model[, "int"])
-        speed <- 1 / mean(dateModel$model[, "slo"])
-        speed.SD <- (1 / ((mean(dateModel$model[, "slo"])) +
-                    (1.96 * sd(dateModel$model[, "slo"])))) - speed
+        start <- mean(object$model[, "int"])
+        start.SD <- sd(object$model[, "int"])
+        speed <- 1 / mean(object$model[, "slo"])
+        speed.SD <- (1 / ((mean(object$model[, "slo"])) +
+                    (1.96 * sd(object$model[, "slo"])))) - speed
 
         df <- data.frame(c(paste(format(start, digits = 0, scientific = FALSE),
                                  "+/-", format(start.SD, digits = 0,
@@ -555,21 +561,21 @@ summary.dateModel <- function(dateModel) {
         rownames(df) <- c("Start date:", "Speed of advance:")
         colnames(df) <- NULL
 
-    } else if (dateModel$method == "ols") {
+    } else if (object$method == "ols") {
 
         # Time-versus-distance
-        td.start <- mean(dateModel$td.model[, "int"])
-        td.start.SD <- sd(dateModel$td.model[, "int"])
-        td.speed <- 1 / mean(dateModel$td.model[, "slo"])
-        td.speed.SD <- (1 / ((mean(dateModel$td.model[, "slo"])) +
-                       (1.96 * sd(dateModel$td.model[, "slo"])))) - td.speed
+        td.start <- mean(object$td.model[, "int"])
+        td.start.SD <- sd(object$td.model[, "int"])
+        td.speed <- 1 / mean(object$td.model[, "slo"])
+        td.speed.SD <- (1 / ((mean(object$td.model[, "slo"])) +
+                       (1.96 * sd(object$td.model[, "slo"])))) - td.speed
         
         # Distance-versus-time
-        dt.start <- mean(dateModel$dt.model[, "int"])
-        dt.start.SD <- sd(dateModel$dt.model[, "int"])
-        dt.speed <- 1 / mean(dateModel$dt.model[, "slo"])
-        dt.speed.SD <- (1 / ((mean(dateModel$dt.model[, "slo"])) +
-                       (1.96 * sd(dateModel$dt.model[, "slo"])))) - dt.speed
+        dt.start <- mean(object$dt.model[, "int"])
+        dt.start.SD <- sd(object$dt.model[, "int"])
+        dt.speed <- 1 / mean(object$dt.model[, "slo"])
+        dt.speed.SD <- (1 / ((mean(object$dt.model[, "slo"])) +
+                       (1.96 * sd(object$dt.model[, "slo"])))) - dt.speed
 
         df <- data.frame(c(paste(format(td.start, digits = 0,
                                         scientific = FALSE), "+/-",
