@@ -5,7 +5,7 @@
 \title{Plot the results of the regression bootstrap on archaeological dates versus
 distances from a hypothetical origin, with fitted lines.}
 \usage{
-plot.dateModel(dateModel)
+\method{plot}{dateModel}(dateModel)
 }
 \arguments{
 \item{dateModel}{a dateModel object created with modelDates().}

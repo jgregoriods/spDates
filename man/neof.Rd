@@ -6,7 +6,8 @@
 \title{Radiocarbon dates and coordinates of 717 Neolithic sites in the Near East
 and Europe. Modified from Pinhasi et al. (2005). Only the earliest dates
 per site are included.}
-\format{A data frame with 717 rows and 13 variables.
+\format{
+A data frame with 717 rows and 13 variables.
 \itemize{
   \item Latitude. Site latitude in decimal degrees.
   \item Longitude. Site longitude in decimal degrees.
@@ -22,7 +23,8 @@ per site are included.}
                marine13).
   \item cal. Calibrated dates as CalDates objects.
   \item med. Median of the calibrated date in cal yr BP.
-}}
+}
+}
 \usage{
 neof
 }

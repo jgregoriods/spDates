@@ -6,7 +6,7 @@
 an interpolated surface of r values for the sites considered as potential
 origins.}
 \usage{
-plot.dateMap(dateMap)
+\method{plot}{dateMap}(dateMap)
 }
 \arguments{
 \item{dateMap}{a dateMap object. One of the list elements returned from

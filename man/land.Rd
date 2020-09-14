@@ -4,7 +4,9 @@
 \name{land}
 \alias{land}
 \title{Land polygons.}
-\format{A SpatialPolygonsDataFrame object.}
+\format{
+A SpatialPolygonsDataFrame object.
+}
 \usage{
 land
 }

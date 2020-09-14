@@ -1,15 +1,4 @@
-library(automap)
-library(data.table)
 library(dplyr)
-library(gdistance)
-library(ggplot2)
-library(gstat)
-library(maptools)
-library(parallel)
-library(raster)
-library(rcarbon)
-library(smatr)
-library(viridisLite)
 
 
 #' Filter archaeological site coordinates and dates, retaining only the
@@ -23,10 +12,10 @@ library(viridisLite)
 #' site.
 #' @export
 filterDates <- function(sites, c14bp) {
-    x <- c(colnames(coordinates(sites)))[1]
-    y <- c(colnames(coordinates(sites)))[2]
+    x <- c(colnames(sp::coordinates(sites)))[1]
+    y <- c(colnames(sp::coordinates(sites)))[2]
 
-    clusters <- zerodist(sites, zero = 0, unique.ID = TRUE)
+    clusters <- gstat::zerodist(sites, zero = 0, unique.ID = TRUE)
 
     sites$clusterID <- clusters
     sites.df <- as.data.frame(sites)
@@ -35,8 +24,8 @@ filterDates <- function(sites, c14bp) {
 
     xy <- cbind(sites.max[[x]], sites.max[[y]])
 
-    sites.max.spdf <- SpatialPointsDataFrame(xy, sites.max)
-    proj4string(sites.max.spdf) <- proj4string(sites)
+    sites.max.spdf <- sp::SpatialPointsDataFrame(xy, sites.max)
+    sp::proj4string(sites.max.spdf) <- sp::proj4string(sites)
 
     return(sites.max.spdf)
 }
@@ -71,9 +60,9 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
 
     datalen <- length(binWidths) * length(origins)
 
-    res <- data.table("r" = numeric(datalen), "p" = numeric(datalen),
-                      "bin" = numeric(datalen), "n" = numeric(datalen),
-		              "site" = character(datalen))
+    res <- data.table::data.table("r" = numeric(datalen), "p" = numeric(datalen),
+                      			  "bin" = numeric(datalen), "n" = numeric(datalen),
+		              			  "site" = character(datalen))
 
     origins$r <- 0
 
@@ -154,20 +143,6 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
     }
     close(pb)
 
-    # Reproject to Robinson for Kriging
-    #origins.m <- spTransform(origins, CRS("+proj=robin +lon_0=0 +x_0=0 +y_0=0
-    #                                       +ellps=WGS84 +datum=WGS84 +units=m
-    #                                       +no_defs"))
-    
-    # Perform autoKriging
-    #krg.m <- autoKrige(r~1, origins.m)
-    
-    # Reproject back to lonlat
-    #newr <- raster(extent(origins))
-    #proj4string(newr) <- proj4string(origins)
-    #res(newr) <- 0.1
-    #krg <- projectRaster(raster(krg.m$krige), newr)
-
     origins.idw <- interpolateIDW(origins, "r")
 
     # Create map object
@@ -184,15 +159,15 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
 #' @param attr A string. Name of the field with values to interpolate.
 #' @return A RasterLayer.
 interpolateIDW <- function(points, attr) {
-    grd <- as.data.frame(spsample(points, "regular", n = 10000))
+    grd <- as.data.frame(sp::spsample(points, "regular", n = 10000))
     names(grd) <- c("x", "y")
-    coordinates(grd) <- ~x+y
-    proj4string(grd) <- proj4string(points)
-    gridded(grd) <- TRUE
-    fullgrid(grd) <- TRUE
+    sp::coordinates(grd) <- ~x+y
+    sp::proj4string(grd) <- sp::proj4string(points)
+    sp::gridded(grd) <- TRUE
+    sp::fullgrid(grd) <- TRUE
 
-    points.idw <- idw(get(attr) ~ 1, points, newdata = grd, idp = 2.0)
-    return(raster(points.idw))
+    points.idw <- gstat::idw(get(attr) ~ 1, points, newdata = grd, idp = 2.0)
+    return(raster::raster(points.idw))
 }
 
 
@@ -226,23 +201,23 @@ interpolateIDW <- function(points, attr) {
 modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
                        cost = NULL, method = "rma") {
 
-    no_cores <- detectCores()
-    cl <- makeCluster(no_cores - 1)
-    clusterEvalQ(cl, library("rcarbon"))
-    clusterEvalQ(cl, library("smatr"))
-    clusterExport(cl, "sampleCalDates", envir = .GlobalEnv)
+    no_cores <- parallel::detectCores()
+    cl <- parallel::makeCluster(no_cores - 1)
+    parallel::clusterEvalQ(cl, library("rcarbon"))
+    parallel::clusterEvalQ(cl, library("smatr"))
+    parallel::clusterExport(cl, "sampleCalDates", envir = .GlobalEnv)
 
     # If a cost surface is provided, calculate cost distances
     if (!missing(cost) & class(cost) == "RasterLayer") {
-        tr <- transition(cost, function(x) 1/mean(x), 16)
-        tr <- geoCorrection(tr)
+        tr <- gdistance::transition(cost, function(x) 1/mean(x), 16)
+        tr <- gistance::geoCorrection(tr)
 
         # Create cost paths and calculate their distances
-        paths <- shortestPath(tr, origin, ftrSites, output = "SpatialLines")
-        ftrSites$dists <- SpatialLinesLengths(paths)
+        paths <- gistance::shortestPath(tr, origin, ftrSites, output = "SpatialLines")
+        ftrSites$dists <- sp::SpatialLinesLengths(paths)
     } else {
         # If no cost surface is provided, caculate great circle distances
-        ftrSites$dists <- spDistsN1(ftrSites, origin, longlat = TRUE)
+        ftrSites$dists <- sp::spDistsN1(ftrSites, origin, longlat = TRUE)
     }
 
     # Perform spatial binning, retain only earliest date per bin
@@ -263,15 +238,15 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
         
         models <- vector("list", length = nsim)
     
-        clusterExport(cl, list("models", "dists", "calDates"),
-                      envir = environment())
+        parallel::clusterExport(cl, list("models", "dists", "calDates"),
+                                envir = environment())
     
-        models <- parLapply(cl, 1:nsim, function(k) {
+        models <- parallel::parLapply(cl, 1:nsim, function(k) {
             dates <- sampleCalDates(calDates)
-            model <- sma(dates ~ dists, robust = TRUE)
+            model <- smatr::sma(dates ~ dists, robust = TRUE)
         })
 
-        stopCluster(cl)
+		parallel::stopCluster(cl)
         gc()
 
         res <- matrix(nrow = nsim, ncol = 4)
@@ -295,22 +270,22 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
         td.models <- vector("list", length = nsim)
         dt.models <- vector("list", length = nsim)
     
-        clusterExport(cl, list("td.models", "dt.models", "dists", "calDates"),
-                      envir = environment())
+        parallel::clusterExport(cl, list("td.models", "dt.models", "dists", "calDates"),
+                                envir = environment())
 
         # Time-versus-distance
-        td.models <- parLapply(cl, 1:nsim, function(k) {
+        td.models <- parallel::parLapply(cl, 1:nsim, function(k) {
             dates <- sampleCalDates(calDates)
             model <- lm(dates ~ dists)
         })
 
         # Distance-versus-time
-        dt.models <- parLapply(cl, 1:nsim, function(k) {
+        dt.models <- parallel::parLapply(cl, 1:nsim, function(k) {
             dates <- sampleCalDates(calDates)
             model <- lm(dists ~ dates)
         })
 
-        stopCluster(cl)
+		parallel::stopCluster(cl)
         gc()
 
         td.res <- matrix(nrow = nsim, ncol = 4)
@@ -360,22 +335,22 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 #' @export
 plot.dateMap <- function(dateMap) {
     data(land)
-    e <- extent(dateMap$sites)
+    e <- raster::extent(dateMap$sites)
     sites <- list("sp.points", dateMap$sites, cex = 0.25, col = "black",
                   alpha = 0.5)
     continent <- list("sp.polygons", land, fill = "white")
-    plt <- spplot(mask(dateMap$idw, land), cuts = 8,
-                  col.regions = magma,
-                  xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
-                  xlab = list("R", cex = 0.75),
-                  par.settings = list(panel.background = list(col = "lightcyan2"),
-                                      layout.heights = list(xlab.key.padding = 1)),
-                  sp.layout = list(sites, continent),
-                  scales = list(draw = TRUE, cex = 0.5, font = 1,
-                                tck = c(1, 0)),
-                  colorkey = list(height = 0.75, space = "bottom"),
-                  main = list(label = "Interpolation map of potential origins' R values",
-                              cex = 1))
+    plt <- sp::spplot(raster::mask(dateMap$idw, land), cuts = 8,
+                      col.regions = viridisLite::magma,
+                  	  xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
+                  	  xlab = list("R", cex = 0.75),
+                  	  par.settings = list(panel.background = list(col = "lightcyan2"),
+                                          layout.heights = list(xlab.key.padding = 1)),
+                  	  sp.layout = list(sites, continent),
+                  	  scales = list(draw = TRUE, cex = 0.5, font = 1,
+                                    tck = c(1, 0)),
+                      colorkey = list(height = 0.75, space = "bottom"),
+                      main = list(label = "Interpolation map of potential origins' R values",
+                                  cex = 1))
     return(plt)
 }
 
@@ -424,33 +399,35 @@ plot.dateModel <- function(dateModel) {
             pval <- "p < 0.05"
         } else {
             pval <- paste("p = ", format(mean(model$p), digits = 2,
-                                        scientific = FALSE))
+                                         scientific = FALSE))
         }
 
         rval <- paste("r = -", format(sqrt(mean(mean(model$r))), dig = 2),
                       sep="")
 
-        plt <- ggplot() + xlim(0, max(points$dists)) +
-                          ylim(min(points$dates), max(points$dates)) +
-                          geom_abline(data = model,
-                                      aes(intercept = int, slope = slo),
-                                      alpha = 0.05, lwd = 0.5,
-                                      colour = "#f8766d") +
-                          geom_abline(aes(intercept = int.m, slope = slo.m)) +
-                          geom_point(data = points, aes(x = dists, y = dates,
-                                                        fill = factor(binned)),
-                                     shape = 21, size = 2) +
-                          labs(x = "Distance from origin (km)", y = "Cal yr BP",
-                               fill = binLabel) +
-                          scale_fill_manual(labels = c("all dates",
-                                                       "earliest per bin"),
-                                            values = c("white", "black")) +
-                          annotate("text", x = min(points$dists),
-                                           y = min(points$dates),
-                                           label = paste(rval, pval),
-                                           hjust = 0) +
-                          theme(legend.position = c(1, 1),
-                                legend.justification = c(1, 1))
+        plt <- ggplot2::ggplot() + ggplot2::xlim(0, max(points$dists)) +
+                                   ggplot2::ylim(min(points$dates), max(points$dates)) +
+                                   ggplot2::geom_abline(data = model,
+                                                        ggplot2::aes(intercept = int,
+																	 slope = slo),
+                                      				    alpha = 0.05, lwd = 0.5,
+                                                        colour = "#f8766d") +
+                          		   ggplot2::geom_abline(ggplot2::aes(intercept = int.m,
+																	 slope = slo.m)) +
+                          	       ggplot2::geom_point(data = points, ggplot2::aes(x = dists, y = dates,
+                                                        			      		   fill = factor(binned)),
+                                    				   shape = 21, size = 2) +
+                          		   ggplot2::labs(x = "Distance from origin (km)", y = "Cal yr BP",
+                               					 fill = binLabel) +
+                          		   ggplot2::scale_fill_manual(labels = c("all dates",
+                                                                         "earliest per bin"),
+                                            				  values = c("white", "black")) +
+                          		   ggplot2::annotate("text", x = min(points$dists),
+                                                     y = min(points$dates),
+                                           		     label = paste(rval, pval),
+                                           			 hjust = 0) +
+                          		   ggplot2::theme(legend.position = c(1, 1),
+                                				  legend.justification = c(1, 1))
 
     } else if (dateModel$method == "ols") {
 
@@ -488,34 +465,38 @@ plot.dateModel <- function(dateModel) {
         dt.rval <- paste("r = -", format(sqrt(mean(mean(dt.model$r))), dig = 2),
                          sep="")
 
-        plt <- ggplot() + xlim(0, max(points$dists)) +
-                          ylim(min(points$dates), max(points$dates)) +
-                          geom_abline(data = dt.model,
-                                      aes(intercept = int, slope = slo),
-                                      alpha = 0.05, lwd = 0.5,
-                                      colour = "#00bfc4") +
-                          geom_abline(data = td.model,
-                                      aes(intercept = int, slope = slo),
-                                      alpha = 0.05, lwd = 0.5,
-                                      colour = "#f8766d") +
-                          geom_abline(aes(intercept = dt.int.m,
-                                          slope = dt.slo.m), lty = 2) +
-                          geom_abline(aes(intercept = td.int.m,
-                                          slope = td.slo.m)) +
-                          geom_point(data = points, aes(x = dists, y = dates,
-                                                        fill = factor(binned)),
-                                     shape = 21, size = 2) +
-                          labs(x = "Distance from origin (km)", y = "Cal yr BP",
-                               fill = binLabel) +
-                          scale_fill_manual(labels = c("all dates",
-                                                       "earliest per bin"),
-                                            values = c("white", "black")) +
-                          annotate("text", x = min(points$dists),
-                                           y = min(points$dates),
-                                           label = paste(td.rval, td.pval),
-                                           hjust = 0) +
-                          theme(legend.position = c(1, 1),
-                                legend.justification = c(1, 1))
+        plt <- ggplot2::ggplot() + ggplot2::xlim(0, max(points$dists)) +
+                          		   ggplot2::ylim(min(points$dates), max(points$dates)) +
+                          		   ggplot2::geom_abline(data = dt.model,
+                                      				    ggplot2::aes(intercept = int,
+																	 slope = slo),
+                                      					alpha = 0.05, lwd = 0.5,
+                                      				    colour = "#00bfc4") +
+		                           ggplot2::geom_abline(data = td.model,
+                                      					ggplot2::aes(intercept = int,
+																	 slope = slo),
+                                      				    alpha = 0.05, lwd = 0.5,
+			                                            colour = "#f8766d") +
+                          		   ggplot2::geom_abline(ggplot2::aes(intercept = dt.int.m,
+                                          							 slope = dt.slo.m),
+														  			 lty = 2) +
+                          		   ggplot2::geom_abline(ggplot2::aes(intercept = td.int.m,
+                                          							 slope = td.slo.m)) +
+                          		   ggplot2::geom_point(data = points, ggplot2::aes(x = dists,
+																				   y = dates,
+                                                       							   fill = factor(binned)),
+                                     				   shape = 21, size = 2) +
+                          		   ggplot2::labs(x = "Distance from origin (km)", y = "Cal yr BP",
+                               				     fill = binLabel) +
+                          		   ggplot2::scale_fill_manual(labels = c("all dates",
+                                                                         "earliest per bin"),
+                                            				  values = c("white", "black")) +
+                          		   ggplot2::annotate("text", x = min(points$dists),
+                                                     y = min(points$dates),
+                                           		     label = paste(td.rval, td.pval),
+                                           			 hjust = 0) +
+                          		   ggplot2::theme(legend.position = c(1, 1),
+                               					  legend.justification = c(1, 1))
 
     }
 

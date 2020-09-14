@@ -6,7 +6,9 @@
 \title{Cost surface to calculate shortest paths (least-cost paths) of Neolithic
 expansion from the Near East to Europe. Values are 1 (easiest, coast), 2
 (land below 1750 m) and 3 (hardest, ocean and land above 1750 m).}
-\format{A RasterLayer object.}
+\format{
+A RasterLayer object.
+}
 \usage{
 cost
 }
