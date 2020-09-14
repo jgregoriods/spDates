@@ -213,10 +213,10 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
     # If a cost surface is provided, calculate cost distances
     if (!missing(cost) & class(cost) == "RasterLayer") {
         tr <- gdistance::transition(cost, function(x) 1/mean(x), 16)
-        tr <- gistance::geoCorrection(tr)
+        tr <- gdistance::geoCorrection(tr)
 
         # Create cost paths and calculate their distances
-        paths <- gistance::shortestPath(tr, origin, ftrSites, output = "SpatialLines")
+        paths <- gdistance::shortestPath(tr, origin, ftrSites, output = "SpatialLines")
         ftrSites$dists <- sp::SpatialLinesLengths(paths)
     } else {
         # If no cost surface is provided, caculate great circle distances
