@@ -150,7 +150,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
     map <- list("sites" = ftrSites, "origins" = origins, "idw" = origins.idw)
     class(map) <- "dateMap"
 
-    res <- res[order(-r)]
+    res <- res[order(-res$r),]
     return(list("results" = res, "model" = bestModel, "map" = map))
 }
 
