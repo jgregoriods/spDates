@@ -13,7 +13,7 @@ library(rcarbon)
 #' @return A SpatialPointsDataFrame object with the earliest C14 date for every
 #' site.
 #' @export
-filterDates <- unction(sites, c14bp) {
+filterDates <- function(sites, c14bp) {
     x <- c(colnames(sp::coordinates(sites)))[1]
     y <- c(colnames(sp::coordinates(sites)))[2]
 
