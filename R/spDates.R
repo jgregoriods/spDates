@@ -21,7 +21,7 @@ filterDates <- unction(sites, c14bp) {
 
     sites$clusterID <- clusters
     sites.df <- as.data.frame(sites)
-    sites.max <- as.data.frame(sites.df %>% group_by(clusterID) %>%
+    sites.max <- as.data.frame(sites.df %>% group_by(.data$clusterID) %>%
                                top_n(1, get(c14bp)))
 
     xy <- cbind(sites.max[[x]], sites.max[[y]])
@@ -70,7 +70,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
 
     # Perform reduced major axis regression for each bin width and for each
     # hypothetical origin, if more than one is specified
-    pb <- txtProgressBar(min = 0, max = datalen, style = 3)
+    pb <- utils::txtProgressBar(min = 0, max = datalen, style = 3)
     counter <- 0
     for (i in (1:length(binWidths))) {
         for (j in (1:length(origins))) {
@@ -140,7 +140,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
                     origins$r[j] <- rval
                 }
             }
-            setTxtProgressBar(pb, counter)
+			utils::setTxtProgressBar(pb, counter)
         }
     }
     close(pb)
@@ -283,13 +283,13 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
         # Time-versus-distance
         td.models <- parallel::parLapply(cl, 1:nsim, function(k) {
             dates <- sampleCalDates(calDates)
-            model <- lm(dates ~ dists)
+            model <- stats::lm(dates ~ dists)
         })
 
         # Distance-versus-time
         dt.models <- parallel::parLapply(cl, 1:nsim, function(k) {
             dates <- sampleCalDates(calDates)
-            model <- lm(dists ~ dates)
+            model <- stats::lm(dists ~ dates)
         })
 
 		parallel::stopCluster(cl)
@@ -342,12 +342,11 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 #' @return a spplot object.
 #' @export
 plot.dateMap <- function(x, ...) {
-    data(land)
     e <- raster::extent(x$sites)
     sites <- list("sp.points", x$sites, cex = 0.25, col = "black",
                   alpha = 0.5)
     continent <- list("sp.polygons", land, fill = "white")
-    plt <- sp::spplot(raster::mask(x$idw, land), cuts = 8,
+    plt <- sp::spplot(raster::mask(x$idw, spDates::land), cuts = 8,
                       col.regions = viridisLite::magma,
                   	  xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
                   	  xlab = list("R", cex = 0.75),
@@ -417,14 +416,14 @@ plot.dateModel <- function(x, ...) {
         plt <- ggplot2::ggplot() + ggplot2::xlim(0, max(points$dists)) +
                                    ggplot2::ylim(min(points$dates), max(points$dates)) +
                                    ggplot2::geom_abline(data = model,
-                                                        ggplot2::aes(intercept = int,
-																	 slope = slo),
+                                                        ggplot2::aes(intercept = .data$int,
+																	 slope = .data$slo),
                                       				    alpha = 0.05, lwd = 0.5,
                                                         colour = "#f8766d") +
                           		   ggplot2::geom_abline(ggplot2::aes(intercept = int.m,
 																	 slope = slo.m)) +
-                          	       ggplot2::geom_point(data = points, ggplot2::aes(x = dists, y = dates,
-                                                        			      		   fill = factor(binned)),
+                          	       ggplot2::geom_point(data = points, ggplot2::aes(x = .data$dists, y = .data$dates,
+                                                        			      		   fill = factor(.data$binned)),
                                     				   shape = 21, size = 2) +
                           		   ggplot2::labs(x = "Distance from origin (km)", y = "Cal yr BP",
                                					 fill = binLabel) +
@@ -477,13 +476,13 @@ plot.dateModel <- function(x, ...) {
         plt <- ggplot2::ggplot() + ggplot2::xlim(0, max(points$dists)) +
                           		   ggplot2::ylim(min(points$dates), max(points$dates)) +
                           		   ggplot2::geom_abline(data = dt.model,
-                                      				    ggplot2::aes(intercept = int,
-																	 slope = slo),
+                                      				    ggplot2::aes(intercept = .data$int,
+																	 slope = .data$slo),
                                       					alpha = 0.05, lwd = 0.5,
                                       				    colour = "#00bfc4") +
 		                           ggplot2::geom_abline(data = td.model,
-                                      					ggplot2::aes(intercept = int,
-																	 slope = slo),
+                                      					ggplot2::aes(intercept = .data$int,
+																	 slope = .data$slo),
                                       				    alpha = 0.05, lwd = 0.5,
 			                                            colour = "#f8766d") +
                           		   ggplot2::geom_abline(ggplot2::aes(intercept = dt.int.m,
@@ -491,9 +490,9 @@ plot.dateModel <- function(x, ...) {
 														  			 lty = 2) +
                           		   ggplot2::geom_abline(ggplot2::aes(intercept = td.int.m,
                                           							 slope = td.slo.m)) +
-                          		   ggplot2::geom_point(data = points, ggplot2::aes(x = dists,
-																				   y = dates,
-                                                       							   fill = factor(binned)),
+                          		   ggplot2::geom_point(data = points, ggplot2::aes(x = .data$dists,
+																				   y = .data$dates,
+                                                       							   fill = factor(.data$binned)),
                                      				   shape = 21, size = 2) +
                           		   ggplot2::labs(x = "Distance from origin (km)", y = "Cal yr BP",
                                				     fill = binLabel) +
@@ -544,10 +543,10 @@ summary.dateModel <- function(object, ...) {
     if (object$method == "rma") {
 
         start <- mean(object$model[, "int"])
-        start.SD <- sd(object$model[, "int"])
+        start.SD <- stats::sd(object$model[, "int"])
         speed <- 1 / mean(object$model[, "slo"])
         speed.SD <- (1 / ((mean(object$model[, "slo"])) +
-                    (1.96 * sd(object$model[, "slo"])))) - speed
+                    (1.96 * stats::sd(object$model[, "slo"])))) - speed
 
         df <- data.frame(c(paste(format(start, digits = 0, scientific = FALSE),
                                  "+/-", format(start.SD, digits = 0,
@@ -565,17 +564,17 @@ summary.dateModel <- function(object, ...) {
 
         # Time-versus-distance
         td.start <- mean(object$td.model[, "int"])
-        td.start.SD <- sd(object$td.model[, "int"])
+        td.start.SD <- stats::sd(object$td.model[, "int"])
         td.speed <- 1 / mean(object$td.model[, "slo"])
         td.speed.SD <- (1 / ((mean(object$td.model[, "slo"])) +
-                       (1.96 * sd(object$td.model[, "slo"])))) - td.speed
+                       (1.96 * stats::sd(object$td.model[, "slo"])))) - td.speed
         
         # Distance-versus-time
         dt.start <- mean(object$dt.model[, "int"])
-        dt.start.SD <- sd(object$dt.model[, "int"])
+        dt.start.SD <- stats::sd(object$dt.model[, "int"])
         dt.speed <- 1 / mean(object$dt.model[, "slo"])
         dt.speed.SD <- (1 / ((mean(object$dt.model[, "slo"])) +
-                       (1.96 * sd(object$dt.model[, "slo"])))) - dt.speed
+                       (1.96 * stats::sd(object$dt.model[, "slo"])))) - dt.speed
 
         df <- data.frame(c(paste(format(td.start, digits = 0,
                                         scientific = FALSE), "+/-",
