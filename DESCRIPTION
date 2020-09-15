@@ -18,7 +18,7 @@ Description: Analysis of Spatial Gradients in Radiocarbon Dates. Inspired by
     most likely origin.
 Depends: R (>= 3.5.0), rcarbon
 Imports: data.table, dplyr, gdistance, ggplot2, parallel, raster, smatr,
-	viridisLite, magrittr
+	viridisLite, magrittr, rlang, sp, gstat
 License: MIT + file LICENSE 
 Encoding: UTF-8
 LazyData: true

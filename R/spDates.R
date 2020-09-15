@@ -6,6 +6,7 @@ library(rcarbon)
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr group_by top_n
+#' @importFrom rlang .data
 #' @param sites A SpatialPointsDataFrame object with archaeological sites and
 #' associated radiocarbon ages.
 #' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
@@ -17,7 +18,7 @@ filterDates <- function(sites, c14bp) {
     x <- c(colnames(sp::coordinates(sites)))[1]
     y <- c(colnames(sp::coordinates(sites)))[2]
 
-    clusters <- gstat::zerodist(sites, zero = 0, unique.ID = TRUE)
+    clusters <- sp::zerodist(sites, zero = 0, unique.ID = TRUE)
 
     sites$clusterID <- clusters
     sites.df <- as.data.frame(sites)
@@ -57,6 +58,12 @@ filterDates <- function(sites, c14bp) {
 #' @return a list with two elements, the result of the iteration over all
 #' potential origins and the best model selected among those.
 #' @export
+#' @examples
+#' \dontrun{
+#' data(neof)
+#' data(centers)
+#' iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
+#' }
 iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
                          nsim = 999, cost = NULL, method = "rma") {
 
@@ -185,6 +192,7 @@ interpolateIDW <- function(points, attr) {
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr group_by top_n
+#' @importFrom rlang .data
 #' @import rcarbon 
 #' @param ftrSites A SpatialPointsDataFrame object with associated earliest
 #' C14 dates per site and respective calibrated distributions (CalDates
@@ -204,6 +212,13 @@ interpolateIDW <- function(points, attr) {
 #' or "ols". Default is "rma".
 #' @return a dateModel object.
 #' @export
+#' @examples
+#' \dontrun{
+#' data(neof)
+#' data(centers)
+#' jericho <- centers[centers$Site=="Jericho",]
+#' model <- modelDates(neof, "C14Age", jericho, method="ols")
+#' }
 modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
                        cost = NULL, method = "rma") {
 
@@ -233,7 +248,7 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
         ftrSites$bin <- floor(ftrSites$dists / binWidth)
         ftrSites.df <- as.data.frame(ftrSites)
 		ftrSites.df$cal <- NULL
-        ftrSites.max <- ftrSites.df %>% group_by(bin) %>% top_n(1, get(c14bp))
+        ftrSites.max <- ftrSites.df %>% group_by(.data$bin) %>% top_n(1, get(c14bp))
         binSites <- ftrSites[match(ftrSites.max$id, ftrSites$id),]
         dists <- binSites$dists
         calDates <- binSites$cal
@@ -347,7 +362,7 @@ plot.dateMap <- function(x, ...) {
     e <- raster::extent(x$sites)
     sites <- list("sp.points", x$sites, cex = 0.25, col = "black",
                   alpha = 0.5)
-    continent <- list("sp.polygons", land, fill = "white")
+    continent <- list("sp.polygons", spDates::land, fill = "white")
     plt <- sp::spplot(raster::mask(x$idw, spDates::land), cuts = 8,
                       col.regions = viridisLite::magma,
                   	  xlim = c(e[1], e[2]), ylim = c(e[3], e[4]),
@@ -367,6 +382,7 @@ plot.dateMap <- function(x, ...) {
 #' Plot the results of the regression bootstrap on archaeological dates versus
 #' distances from a hypothetical origin, with fitted lines.
 #'
+#' @importFrom rlang .data
 #' @param x a dateModel object created with modelDates().
 #' @param ... ignored
 #' @return a ggplot object.

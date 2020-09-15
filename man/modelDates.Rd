@@ -58,3 +58,11 @@ circle distances. Regression can be either reduced major axis or ordinary
 least squares. If using ordinary least squares, regression is performed
 both on time-versus-distance and on distance-versus-time.
 }
+\examples{
+\dontrun{
+data(neof)
+data(centers)
+jericho <- centers[centers$Site=="Jericho",]
+model <- modelDates(neof, "C14Age", jericho, method="ols")
+}
+}
