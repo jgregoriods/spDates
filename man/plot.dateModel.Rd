@@ -5,10 +5,12 @@
 \title{Plot the results of the regression bootstrap on archaeological dates versus
 distances from a hypothetical origin, with fitted lines.}
 \usage{
-\method{plot}{dateModel}(dateModel)
+\method{plot}{dateModel}(x, ...)
 }
 \arguments{
-\item{dateModel}{a dateModel object created with modelDates().}
+\item{x}{a dateModel object created with modelDates().}
+
+\item{...}{ignored}
 }
 \value{
 a ggplot object.

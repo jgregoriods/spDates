@@ -1,11 +1,11 @@
-library(dplyr)
 library(rcarbon)
 
 
 #' Filter archaeological site coordinates and dates, retaining only the
 #' earliest radiocarbon date per site.
 #'
-#' @import dplyr
+#' @importFrom magrittr %>%
+#' @importFrom dplyr group_by top_n
 #' @param sites A SpatialPointsDataFrame object with archaeological sites and
 #' associated radiocarbon ages.
 #' @param c14bp A string. Name of the field with the radiocarbon ages in C14 BP
@@ -183,7 +183,9 @@ interpolateIDW <- function(points, attr) {
 #' least squares. If using ordinary least squares, regression is performed
 #' both on time-versus-distance and on distance-versus-time.
 #'
-#' @import dplyr rcarbon 
+#' @importFrom magrittr %>%
+#' @importFrom dplyr group_by top_n
+#' @import rcarbon 
 #' @param ftrSites A SpatialPointsDataFrame object with associated earliest
 #' C14 dates per site and respective calibrated distributions (CalDates
 #' objects) in a field named "cal". Result of applying filterDates() and

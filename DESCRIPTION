@@ -16,9 +16,10 @@ Description: Analysis of Spatial Gradients in Radiocarbon Dates. Inspired by
     Both ordinary least squares (OLS) and reduced major axis (RMA) methods are
     supported. It is also possible to iterate over many sites to identify the
     most likely origin.
-Depends: R (>= 3.5.0), dplyr, rcarbon
-Imports: data.table, gdistance, ggplot2, parallel, raster, smatr, viridisLite
-License: file LICENSE 
+Depends: R (>= 3.5.0), rcarbon
+Imports: data.table, dplyr, gdistance, ggplot2, parallel, raster, smatr,
+	viridisLite, magrittr
+License: MIT + file LICENSE 
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

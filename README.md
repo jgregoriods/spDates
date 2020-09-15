@@ -20,7 +20,7 @@ jericho <- centers[centers$Site=="Jericho",]
 model <- modelDates(neof, "C14Age", jericho, method="ols")
 plot(model)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/model.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/model.jpeg" width="300">
 
 <p>Normally, regression is performed on dates versus distances, given the assumption that most of the error will be concentrated on the former (<a href="https://doi.org/10.1371/journal.pbio.0030410">Pinhasi et al. 2005</a>). Nevertheless, distances may also be uncertain, with great-circle distances being only an approximation to the actual path travelled to the site. To account for that, regression on distances versus dates can also be run. In the plot above, the solid line corresponds to the dates-versus-distances regression, while the dashed line shows the distances-versus-dates regression.</p>
 <p>To mitigate the uncertainty in radiocarbon dates, the robustness of the regression can be assessed by a bootstrapping procedure (<a href="https://doi.org/10.1017/S0003598X00061330">Gkiasta et al. 2003</a>). Here, the modelDates() function executes 999 regressions, each time sampling a single year from the calibrated age ranges. The lines of each regression are shown in the plot, providing an uncertanty envelope (red for dates-versus-distances, blue for distances-versus-dates). The black lines correspond to the average of each bootstrapping.</p>
@@ -36,14 +36,14 @@ Speed of advance: 0.97 +/- 0.0073 km/yr 0.64 +/- 0.0063 km/yr</pre></code>
 <pre><code>rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
 plot(rmamodel)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/rmamodel.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmamodel.jpeg" width="300">
 
 <p>So far, we have used all of the sites in the analysis. One can also apply a binning procedure to retain only the earliest site per spatial bins - defined by regular distance intervals from the hypothetical origin (<a href="https://doi.org/10.1073/pnas.0704215104">Hamilton and Buchanan 2007</a>; <a href="https://doi.org/10.1016/j.jas.2010.03.007">Steele 2010</a>). Let us apply spatial bins of 500 km (RMA is executed by default):</p>
 
 <pre><code>rmabins <- modelDates(neof, "C14Age", jericho, binWidth=500)
 plot(rmabins)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/rmabins.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmabins.jpeg" width="300">
 
 <p>As mentioned above, some level of uncertainty has to be taken into account for the distances as well as for the dates. That is because the exact routes travelled are unknown, and, so far, all distances have been calculated from great circles. It is also possible to incorporate a cost surface in order to calculate least-cost paths. The package includes a cost surface where the coast is easier to travel, but sea and land above 1750 m are barriers:</p>
 
@@ -51,7 +51,7 @@ plot(rmabins)</pre></code>
 rmacost <- modelDates(neof, "C14Age", jericho, binWidth=500, cost=cost)
 plot(rmacost)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/rmacost.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmacost.jpeg" width="300">
 
 <p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (<a href="https://doi.org/10.1371/journal.pbio.0030410">2005</a>). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
 
@@ -71,13 +71,13 @@ iter$results
 
 plot(iter$model)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/iter.jpeg" width="300">
+<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/iter.jpeg" width="300">
 
 <p>One can plot a map with the results of the iteration, showing an interpolated surface with the correlation coefficient of all sites tested as potential origins:</p>
 
 <pre><code>plot(iter$map)</pre></code>
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/img/itermap.jpeg" width="400">
+<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/itermap.jpeg" width="400">
 
 <h3>Important</h3>
 

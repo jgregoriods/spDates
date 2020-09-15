@@ -6,11 +6,13 @@
 an interpolated surface of r values for the sites considered as potential
 origins.}
 \usage{
-\method{plot}{dateMap}(dateMap)
+\method{plot}{dateMap}(x, ...)
 }
 \arguments{
-\item{dateMap}{a dateMap object. One of the list elements returned from
+\item{x}{a dateMap object. One of the list elements returned from
 the iterateSites() function.}
+
+\item{...}{ignored}
 }
 \value{
 a spplot object.

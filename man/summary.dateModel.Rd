@@ -4,10 +4,12 @@
 \alias{summary.dateModel}
 \title{Return summary statistics for a dateModel object.}
 \usage{
-\method{summary}{dateModel}(dateModel)
+\method{summary}{dateModel}(object, ...)
 }
 \arguments{
-\item{dateModel}{A dateModel object created with modelDates().}
+\item{object}{A dateModel object created with modelDates().}
+
+\item{...}{ignored}
 }
 \value{
 A dataframe with estimated start date and speed of advance.
