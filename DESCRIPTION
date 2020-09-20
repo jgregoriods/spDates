@@ -9,13 +9,14 @@ Authors@R:
            comment = c(ORCID = "0000-0001-6032-4443"))
 Description: Analysis of Spatial Gradients in Radiocarbon Dates. Inspired by
     space-time regressions often performed to assess the expansion of the
-    Neolithic from the Near East to Europe. Test for significant correlations
+    Neolithic from the Near East to Europe (Pinhasi et al. 2005
+    <doi:10.1371/journal.pbio.0030410>). Test for significant correlations
     between the (earliest) radiocarbon dates of archaeological sites and their
-    respective distances from a hypothetical center of origin. Distances can be
-    either great-circle or least-cost paths calculated from a friction surface.
+    respective distances from a hypothetical center of origin. Distances can
+    be either great-circle or least-cost paths calculated from a friction surface.
     Both ordinary least squares (OLS) and reduced major axis (RMA) methods are
-    supported. It is also possible to iterate over many sites to identify the
-    most likely origin.
+    supported (Russell et al. 2014 <doi:10.1371/journal.pone.0087854>). It is
+    also possible to iterate over many sites to identify the most likely origin.
 Depends: R (>= 3.5.0), rcarbon
 Imports: data.table, dplyr, gdistance, ggplot2, parallel, raster, smatr,
 	viridisLite, magrittr, rlang, sp, gstat
