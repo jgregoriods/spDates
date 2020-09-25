@@ -55,17 +55,19 @@ filterDates <- function(sites, c14bp) {
 #' least cost path distances instead of great circle distances.
 #' @param method A string. Method to be used in the regression. One of "rma"
 #' or "ols". Default is "rma".
+#' @param ncores A number. Number of cores used for parallel processing.
+#' Default is 1.
 #' @return a list with two elements, the result of the iteration over all
 #' potential origins and the best model selected among those.
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(neof)
 #' data(centers)
 #' iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
 #' }
 iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
-                         nsim = 999, cost = NULL, method = "rma") {
+                         nsim = 999, cost = NULL, method = "rma", ncores = 1) {
 
     datalen <- length(binWidths) * length(origins)
 
@@ -86,7 +88,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
             dateModel <- modelDates(ftrSites, c14bp = c14bp,
                                     origin = origins[j,],
                                     binWidth = binWidths[i], nsim = nsim,
-                                    cost = cost, method = method)
+                                    cost = cost, method = method, ncores = ncores)
 
             if (method == "rma") {
                 slope <- mean(dateModel$model[,"slo"])
@@ -210,20 +212,21 @@ interpolateIDW <- function(points, attr) {
 #' least cost path distances instead of great circle distances.
 #' @param method A string. Method to be used in the regression. One of "rma"
 #' or "ols". Default is "rma".
+#' @param ncores A number. Number of cores used for parallel processing.
+#' Default is 1.
 #' @return a dateModel object.
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(neof)
 #' data(centers)
 #' jericho <- centers[centers$Site=="Jericho",]
 #' model <- modelDates(neof, "C14Age", jericho, method="ols")
 #' }
 modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
-                       cost = NULL, method = "rma") {
+                       cost = NULL, method = "rma", ncores = 1) {
 
-    no_cores <- parallel::detectCores()
-    cl <- parallel::makeCluster(no_cores - 1)
+    cl <- parallel::makeCluster(ncores)
     parallel::clusterEvalQ(cl, library("rcarbon"))
     parallel::clusterEvalQ(cl, library("smatr"))
     parallel::clusterExport(cl, "sampleCalDates", envir = .GlobalEnv)
@@ -278,12 +281,13 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
         # Save the coefficient, probability, slope and intercept of the
         # regressions
         colnames(res) <- c("r", "p", "slo", "int")
-        lapply(1:nsim, function(k) {
-            res[k, "r"] <<- models[[k]]$r[[1]]
-            res[k, "p"] <<- models[[k]]$p[[1]]
-            res[k, "slo"] <<- models[[k]]$coef[[1]][2, 1]
-            res[k, "int"] <<- models[[k]]$coef[[1]][1, 1]
-        })
+
+        for (k in 1:nsim) {
+            res[k, "r"] <- models[[k]]$r[[1]]
+            res[k, "p"] <- models[[k]]$p[[1]]
+            res[k, "slo"] <- models[[k]]$coef[[1]][2, 1]
+            res[k, "int"] <- models[[k]]$coef[[1]][1, 1]
+        }
 
         dateModel <- list("model" = res, "binSites" = binSites,
                           "allSites" = ftrSites, "binWidth" = binWidth,
@@ -312,32 +316,31 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 		parallel::stopCluster(cl)
         gc()
 
+        # Save the coefficient, probability, slope and intercept of the
+        # regressions
         td.res <- matrix(nrow = nsim, ncol = 4)
         dt.res <- matrix(nrow = nsim, ncol = 4)
 
-        # Save the coefficient, probability, slope and intercept of the
-        # regressions
         colnames(td.res) <- c("r", "p", "slo", "int")
         colnames(dt.res) <- c("r", "p", "slo", "int")
 
-        lapply(1:nsim, function(k) {
-            # Time-versus-distance
-            td.res[k, "r"] <<- sqrt(summary(td.models[[k]])$r.squared)
-            td.res[k, "p"] <<- summary(td.models[[k]])$coefficients[2, 4]
-            td.res[k, "slo"] <<- td.models[[k]]$coefficients[[2]]
-            td.res[k, "int"] <<- td.models[[k]]$coefficients[[1]]
-
-            # Distance-versus-time
+        for (k in 1:nsim) {
+            td.res[k, "r"] <- sqrt(summary(td.models[[k]])$r.squared)
+            td.res[k, "p"] <- summary(td.models[[k]])$coefficients[2, 4]
+            td.res[k, "slo"] <- td.models[[k]]$coefficients[[2]]
+            td.res[k, "int"] <- td.models[[k]]$coefficients[[1]]
+        
+            dt.res[k, "r"] <- sqrt(summary(dt.models[[k]])$r.squared)
+            dt.res[k, "p"] <- summary(dt.models[[k]])$coefficients[2, 4]
+            
             int <- dt.models[[k]]$coefficients[[1]]
-            slo <- dt.models[[k]]$coefficients[[2]]
-            dt.res[k, "r"] <<- sqrt(summary(dt.models[[k]])$r.squared)
-            dt.res[k, "p"] <<- summary(dt.models[[k]])$coefficients[2, 4]
+            slo <- dt.models[[k]]$coefficients[[2]]            
             
             # Invert the intercept and slope for the plot
-            dt.res[k, "slo"] <<- 1 / slo
-            dt.res[k, "int"] <<- -int / slo
-        })
-        
+            dt.res[k, "slo"] <- 1 / slo
+            dt.res[k, "int"] <- -int / slo
+        }
+
         dateModel <- list("td.model" = td.res, "dt.model" = dt.res,
                           "binSites" = binSites, "allSites" = ftrSites,
                           "binWidth" = binWidth, "method" = method)

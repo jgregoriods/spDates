@@ -14,7 +14,8 @@ iterateSites(
   binWidths = 0,
   nsim = 999,
   cost = NULL,
-  method = "rma"
+  method = "rma",
+  ncores = 1
 )
 }
 \arguments{
@@ -42,6 +43,9 @@ least cost path distances instead of great circle distances.}
 
 \item{method}{A string. Method to be used in the regression. One of "rma"
 or "ols". Default is "rma".}
+
+\item{ncores}{A number. Number of cores used for parallel processing.
+Default is 1.}
 }
 \value{
 a list with two elements, the result of the iteration over all
@@ -53,7 +57,7 @@ in order to find the best model. It is also possible to specify multiple
 distances for the spatial binning of the dates.
 }
 \examples{
-\dontrun{
+\donttest{
 data(neof)
 data(centers)
 iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)

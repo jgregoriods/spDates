@@ -18,7 +18,8 @@ modelDates(
   binWidth = 0,
   nsim = 999,
   cost = NULL,
-  method = "rma"
+  method = "rma",
+  ncores = 1
 )
 }
 \arguments{
@@ -44,6 +45,9 @@ least cost path distances instead of great circle distances.}
 
 \item{method}{A string. Method to be used in the regression. One of "rma"
 or "ols". Default is "rma".}
+
+\item{ncores}{A number. Number of cores used for parallel processing.
+Default is 1.}
 }
 \value{
 a dateModel object.
@@ -59,7 +63,7 @@ least squares. If using ordinary least squares, regression is performed
 both on time-versus-distance and on distance-versus-time.
 }
 \examples{
-\dontrun{
+\donttest{
 data(neof)
 data(centers)
 jericho <- centers[centers$Site=="Jericho",]
