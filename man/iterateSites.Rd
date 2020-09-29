@@ -57,9 +57,15 @@ in order to find the best model. It is also possible to specify multiple
 distances for the spatial binning of the dates.
 }
 \examples{
-\donttest{
+\dontrun{
 data(neof)
 data(centers)
 iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
+}
+\dontshow{
+data(neof)
+data(centers)
+iter <- iterateSites(neof, "C14Age", centers[1:2,], "Site", binWidths=500,
+nsim=1, ncores=2)
 }
 }

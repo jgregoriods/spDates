@@ -61,10 +61,16 @@ filterDates <- function(sites, c14bp) {
 #' potential origins and the best model selected among those.
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' data(neof)
 #' data(centers)
 #' iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
+#' }
+#' \dontshow{
+#' data(neof)
+#' data(centers)
+#' iter <- iterateSites(neof, "C14Age", centers[1:2,], "Site", binWidths=500,
+#' nsim=1, ncores=2)
 #' }
 iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
                          nsim = 999, cost = NULL, method = "rma", ncores = 1) {
@@ -217,11 +223,18 @@ interpolateIDW <- function(points, attr) {
 #' @return a dateModel object.
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' data(neof)
 #' data(centers)
 #' jericho <- centers[centers$Site=="Jericho",]
 #' model <- modelDates(neof, "C14Age", jericho, method="ols")
+#' }
+#' \dontshow{
+#' data(neof)
+#' data(centers)
+#' jericho <- centers[centers$Site=="Jericho",]
+#' model <- modelDates(neof[1:100,], "C14Age", jericho, method="ols",
+#' nsim=1, ncores=2)
 #' }
 modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
                        cost = NULL, method = "rma", ncores = 1) {
@@ -229,7 +242,7 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
     cl <- parallel::makeCluster(ncores)
     parallel::clusterEvalQ(cl, library("rcarbon"))
     parallel::clusterEvalQ(cl, library("smatr"))
-    parallel::clusterExport(cl, "sampleCalDates", envir = .GlobalEnv)
+    parallel::clusterExport(cl, "sampleCalDates")
 
 	ftrSites$id <- 1:nrow(ftrSites)
 

@@ -63,10 +63,17 @@ least squares. If using ordinary least squares, regression is performed
 both on time-versus-distance and on distance-versus-time.
 }
 \examples{
-\donttest{
+\dontrun{
 data(neof)
 data(centers)
 jericho <- centers[centers$Site=="Jericho",]
 model <- modelDates(neof, "C14Age", jericho, method="ols")
+}
+\dontshow{
+data(neof)
+data(centers)
+jericho <- centers[centers$Site=="Jericho",]
+model <- modelDates(neof[1:100,], "C14Age", jericho, method="ols",
+nsim=1, ncores=2)
 }
 }
