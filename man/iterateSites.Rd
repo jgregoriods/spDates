@@ -62,10 +62,4 @@ data(neof)
 data(centers)
 iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
 }
-\dontshow{
-data(neof)
-data(centers)
-iter <- iterateSites(neof, "C14Age", centers[1:2,], "Site", binWidths=500,
-nsim=1, ncores=2)
-}
 }

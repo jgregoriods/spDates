@@ -61,16 +61,10 @@ filterDates <- function(sites, c14bp) {
 #' potential origins and the best model selected among those.
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(neof)
 #' data(centers)
 #' iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
-#' }
-#' \dontshow{
-#' data(neof)
-#' data(centers)
-#' iter <- iterateSites(neof, "C14Age", centers[1:2,], "Site", binWidths=500,
-#' nsim=1, ncores=2)
 #' }
 iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
                          nsim = 999, cost = NULL, method = "rma", ncores = 1) {
@@ -223,7 +217,7 @@ interpolateIDW <- function(points, attr) {
 #' @return a dateModel object.
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(neof)
 #' data(centers)
 #' jericho <- centers[centers$Site=="Jericho",]
@@ -233,7 +227,7 @@ interpolateIDW <- function(points, attr) {
 #' data(neof)
 #' data(centers)
 #' jericho <- centers[centers$Site=="Jericho",]
-#' model <- modelDates(neof[1:100,], "C14Age", jericho, method="ols",
+#' model <- modelDates(neof[1:2,], "C14Age", jericho, method="ols",
 #' nsim=1, ncores=2)
 #' }
 modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,

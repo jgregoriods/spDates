@@ -73,7 +73,7 @@ model <- modelDates(neof, "C14Age", jericho, method="ols")
 data(neof)
 data(centers)
 jericho <- centers[centers$Site=="Jericho",]
-model <- modelDates(neof[1:100,], "C14Age", jericho, method="ols",
+model <- modelDates(neof[1:2,], "C14Age", jericho, method="ols",
 nsim=1, ncores=2)
 }
 }
