@@ -5,10 +5,6 @@
 
 <h3>Installation</h3>
 
-<p>To install from CRAN:</p>
-
-<pre><code>install.packages("spDates")</pre></code>
-
 <p>To install from the github repository:</p>
 
 <pre><code>devtools::install_github("jgregoriods/spDates")</pre></code>
