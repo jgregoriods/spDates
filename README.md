@@ -11,11 +11,15 @@ jonas.gregorio@gmail.com<br/>
 
 <p>To install from CRAN:</p>
 
-<pre><code>install.packages("spDates")</pre></code>
+```R
+install.packages("spDates")
+```
 
 <p>To install from the github repository:</p>
 
-<pre><code>devtools::install_github("jgregoriods/spDates")</pre></code>
+```R
+devtools::install_github("jgregoriods/spDates")
+```
 
 <h3>Examples</h3>
 
