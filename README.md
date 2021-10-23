@@ -34,7 +34,7 @@ model <- modelDates(neof, "C14Age", jericho, method="ols")
 plot(model)
 ```
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/model.jpeg" width="300">
+<img src="man/figures/model.jpeg" width="300">
 
 <p>Normally, regression is performed on dates versus distances, given the assumption that most of the error will be concentrated on the former (<a href="https://doi.org/10.1371/journal.pbio.0030410">Pinhasi et al. 2005</a>). Nevertheless, distances may also be uncertain, with great-circle distances being only an approximation to the actual path travelled to the site. To account for that, regression on distances versus dates can also be run. In the plot above, the solid line corresponds to the dates-versus-distances regression, while the dashed line shows the distances-versus-dates regression.</p>
 <p>To mitigate the uncertainty in radiocarbon dates, the robustness of the regression can be assessed by a bootstrapping procedure (<a href="https://doi.org/10.1017/S0003598X00061330">Gkiasta et al. 2003</a>). Here, the modelDates() function executes 999 regressions, each time sampling a single year from the calibrated age ranges. The lines of each regression are shown in the plot, providing an uncertanty envelope (red for dates-versus-distances, blue for distances-versus-dates). The black lines correspond to the average of each bootstrapping.</p>
