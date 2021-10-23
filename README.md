@@ -54,7 +54,7 @@ rmamodel <- modelDates(neof, "C14Age", jericho, method="rma")
 plot(rmamodel)
 ```
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmamodel.jpeg" width="300">
+<img src="man/figures/rmamodel.jpeg" width="300">
 
 <p>So far, we have used all of the sites in the analysis. One can also apply a binning procedure to retain only the earliest site per spatial bins - defined by regular distance intervals from the hypothetical origin (<a href="https://doi.org/10.1073/pnas.0704215104">Hamilton and Buchanan 2007</a>; <a href="https://doi.org/10.1016/j.jas.2010.03.007">Steele 2010</a>). Let us apply spatial bins of 500 km (RMA is executed by default):</p>
 
@@ -63,7 +63,7 @@ rmabins <- modelDates(neof, "C14Age", jericho, binWidth=500)
 plot(rmabins)
 ```
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmabins.jpeg" width="300">
+<img src="man/figures/rmabins.jpeg" width="300">
 
 <p>As mentioned above, some level of uncertainty has to be taken into account for the distances as well as for the dates. That is because the exact routes travelled are unknown, and, so far, all distances have been calculated from great circles. It is also possible to incorporate a cost surface in order to calculate least-cost paths. The package includes a cost surface where the coast is easier to travel, but sea and land above 1750 m are barriers:</p>
 
@@ -73,7 +73,7 @@ rmacost <- modelDates(neof, "C14Age", jericho, binWidth=500, cost=cost)
 plot(rmacost)
 ```
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmacost.jpeg" width="300">
+<img src="man/figures/rmacost.jpeg" width="300">
 
 <p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (<a href="https://doi.org/10.1371/journal.pbio.0030410">2005</a>). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
 
@@ -95,7 +95,7 @@ iter$results
 plot(iter$model)
 ```
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/iter.jpeg" width="300">
+<img src="man/figures/iter.jpeg" width="300">
 
 <p>One can plot a map with the results of the iteration, showing an interpolated surface with the correlation coefficient of all sites tested as potential origins:</p>
 
@@ -103,7 +103,7 @@ plot(iter$model)
 plot(iter$map)
 ```
 
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/itermap.jpeg" width="400">
+<img src="man/figures/itermap.jpeg" width="400">
 
 <h3>Important</h3>
 
