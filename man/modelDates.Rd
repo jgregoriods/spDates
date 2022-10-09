@@ -5,11 +5,10 @@
 \title{Perform regression of archaeological dates on great circle distances from
 a hypothetical origin. Dates can be filtered to retain only the earliest
 dates per distance bins (Hamilton and Buchanan 2007). Bootstrap is executed
-to account for uncertainty in calibrated dates. If a cost surface is
-provided, distances are calculated using least cost paths instead of great
-circle distances. Regression can be either reduced major axis or ordinary
-least squares. If using ordinary least squares, regression is performed
-both on time-versus-distance and on distance-versus-time.}
+to account for uncertainty in calibrated dates. Regression can be either
+reduced major axis or ordinary least squares. If using ordinary least
+squares, regression is performed both on time-versus-distance and on
+distance-versus-time.}
 \usage{
 modelDates(
   ftrSites,
@@ -17,7 +16,6 @@ modelDates(
   origin,
   binWidth = 0,
   nsim = 999,
-  cost = NULL,
   method = "rma",
   ncores = 1
 )
@@ -40,9 +38,6 @@ distance intervals from the hypothetical origin. Default is 0 (no bins).}
 \item{nsim}{A number. Number of simulations to be run during the
 bootstrapping procedure. Default is 999.}
 
-\item{cost}{Optional. A RasterLayer with friction values to calculate
-least cost path distances instead of great circle distances.}
-
 \item{method}{A string. Method to be used in the regression. One of "rma"
 or "ols". Default is "rma".}
 
@@ -56,11 +51,10 @@ a dateModel object.
 Perform regression of archaeological dates on great circle distances from
 a hypothetical origin. Dates can be filtered to retain only the earliest
 dates per distance bins (Hamilton and Buchanan 2007). Bootstrap is executed
-to account for uncertainty in calibrated dates. If a cost surface is
-provided, distances are calculated using least cost paths instead of great
-circle distances. Regression can be either reduced major axis or ordinary
-least squares. If using ordinary least squares, regression is performed
-both on time-versus-distance and on distance-versus-time.
+to account for uncertainty in calibrated dates. Regression can be either
+reduced major axis or ordinary least squares. If using ordinary least
+squares, regression is performed both on time-versus-distance and on
+distance-versus-time.
 }
 \examples{
 \donttest{

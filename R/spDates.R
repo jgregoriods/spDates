@@ -51,8 +51,6 @@ filterDates <- function(sites, c14bp) {
 #' in km.
 #' @param nsim A number. Number of simulations to be run during the
 #' bootstrapping procedure. Default is 999.
-#' @param cost Optional. A RasterLayer with friction values to calculate
-#' least cost path distances instead of great circle distances.
 #' @param method A string. Method to be used in the regression. One of "rma"
 #' or "ols". Default is "rma".
 #' @param ncores A number. Number of cores used for parallel processing.
@@ -67,7 +65,7 @@ filterDates <- function(sites, c14bp) {
 #' iter <- iterateSites(neof, "C14Age", centers, "Site", binWidths=500)
 #' }
 iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
-                         nsim = 999, cost = NULL, method = "rma", ncores = 1) {
+                         nsim = 999, method = "rma", ncores = 1) {
 
     datalen <- length(binWidths) * length(origins)
 
@@ -88,7 +86,7 @@ iterateSites <- function(ftrSites, c14bp, origins, siteNames, binWidths = 0,
             dateModel <- modelDates(ftrSites, c14bp = c14bp,
                                     origin = origins[j,],
                                     binWidth = binWidths[i], nsim = nsim,
-                                    cost = cost, method = method, ncores = ncores)
+                                    method = method, ncores = ncores)
 
             if (method == "rma") {
                 slope <- mean(dateModel$model[,"slo"])
@@ -186,11 +184,10 @@ interpolateIDW <- function(points, attr) {
 #' Perform regression of archaeological dates on great circle distances from
 #' a hypothetical origin. Dates can be filtered to retain only the earliest
 #' dates per distance bins (Hamilton and Buchanan 2007). Bootstrap is executed
-#' to account for uncertainty in calibrated dates. If a cost surface is
-#' provided, distances are calculated using least cost paths instead of great
-#' circle distances. Regression can be either reduced major axis or ordinary
-#' least squares. If using ordinary least squares, regression is performed
-#' both on time-versus-distance and on distance-versus-time.
+#' to account for uncertainty in calibrated dates. Regression can be either
+#' reduced major axis or ordinary least squares. If using ordinary least
+#' squares, regression is performed both on time-versus-distance and on
+#' distance-versus-time.
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr group_by top_n
@@ -208,8 +205,6 @@ interpolateIDW <- function(points, attr) {
 #' distance intervals from the hypothetical origin. Default is 0 (no bins).
 #' @param nsim A number. Number of simulations to be run during the
 #' bootstrapping procedure. Default is 999.
-#' @param cost Optional. A RasterLayer with friction values to calculate
-#' least cost path distances instead of great circle distances.
 #' @param method A string. Method to be used in the regression. One of "rma"
 #' or "ols". Default is "rma".
 #' @param ncores A number. Number of cores used for parallel processing.
@@ -231,7 +226,7 @@ interpolateIDW <- function(points, attr) {
 #' nsim=1, ncores=2)
 #' }
 modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
-                       cost = NULL, method = "rma", ncores = 1) {
+                       method = "rma", ncores = 1) {
 
     cl <- parallel::makeCluster(ncores)
     parallel::clusterEvalQ(cl, library("rcarbon"))
@@ -240,18 +235,8 @@ modelDates <- function(ftrSites, c14bp, origin, binWidth = 0, nsim = 999,
 
 	ftrSites$id <- 1:nrow(ftrSites)
 
-    # If a cost surface is provided, calculate cost distances
-    if (!missing(cost) & class(cost) == "RasterLayer") {
-        tr <- gdistance::transition(cost, function(x) 1/mean(x), 16)
-        tr <- gdistance::geoCorrection(tr)
-
-        # Create cost paths and calculate their distances
-        paths <- gdistance::shortestPath(tr, origin, ftrSites, output = "SpatialLines")
-        ftrSites$dists <- sp::SpatialLinesLengths(paths)
-    } else {
-        # If no cost surface is provided, caculate great circle distances
-        ftrSites$dists <- sp::spDistsN1(ftrSites, origin, longlat = TRUE)
-    }
+    # Caculate great circle distances
+    ftrSites$dists <- sp::spDistsN1(ftrSites, origin, longlat = TRUE)
 
     # Perform spatial binning, retain only earliest date per bin
     if (binWidth > 0)  {
@@ -666,14 +651,6 @@ summary.dateModel <- function(object, ...) {
 #'   \item Site. Site name.
 #' }
 "centers"
-
-
-#' Cost surface to calculate shortest paths (least-cost paths) of Neolithic
-#' expansion from the Near East to Europe. Values are 1 (easiest, coast), 2
-#' (land below 1750 m) and 3 (hardest, ocean and land above 1750 m).
-#' 
-#' @format A RasterLayer object.
-"cost"
 
 
 #' Land polygons.

@@ -13,7 +13,6 @@ iterateSites(
   siteNames,
   binWidths = 0,
   nsim = 999,
-  cost = NULL,
   method = "rma",
   ncores = 1
 )
@@ -37,9 +36,6 @@ in km.}
 
 \item{nsim}{A number. Number of simulations to be run during the
 bootstrapping procedure. Default is 999.}
-
-\item{cost}{Optional. A RasterLayer with friction values to calculate
-least cost path distances instead of great circle distances.}
 
 \item{method}{A string. Method to be used in the regression. One of "rma"
 or "ols". Default is "rma".}

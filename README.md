@@ -1,4 +1,3 @@
-<h1>spDates</h1>
 <h2>Analysis of Spatial Gradients in Radiocarbon Dates</h2>
 
 **Jonas Gregorio de Souza**<br/>
@@ -64,16 +63,6 @@ plot(rmabins)
 ```
 
 <img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmabins.jpeg" width="300">
-
-<p>As mentioned above, some level of uncertainty has to be taken into account for the distances as well as for the dates. That is because the exact routes travelled are unknown, and, so far, all distances have been calculated from great circles. It is also possible to incorporate a cost surface in order to calculate least-cost paths. The package includes a cost surface where the coast is easier to travel, but sea and land above 1750 m are barriers:</p>
-
-```R
-data(cost)
-rmacost <- modelDates(neof, "C14Age", jericho, binWidth=500, cost=cost)
-plot(rmacost)
-```
-
-<img src="https://github.com/jgregoriods/spDates/blob/master/man/figures/rmacost.jpeg" width="300">
 
 <p>Finally, one can iterate over many sites to test for hypothetical origins, selecting the one with the highest correlation coefficient as the most likely center of origin. Here, we will use 9 sites in the Near East that have been considered as potential Neolithic "cradles" by Pinhasi et al. (<a href="https://doi.org/10.1371/journal.pbio.0030410">2005</a>). We will use spatial bins of 500 km for all cases, but a sequence of widths can also be passed as an argument to test the effect of using different spatial bins:</p>
 
